@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _LightPct: 1
+    - _LightPct: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
