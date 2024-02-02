@@ -8,7 +8,9 @@ namespace Managers.BWEffectManager
     {
 
         [Header("Data")]
-        [SerializeField] private Material       _bwMaterial;
+        [SerializeField] private Material       _frontMaterial;
+        [SerializeField] private Material       _backMaterial;
+
 
         [Header("Specifications")]
         [SerializeField] private float          _swapDurationInMs;
@@ -41,7 +43,8 @@ namespace Managers.BWEffectManager
         public void SetPercent(float percent)
         {
             _percent = Mathf.Clamp(percent, 0.0f, 1.0f);
-            _bwMaterial.SetFloat("_LightPct", _percent);
+            _frontMaterial.SetFloat("_Interpolate", _percent);
+            _backMaterial.SetFloat("_Interpolate", _percent);
         }
 
         public void SwapMode()
