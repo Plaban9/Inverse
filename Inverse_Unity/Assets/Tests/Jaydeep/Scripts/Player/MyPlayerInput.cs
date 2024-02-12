@@ -15,6 +15,8 @@ namespace Minimalist.Player
         public float MoveVector { get; private set; }
         public bool IsJumped { get; private set; }
 
+        public event Action OnInteract;
+
         // Private Fields
         private PlayerControls _inputs;
 
@@ -35,6 +37,7 @@ namespace Minimalist.Player
             _inputs.Enable();
             _inputs.Player.Move.performed += ctx => MoveVector = ctx.ReadValue<float>();
             _inputs.Player.Move.canceled += ctx => MoveVector = 0f;
+            _inputs.Player.Interact.performed += ctx => OnInteract?.Invoke();
         }
 
         private void OnDisable()
