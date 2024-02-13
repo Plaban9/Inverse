@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 46175425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.069, y: 0, z: 0}
+  m_LocalPosition: {x: 4.069, y: 0.644, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -360,7 +360,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.7066693, y: 0}
+  m_Offset: {x: 4.7066693, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -429,7 +429,9 @@ GameObject:
   m_Component:
   - component: {fileID: 559782395}
   - component: {fileID: 559782394}
+  - component: {fileID: 559782398}
   - component: {fileID: 559782397}
+  - component: {fileID: 559782399}
   - component: {fileID: 559782396}
   m_Layer: 0
   m_Name: Dog
@@ -458,7 +460,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 992f6713041285e4a84373f7b52e2342, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -479,7 +481,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1913840773, guid: 230be351b113e644ab5c350ebe349be7, type: 3}
   m_Color: {r: 0.9098769, g: 1, b: 0.4009434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -499,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 559782393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.11, y: -0.8, z: 0}
+  m_LocalPosition: {x: 2.11, y: -1.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -524,7 +526,7 @@ MonoBehaviour:
   followSpeed: 4
   detectionForGrowling: {fileID: 1406980879}
   detectionForBarking: {fileID: 86800379}
-  <FollowState>k__BackingField: 0
+  followState: 0
   <DetectionState>k__BackingField: 0
 --- !u!61 &559782397
 BoxCollider2D:
@@ -558,11 +560,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.92, y: 1.92}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -571,6 +573,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &559782398
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559782393}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 479e6a827dc39e74ba48d7c2de2f9420, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &559782399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559782393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc898be379a5d241b719aa4e6efea4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &692602037
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,9 +818,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1112478753}
   - component: {fileID: 1112478752}
-  - component: {fileID: 1112478751}
   - component: {fileID: 1112478750}
   - component: {fileID: 1112478749}
+  - component: {fileID: 1112478751}
   - component: {fileID: 1112478748}
   m_Layer: 2
   m_Name: Player
@@ -971,6 +1006,7 @@ GameObject:
   - component: {fileID: 1241896110}
   - component: {fileID: 1241896109}
   - component: {fileID: 1241896114}
+  - component: {fileID: 1241896115}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1142,6 +1178,18 @@ MonoBehaviour:
   chaseSpeed: 5
   enemyDetection: {fileID: 2584272}
   lastPlayerPos: {x: 0, y: 0}
+--- !u!114 &1241896115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241896108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c46b70f455aaf44a7a7f271f8bc7c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1406980877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1268,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 11.089684, y: 0}
+  m_Offset: {x: 11.089684, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

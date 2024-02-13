@@ -1,8 +1,5 @@
 using Minimalist.Interfaces;
 using Minimilist.Pet.Ability;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Minimilist.Pet
@@ -17,6 +14,27 @@ namespace Minimilist.Pet
         [SerializeField] private PetDetect detectionForGrowling;
         [SerializeField] private PetDetect detectionForBarking;
 
+        private float _stopDistance = 1.75f;
+        [SerializeField] private FollowStates followState;
+
+        public float Speed
+        {
+            get 
+            {
+                if (FollowState == FollowStates.Follow)
+                {
+                    float dist = Vector2.Distance(transform.position, playerTrans.position);
+                    return dist > _stopDistance ? 1 : 0;
+                }
+                else
+                    return 0;
+            }
+        }
+
+        public event System.Action<bool> OnGrowling;
+        public event System.Action<bool> OnBarking;
+        public event System.Action<bool> OnSit;
+
         public enum DetectionStates
         {
             Idle,
@@ -30,16 +48,25 @@ namespace Minimilist.Pet
             Follow,
         }
 
-        [field: SerializeField] public FollowStates FollowState { get; private set; }
+        public FollowStates FollowState
+        {
+            get => followState;
+            private set
+            {
+                followState = value;
+                OnSit?.Invoke(value == FollowStates.Sit);
+            }
+        }
         [field: SerializeField] public DetectionStates DetectionState { get; private set; }
 
         private void Start()
         {
             DetectionState = DetectionStates.Idle;
-            if(playerTrans == null)
+            FollowState = FollowStates.Sit;
+            if (playerTrans == null)
             {
                 playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-                if(playerTrans == null)
+                if (playerTrans == null)
                 {
                     Debug.LogError("Player is NOT assigned!");
                 }
@@ -58,7 +85,7 @@ namespace Minimilist.Pet
             switch (FollowState)
             {
                 case FollowStates.Follow:
-                    if (Vector2.Distance(transform.position, playerTrans.position) > 1.75f)
+                    if (Vector2.Distance(transform.position, playerTrans.position) > _stopDistance && DetectionState == DetectionStates.Idle)
                         Follow();
                     break;
             }
@@ -67,7 +94,7 @@ namespace Minimilist.Pet
             {
                 var dir = playerTrans.position.x - transform.position.x;
                 var xScale = Mathf.Abs(transform.localScale.x);
-                transform.localScale = new Vector2(dir < 0 ? -xScale: xScale, transform.localScale.y);
+                transform.localScale = new Vector2(dir < 0 ? -xScale : xScale, transform.localScale.y);
 
                 var targetPos = Vector2.MoveTowards(transform.position, playerTrans.position, Time.deltaTime * followSpeed);
                 targetPos.y = transform.position.y;
@@ -77,19 +104,28 @@ namespace Minimilist.Pet
 
         private void HandleDetection()
         {
-            if (detectionForGrowling.HasDetected)
+            if (detectionForGrowling.HasDetected && DetectionState != DetectionStates.Alert)
             {
                 DetectionState = DetectionStates.Alert;
-                Debug.Log("Enemy Is Close!");
-
-                if (detectionForBarking.HasDetected)
-                {
-                    DetectionState = DetectionStates.Spotted;
-                    Debug.Log("Enemy Spotted!");
-                }
+                //Debug.Log("Enemy Is Close!");
+                OnGrowling?.Invoke(detectionForGrowling.HasDetected);
+            }
+            else if (detectionForBarking.HasDetected && DetectionState != DetectionStates.Spotted)
+            {
+                DetectionState = DetectionStates.Spotted;
+                //Debug.Log("Enemy Spotted!");
+                OnBarking?.Invoke(detectionForBarking.HasDetected);
             }
             else
+            {
+                if (DetectionState != DetectionStates.Idle)
+                {
+                    OnGrowling?.Invoke(false);
+                    OnBarking?.Invoke(false);
+                    Debug.Log($"{this.name}: Events for reset are fired");
+                }
                 DetectionState = DetectionStates.Idle;
+            }
         }
 
         public void SetFollowState(bool canFollow)
