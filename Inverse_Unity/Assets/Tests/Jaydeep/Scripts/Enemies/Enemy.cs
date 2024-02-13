@@ -11,10 +11,6 @@ namespace Minimilist.Enemies
         [SerializeField] private PatrolStates state;
         [SerializeField] private float chaseSpeed = 2;
 
-        [Header("Patrol")]
-        [SerializeField] private Transform startPoint;
-        [SerializeField] private Transform endPoint;
-
         [Header("Detection")]
         [SerializeField] private EnemyDetection enemyDetection;
 
