@@ -5,7 +5,7 @@ namespace Minimalist.Audio.Sound
     [RequireComponent(typeof(SoundLibrary))]
     public class SoundManager : MonoBehaviour
     {
-        public SoundManager Instance { get; private set; }
+        public static SoundManager Instance { get; private set; }
 
         [SerializeField] private SoundLibrary _sfxLibrary;
 

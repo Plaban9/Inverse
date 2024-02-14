@@ -29,7 +29,12 @@ namespace Minimalist.Level
             //    }
             //}
 
-            OnSwitchInitialized(this.GetLevelType() == levelType);
+            SwitchLevel(this.GetLevelType() == levelType);
+        }
+
+        private void SwitchLevel(bool enableLevel)
+        {
+            SetLevelEnabledStatus(enableLevel);
         }
 
         public override void OnSwitchInitialized()

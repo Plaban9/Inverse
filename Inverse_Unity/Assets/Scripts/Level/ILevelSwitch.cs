@@ -30,7 +30,6 @@ namespace Minimalist.Level
 
         protected void SetLevelEnabledStatus(bool shouldEnable)
         {
-
             if (shouldEnable)
             {
                 if (!levelEnabledStatus)
