@@ -1,3 +1,4 @@
+using Minimalist.Audio.Music;
 using Minimalist.Manager;
 
 using System.Collections;
@@ -32,6 +33,16 @@ namespace Minimalist.Tests
             {
                 isDark = !isDark;
                 LevelManager.Instance.SwitchLevel(isDark);
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                MusicManager.Instance.PlayMusic("Menu", 5f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                MusicManager.Instance.PlayMusic("Gameplay", 5f);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Minimalist.Audio.Music
     [RequireComponent(typeof(MusicLibrary))]
     public class MusicManager : MonoBehaviour
     {
-        public MusicManager Instance { get; private set; }
+        public static MusicManager Instance { get; private set; }
 
         [SerializeField] private MusicLibrary _musicLibrary;
 

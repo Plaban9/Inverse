@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155d26fc433aa804bb027053ff0c2179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicLibrary: {fileID: 0}
-  _musicSource: {fileID: 0}
+  _musicLibrary: {fileID: 6488087601912740435}
+  _musicSource: {fileID: 6298418096831496753}
 --- !u!114 &6488087601912740435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicTracks:
   - trackName: Menu
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: dc5a519c9c76bcd4d9847891be713b1c, type: 3}
   - trackName: Gameplay
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 065bc9a8c8b4b33479555dd076ee1457, type: 3}
 --- !u!114 &3473803707567073258
 MonoBehaviour:
   m_ObjectHideFlags: 0
