@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pet
+  - LevelManager
   layers:
   - Default
   - TransparentFX

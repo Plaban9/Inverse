@@ -2,10 +2,13 @@ using Minimilist.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Minimalist.Interfaces;
+using Minimalist.Level;
+using Minimalist.Manager;
 
 namespace Minimilist.Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ILevelListener<LevelType>
     {
         [SerializeField] private Transform player;
         [SerializeField] private PatrolStates state;
@@ -17,6 +20,7 @@ namespace Minimilist.Enemies
         private ObjectMovement patrolling;
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         private Rigidbody2D rb;
+        private bool _lightState = false;
 
         public bool IsChasing { get => state == PatrolStates.Chase; }
         public bool IsAlert { get => state == PatrolStates.Alert; }
@@ -34,21 +38,32 @@ namespace Minimilist.Enemies
 
         private void Awake()
         {
+
             player = GameObject.FindGameObjectWithTag("Player").transform;
             patrolling = GetComponent<ObjectMovement>();
             rb = GetComponent<Rigidbody2D>();
             if (enemyDetection == null)
                 enemyDetection = GetComponentInChildren<EnemyDetection>();
+            LevelManager.Instance.RealmManager.AddListener(this);
+            _lightState = LevelManager.Instance.RealmManager.GetCurrentLevelType() == LevelType.Light ? true : false;
+        }
+
+        private void OnDestroy()
+        {
+            LevelManager.Instance.RealmManager.RemoveListener(this);
         }
 
         private void Start()
         {
             state = PatrolStates.Idle;
+
         }
 
         private void Update()
         {
-            if (enemyDetection.HasDetected && state != PatrolStates.Chase)
+            if (_lightState)
+                state = PatrolStates.Statue;
+            else if (enemyDetection.HasDetected && state != PatrolStates.Chase)
                 state = PatrolStates.Chase;
             else if(!enemyDetection.HasDetected && state == PatrolStates.Chase)
                 state = PatrolStates.Alert;
@@ -117,6 +132,36 @@ namespace Minimilist.Enemies
                 StopAllCoroutines();
                 state = newState;
             }
+        }
+
+
+
+        public void OnNotify(LevelType type)
+        {
+            Debug.Log($"Enemy state {type}");
+            switch (type)
+            {
+                case LevelType.Dark:
+                    ActivateLightState();
+                    break;
+                case LevelType.Light:
+                    ActivateDarkState();
+                    break;
+            }
+        }
+
+        private void ActivateLightState()
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Animator>().speed = 0;
+            _lightState = true;
+        }
+
+        private void ActivateDarkState()
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<Animator>().speed = 1;
+            _lightState = false;
         }
     }
 }
