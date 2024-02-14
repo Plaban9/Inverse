@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Minimilist.Pet
 {
+    [RequireComponent(typeof(Animator))]
     public class PetAnimations : MonoBehaviour
     {
         private readonly int BarkHash = Animator.StringToHash("Bark");

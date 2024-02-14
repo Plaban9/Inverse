@@ -11,15 +11,17 @@ namespace Minimilist.Utilities
         [SerializeField] private Transform startPos = null;
         [SerializeField] private Transform targetPos = null;
         private bool isReached = false;
-        private bool isMoving = true;
+
+        public bool IsMoving { get; private set; } = true;
+
 
         private void FixedUpdate()
         {
-            if (!isMoving) return;
+            if (!IsMoving) return;
 
-            if (Vector3.Distance(transform.position, startPos.position) < .5f)
+            if (Vector3.Distance(transform.position, startPos.position) < 1f)
                 isReached = false;
-            else if (Vector3.Distance(transform.position, targetPos.position) < .5f)
+            else if (Vector3.Distance(transform.position, targetPos.position) < 1f)
                 isReached = true;
 
             var target = isReached ? startPos : targetPos;
@@ -29,7 +31,15 @@ namespace Minimilist.Utilities
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.fixedDeltaTime);
         }
 
-        public void StartMoving() { isMoving = true; }
-        public void StopMoving() {  isMoving = false; }
+        public void StartMoving() { IsMoving = true; }
+        public void StopMoving() { IsMoving = false; }
+
+        private void OnDrawGizmos()
+        {
+            if (startPos)
+                Gizmos.DrawWireSphere(startPos.position, 1);
+            if (targetPos)
+                Gizmos.DrawWireSphere(targetPos.position, 1);
+        }
     }
 }

@@ -18,6 +18,10 @@ namespace Minimilist.Enemies
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         private Rigidbody2D rb;
 
+        public bool IsChasing { get => state == PatrolStates.Chase; }
+        public bool IsAlert { get => state == PatrolStates.Alert; }
+        public bool IsPatrolling { get => patrolling.IsMoving; }
+
         private enum PatrolStates
         {
             Idle,
