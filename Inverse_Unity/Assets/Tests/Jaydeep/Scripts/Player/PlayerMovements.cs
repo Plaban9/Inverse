@@ -18,6 +18,9 @@ namespace Minimalist.Player
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float groundCheckRadius = .5f;
 
+        public Vector2 Velocity { get => _rb.velocity; }
+        public bool IsGrounded { get => isGrounded; }
+
         // Private Fields
         private MyPlayerInput _playerInput;
         private Rigidbody2D _rb;

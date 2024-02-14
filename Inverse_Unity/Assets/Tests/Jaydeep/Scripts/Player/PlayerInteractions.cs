@@ -10,8 +10,7 @@ namespace Minimalist.Player
     {
         private MyPlayerInput _inputs;
         [SerializeField] private IInteractable currentInteractable;
-
-        private readonly List<IInteractable> interactablesList = new();
+        [SerializeField] private Transform currentInteract;
 
         private void Awake()
         {
@@ -40,26 +39,17 @@ namespace Minimalist.Player
             if(collision.TryGetComponent(out IInteractable interactable))
             {
                 currentInteractable = interactable;
-                if(!interactablesList.Contains(interactable))
-                {
-                    interactablesList.Add(interactable);
-                }
-                string msg = "List now contains:\n";
-                interactablesList.ForEach(x => msg += x.ToString() + "\n");
-                Debug.Log(msg);
+                currentInteract = collision.transform;
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if(collision.TryGetComponent(out IInteractable interactable) && interactablesList.Contains(interactable))
+            if(collision.TryGetComponent(out IInteractable interactable))
             {
-                interactablesList.Remove(interactable);
                 if (currentInteractable == interactable)
                     currentInteractable = null;
-                string msg = "List now contains:\n";
-                interactablesList.ForEach(x => msg += x.ToString() + "\n");
-                Debug.Log(msg);
+                currentInteract = null;
             }
         }
     }
