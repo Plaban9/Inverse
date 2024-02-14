@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfxLibrary: {fileID: 2337600790638491831}
-  _sfxSource2D: {fileID: 0}
+  _sfxSource2D: {fileID: 579293400099914024}
 --- !u!114 &2337600790638491831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundEffects:
   - groupID: Jump
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 8ce86cbeef243964d953f92605d442b3, type: 3}
+    - {fileID: 8300000, guid: ae24cc7d84f73d540b8bed9bb87da8ec, type: 3}
+    - {fileID: 8300000, guid: 3020cf7552cdabe448e8958adf2e9489, type: 3}
   - groupID: Death
     clips: []
   - groupID: Scream

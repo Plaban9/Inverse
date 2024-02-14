@@ -1,4 +1,5 @@
 using Minimalist.Audio.Music;
+using Minimalist.Audio.Sound;
 using Minimalist.Manager;
 
 using System.Collections;
@@ -43,6 +44,11 @@ namespace Minimalist.Tests
             if (Input.GetKeyDown(KeyCode.G))
             {
                 MusicManager.Instance.PlayMusic("Gameplay", 5f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                SoundManager.Instance.PlaySound2D("Jump");
             }
         }
     }
