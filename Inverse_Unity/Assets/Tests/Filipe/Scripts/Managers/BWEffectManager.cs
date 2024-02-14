@@ -3,6 +3,9 @@ namespace Managers.BWEffectManager
     using UnityEngine;
     using Managers.BWState;
     using System.Collections;
+    using Minimalist.Level;
+    using Minimalist.Manager;
+
 
     public class BWEffectManager : MonoBehaviour
     {
@@ -10,6 +13,7 @@ namespace Managers.BWEffectManager
         [Header("Data")]
         [SerializeField] private Material       _frontMaterial;
         [SerializeField] private Material       _backMaterial;
+        [SerializeField] private LevelManager   _levelManager;
 
 
         [Header("Specifications")]
@@ -65,19 +69,37 @@ namespace Managers.BWEffectManager
 
             float currentPct = GetPercentage();
             float finalPct = currentPct == 1.0f ? 0.0f : 1.0f;
+            float halfDuration = _swapDurationInMs / 2f;
 
-            for (float i = 0.0f; i < _swapDurationInMs; i++)
+            for (float i = 0.0f; i < halfDuration; i++)
             {
-                float t = i / _swapDurationInMs;
+                float t = i / halfDuration;
                 float transAmount = _transition.Evaluate(t);
                 SetPercent(
                     currentPct * (1.0f - transAmount) +
-                    finalPct * (transAmount)
+                    0.5f * (transAmount)
                     );
                 yield return null;
             }
+            SetPercent(0.5f);
+
+            _levelManager.SwitchLevel(_levelManager.RealmManager.GetCurrentLevelType() == LevelType.Light ? true : false);
+
+            float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
+
+            for (float i = 0.0f; i < halfDuration; i++)
+            {
+                float t = i / halfDuration;
+                float transAmount = _transition.Evaluate(t);
+                SetPercent( 0.5f +
+                    remaining * (transAmount)
+                    );
+                yield return null;
+            }
+
             SetPercent(finalPct);
         }
+
     }
 
 }

@@ -40,5 +40,10 @@ namespace Minimalist.Manager
                 x.Value.OnLevelSwitch(levelType);
             });
         }
+
+        public LevelType GetCurrentLevelType()
+        {
+            return _currentLevelType;
+        }
     }
 }
