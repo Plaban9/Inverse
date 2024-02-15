@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 7167414219357140805}
   - component: {fileID: 7571741908753145069}
   - component: {fileID: 8046756327321974544}
+  - component: {fileID: 7019451917124155193}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: LevelManager
@@ -160,3 +161,43 @@ MonoBehaviour:
     levelObject: {fileID: 5486213075722178788}
   - levelType: 1
     levelObject: {fileID: 1917755851583546875}
+--- !u!114 &7019451917124155193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823319759468836583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bea259fb17a9f344a8aa1e0bc8abad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frontMaterial: {fileID: 2100000, guid: ccbc668c4a1d5d24b90ffb2d2c8d1fc7, type: 2}
+  _backMaterial: {fileID: 2100000, guid: 992f6713041285e4a84373f7b52e2342, type: 2}
+  _swapDurationInMs: 100
+  _transition:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _percent: 0

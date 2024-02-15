@@ -1,3 +1,4 @@
+using Minimalist.Manager;
 using Minimilist.Player.PlayerActions;
 using System;
 using System.Collections;
@@ -38,6 +39,12 @@ namespace Minimalist.Player
             _inputs.Player.Move.performed += ctx => MoveVector = ctx.ReadValue<float>();
             _inputs.Player.Move.canceled += ctx => MoveVector = 0f;
             _inputs.Player.Interact.performed += ctx => OnInteract?.Invoke();
+            _inputs.Player.RealmSwitch.performed += ctx =>
+            {
+                var isDarkRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType() == Level.LevelType.Dark;
+                LevelManager.Instance.SwitchLevel(!isDarkRealm);
+                Debug.Log("Realm Switched!");
+            };
         }
 
         private void OnDisable()

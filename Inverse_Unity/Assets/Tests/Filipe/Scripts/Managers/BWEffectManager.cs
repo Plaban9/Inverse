@@ -9,22 +9,18 @@ namespace Managers.BWEffectManager
 
     public class BWEffectManager : MonoBehaviour
     {
-
         [Header("Data")]
         [SerializeField] private Material       _frontMaterial;
         [SerializeField] private Material       _backMaterial;
-        [SerializeField] private LevelManager   _levelManager;
-
 
         [Header("Specifications")]
         [SerializeField] private float          _swapDurationInMs;
         [SerializeField] private AnimationCurve _transition;
 
-
         [Header("Debug")]
-
         [Range(0.0f, 1.0f)][SerializeField] private float          _percent;
 
+        private LevelManager   _levelManager;
 
         public BWState GetMode()
         {
@@ -82,8 +78,6 @@ namespace Managers.BWEffectManager
                 yield return null;
             }
             SetPercent(0.5f);
-
-            _levelManager.SwitchLevel(_levelManager.RealmManager.GetCurrentLevelType() == LevelType.Light ? true : false);
 
             float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
 

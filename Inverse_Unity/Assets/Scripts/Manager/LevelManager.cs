@@ -1,3 +1,4 @@
+using Managers.BWEffectManager;
 using Minimalist.Level;
 using Minimalist.Scene.Transition;
 
@@ -14,6 +15,8 @@ namespace Minimalist.Manager
     {
         public static LevelManager Instance { get; private set; }
         [field: SerializeField] public RealmManager RealmManager { get; private set; }
+
+        private BWEffectManager effectManager;
 
         private void Awake()
         {
@@ -33,6 +36,8 @@ namespace Minimalist.Manager
                 RealmManager = GetComponent<RealmManager>();
             }
 
+            effectManager = GetComponent<BWEffectManager>();
+
             InitializeLevel();
         }
 
@@ -45,6 +50,7 @@ namespace Minimalist.Manager
 
         public void SwitchLevel(bool lightDark)
         {
+            effectManager.SwapMode();
             RealmManager.OnLevelSwitch(lightDark ? LevelType.Dark : LevelType.Light);
         }
     }

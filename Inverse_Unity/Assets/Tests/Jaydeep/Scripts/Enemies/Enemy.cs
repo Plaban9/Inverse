@@ -20,7 +20,7 @@ namespace Minimilist.Enemies
         private ObjectMovement patrolling;
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         private Rigidbody2D rb;
-        private bool _lightState = false;
+        private bool _darkState = false;
 
         public bool IsChasing { get => state == PatrolStates.Chase; }
         public bool IsAlert { get => state == PatrolStates.Alert; }
@@ -44,8 +44,6 @@ namespace Minimilist.Enemies
             rb = GetComponent<Rigidbody2D>();
             if (enemyDetection == null)
                 enemyDetection = GetComponentInChildren<EnemyDetection>();
-            LevelManager.Instance.RealmManager.AddListener(this);
-            _lightState = LevelManager.Instance.RealmManager.GetCurrentLevelType() == LevelType.Light ? true : false;
         }
 
         private void OnDestroy()
@@ -56,12 +54,14 @@ namespace Minimilist.Enemies
         private void Start()
         {
             state = PatrolStates.Idle;
+            LevelManager.Instance.RealmManager.AddListener(this);
+            _darkState = LevelManager.Instance.RealmManager.GetCurrentLevelType() == LevelType.Dark;
 
         }
 
         private void Update()
         {
-            if (_lightState)
+            if (_darkState)
                 state = PatrolStates.Statue;
             else if (enemyDetection.HasDetected && state != PatrolStates.Chase)
                 state = PatrolStates.Chase;
@@ -154,14 +154,14 @@ namespace Minimilist.Enemies
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<Animator>().speed = 0;
-            _lightState = true;
+            _darkState = true;
         }
 
         private void ActivateDarkState()
         {
             GetComponent<SpriteRenderer>().enabled = true;
             GetComponent<Animator>().speed = 1;
-            _lightState = false;
+            _darkState = false;
         }
     }
 }

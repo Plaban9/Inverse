@@ -55,6 +55,15 @@ namespace Minimilist.Player.PlayerActions
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RealmSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""dbbb69e6-7c7a-431b-a04f-5bfbfa4aa6f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -94,7 +103,7 @@ namespace Minimilist.Player.PlayerActions
                 {
                     ""name"": ""negative"",
                     ""id"": ""c9c96032-d1da-4455-a540-1b3814451214"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -167,6 +176,28 @@ namespace Minimilist.Player.PlayerActions
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b12b762-48e3-41a3-9420-5b33c6ca7066"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""RealmSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""820a2b5f-4466-4348-a9b6-7ebd298dc198"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RealmSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +237,7 @@ namespace Minimilist.Player.PlayerActions
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_RealmSwitch = m_Player.FindAction("RealmSwitch", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -270,6 +302,7 @@ namespace Minimilist.Player.PlayerActions
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_RealmSwitch;
         public struct PlayerActions
         {
             private @PlayerControls m_Wrapper;
@@ -277,6 +310,7 @@ namespace Minimilist.Player.PlayerActions
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            public InputAction @RealmSwitch => m_Wrapper.m_Player_RealmSwitch;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -295,6 +329,9 @@ namespace Minimilist.Player.PlayerActions
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @RealmSwitch.started += instance.OnRealmSwitch;
+                @RealmSwitch.performed += instance.OnRealmSwitch;
+                @RealmSwitch.canceled += instance.OnRealmSwitch;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -308,6 +345,9 @@ namespace Minimilist.Player.PlayerActions
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @RealmSwitch.started -= instance.OnRealmSwitch;
+                @RealmSwitch.performed -= instance.OnRealmSwitch;
+                @RealmSwitch.canceled -= instance.OnRealmSwitch;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -348,6 +388,7 @@ namespace Minimilist.Player.PlayerActions
             void OnMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnRealmSwitch(InputAction.CallbackContext context);
         }
     }
 }

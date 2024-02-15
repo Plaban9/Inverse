@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8618625068409832074}
   - component: {fileID: 8378979192256034116}
   - component: {fileID: 6192975578210572892}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2262783774917992488}
   - component: {fileID: 5619862686733875186}
   - component: {fileID: 4490151339390324568}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -205,8 +205,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.006229222, y: -0.007474959}
+  m_Size: {x: 0.79817474, y: 1.8554832}
   m_Direction: 0
 --- !u!50 &3593800540671839234
 Rigidbody2D:
@@ -265,7 +265,7 @@ MonoBehaviour:
   groundCheck: {fileID: 331718829780037440}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   groundCheckRadius: 0.5
 --- !u!95 &5619862686733875186
 Animator:
@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331718829780037440}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
