@@ -41,6 +41,7 @@ namespace Minimalist.Manager
             {
                 x.Value.OnLevelSwitch(levelType);
             });
+            NotifyListeners(levelType);
         }
 
         public LevelType GetCurrentLevelType()
