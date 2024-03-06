@@ -41,12 +41,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Fuzziness: 0
     - _Interpolate: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Range: 0.43
     - _blurAmount: 0
     - _interpolate: 1
-    m_Colors: []
+    m_Colors:
+    - _EmphasizedColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1771982906300231907
 MonoBehaviour:
