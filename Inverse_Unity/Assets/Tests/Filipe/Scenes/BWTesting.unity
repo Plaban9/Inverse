@@ -520,6 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726858077}
   - component: {fileID: 726858076}
+  - component: {fileID: 726858078}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -559,6 +560,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &726858078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726858075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde405f972ba5714b92babdaee9a9831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1110285831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -646,17 +659,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1516891057020681831, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
   m_PrefabInstance: {fileID: 1110285831}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1110285834 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7571741908753145069, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
-  m_PrefabInstance: {fileID: 1110285831}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697cf3bb853c3194a85f518ae683d0b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1256279518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1287,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frontMaterial: {fileID: 2100000, guid: ccbc668c4a1d5d24b90ffb2d2c8d1fc7, type: 2}
   _backMaterial: {fileID: 2100000, guid: 992f6713041285e4a84373f7b52e2342, type: 2}
-  _levelManager: {fileID: 1110285834}
   _swapDurationInMs: 100
   _transition:
     serializedVersion: 2
@@ -1340,6 +1341,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bwManager: {fileID: 1800592698}
+  _cmEffControl: {fileID: 726858078}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  time: 300
 --- !u!1001 &1901078019
 PrefabInstance:
   m_ObjectHideFlags: 0
