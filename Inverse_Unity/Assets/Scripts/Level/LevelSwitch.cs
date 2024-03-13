@@ -1,4 +1,4 @@
-using Minimalist.Effect.Level.Parallax;
+    using Minimalist.Effect.Level.Parallax;
 
 using System;
 using System.Collections;
@@ -50,9 +50,16 @@ namespace Minimalist.Level
 
         public override void ShowLevel()
         {
-            foreach (var spriteRenderer in _spriteRenderers)
+            foreach (var gameObject in _switchObjects)
             {
-                spriteRenderer.enabled = true;
+                if (gameObject.TryGetComponent(out Collider2D cl))
+                {
+                    cl.enabled = true;
+                }
+                if (gameObject.TryGetComponent(out SpriteRenderer sr))
+                {
+                    sr.enabled = true;
+                }
             }
 
             //SetLevelEnabledStatus(true);
@@ -60,34 +67,50 @@ namespace Minimalist.Level
 
         public override void HideLevel()
         {
-            foreach (var spriteRenderer in _spriteRenderers)
+            foreach (var gameObject in _switchObjects)
             {
-                spriteRenderer.enabled = false;
+                HideObject(gameObject);
             }
 
             //SetLevelEnabledStatus(false);
         }
 
+        private void HideObject(GameObject gmObj)
+        {
+
+                if (gmObj.TryGetComponent(out Collider2D cl))
+                {
+                    cl.enabled = false;
+                }
+                if (gmObj.TryGetComponent(out SpriteRenderer sr))
+                {
+                    sr.enabled = false;
+                }
+
+        }
+
         private void SetRealmData()
         {
-            if (_spriteRenderers != null)
+            if (_switchObjects != null)
             {
-                _spriteRenderers.Clear();
+                _switchObjects.Clear();
             }
             else
             {
-                _spriteRenderers = new List<SpriteRenderer>();
+                _switchObjects = new List<GameObject>();
             }
 
             Debug.Log("Child Count: " + transform.childCount);
 
             for (int i = 0; i < transform.childCount; i++)
             {
-                if (transform.GetChild(i).TryGetComponent<SpriteRenderer>(out var spriteRenderer))
+                GameObject child = transform.GetChild(i).gameObject;
+                if (child != null)
                 {
-                    spriteRenderer.enabled = false;
-                    spriteRenderer.name = spriteRenderer.name + "_" + levelType.ToString();
-                    _spriteRenderers.Add(spriteRenderer);
+
+                    HideObject(child);
+                    child.name = child.name + "_" + levelType.ToString();
+                    _switchObjects.Add(child);
                 }
             }
         }

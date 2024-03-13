@@ -51,7 +51,6 @@ namespace Minimalist.Manager
 
         public void AddListener(ILevelListener<LevelType> listener)
         {
-            Debug.Log("Added wolf");
             _levelListeners.Add(listener);
         }
 

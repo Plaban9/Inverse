@@ -10,7 +10,7 @@ namespace Minimalist.Level
 
         [SerializeField] protected LevelType levelType;
 
-        [SerializeField] protected List<SpriteRenderer> _spriteRenderers;
+        [SerializeField] protected List<GameObject> _switchObjects;
 
         public abstract void OnSwitchInitialized();
         public abstract void OnSwitchInitialized(bool enableLevel);
