@@ -49,7 +49,7 @@ namespace Managers.BWEffectManager
 
         public void SwapMode()
         {
-            Managers.BWState.BWState currentState = GetMode();
+            BWState currentState = GetMode();
 
 
             if (currentState == BWState.TRANSITION)
