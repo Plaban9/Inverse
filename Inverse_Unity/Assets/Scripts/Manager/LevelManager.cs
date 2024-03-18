@@ -50,8 +50,10 @@ namespace Minimalist.Manager
 
         public void SwitchLevel(bool lightDark)
         {
-            effectManager.SwapMode();
-            RealmManager.OnLevelSwitch(lightDark ? LevelType.Dark : LevelType.Light);
+            effectManager.SwapMode(() =>
+            {
+                RealmManager.OnLevelSwitch(lightDark ? LevelType.Dark : LevelType.Light);
+            });
         }
     }
 }

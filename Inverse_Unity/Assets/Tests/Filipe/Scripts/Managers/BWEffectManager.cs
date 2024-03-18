@@ -5,7 +5,7 @@ namespace Managers.BWEffectManager
     using System.Collections;
     using Minimalist.Level;
     using Minimalist.Manager;
-
+    using System;
 
     public class BWEffectManager : MonoBehaviour
     {
@@ -52,7 +52,7 @@ namespace Managers.BWEffectManager
             _backMaterial.SetFloat("_Interpolate", _percent);
         }
 
-        public void SwapMode()
+        public void SwapMode(Action action)
         {
             BWState currentState = GetMode();
 
@@ -62,13 +62,11 @@ namespace Managers.BWEffectManager
                 StopCoroutine(realmChangeRoutine);
             }
 
-            Debug.Log("Changing from " + currentState);
 
-
-            realmChangeRoutine = StartCoroutine(SwapCoroutine());
+            realmChangeRoutine = StartCoroutine(SwapCoroutine(action));
         }
 
-        private IEnumerator SwapCoroutine()
+        private IEnumerator SwapCoroutine(Action action)
         {
             float currentPct = GetPercentage();
             float finalPct = currentPct == 1.0f ? 0.0f : 1.0f;
@@ -82,6 +80,7 @@ namespace Managers.BWEffectManager
                 yield return null;
             }
             SetPercent(0.5f);
+            action.Invoke();
 
             float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
 
