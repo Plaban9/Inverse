@@ -1,6 +1,8 @@
 using Minimalist.Manager;
+
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Minimalist.Player
@@ -33,17 +35,20 @@ namespace Minimalist.Player
         private MyPlayerInput _playerInput;
         private Rigidbody2D _rb;
 
+        private bool _hasPlayerLoaded = false;
+
         private void Awake()
         {
-            _playerInput = GetComponent<MyPlayerInput>();    
+            _playerInput = GetComponent<MyPlayerInput>();
             _rb = GetComponent<Rigidbody2D>();
+            _hasPlayerLoaded = true;
         }
 
         private void Update()
         {
             float move = _playerInput.MoveVector;
             float finalSpeed = speed;
-            if(!isGrounded)
+            if (!isGrounded)
             {
                 finalSpeed *= airControl;
             }
@@ -60,28 +65,31 @@ namespace Minimalist.Player
                 _airJumpCount = 0;
             }
 
-            if((isGrounded || airJumpCap > _airJumpCount) && _playerInput.IsJumped)
+            if ((isGrounded || airJumpCap > _airJumpCount) && _playerInput.IsJumped)
             {
                 if (!isGrounded) { _airJumpCount++; }
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
             }
 
-            if(_rb.velocity.y < 0)
+            if (_rb.velocity.y < 0)
             {
                 _rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            }else if(_rb.velocity.y > 0 && !_playerInput.IsJumped)
+            }
+            else if (_rb.velocity.y > 0 && !_playerInput.IsJumped)
             {
                 _rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            if(collision.CompareTag("Death"))
+            if (collision.CompareTag("Death") && _hasPlayerLoaded)
             {
-                
+
                 Debug.Log("Loading Level " + transform.name + "----" + collision.name);
+                _hasPlayerLoaded = false;
                 SceneManager.Instance.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, "CrossFade");
+                //SceneManager.Instance.LoadScene("Level2", "CrossFade");
             }
         }
     }
