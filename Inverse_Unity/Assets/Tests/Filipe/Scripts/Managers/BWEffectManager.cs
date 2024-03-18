@@ -48,7 +48,6 @@ namespace Managers.BWEffectManager
         public void SetPercent(float percent)
         {
             _percent = Mathf.Clamp(percent, 0.0f, 1.0f);
-            Debug.Log(percent);
             _frontMaterial.SetFloat("_Interpolate", _percent);
             _backMaterial.SetFloat("_Interpolate", _percent);
         }
@@ -57,10 +56,14 @@ namespace Managers.BWEffectManager
         {
             BWState currentState = GetMode();
 
+
             if (currentState == BWState.TRANSITION && realmChangeRoutine != null)
             {
                 StopCoroutine(realmChangeRoutine);
             }
+
+            Debug.Log("Changing from " + currentState);
+
 
             realmChangeRoutine = StartCoroutine(SwapCoroutine());
         }

@@ -55,8 +55,8 @@ namespace Minimalist.Player
 
         private void Start()
         {
-            Invoke(nameof(SwitchTemp), .01f);
-            Invoke(nameof(SwitchTemp), 1f);
+            //Invoke(nameof(SwitchTemp), .01f);
+            //Invoke(nameof(SwitchTemp), 1f);
         }
 
         private void SwitchTemp()

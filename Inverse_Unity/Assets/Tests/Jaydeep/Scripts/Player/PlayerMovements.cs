@@ -51,7 +51,7 @@ namespace Minimalist.Player
             Vector2 myVelocity = new Vector2(move * finalSpeed, _rb.velocity.y);
 
             //_rb.velocity = myVelocity;
-            _rb.velocity = myVelocity; //Vector2.Lerp(_rb.velocity, myVelocity, Time.deltaTime * speed);
+            _rb.velocity = myVelocity; // Vector2.Lerp(_rb.velocity, myVelocity, Time.deltaTime * speed);
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 

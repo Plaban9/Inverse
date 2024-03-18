@@ -27,6 +27,7 @@ namespace Minimalist.Manager
                 levelSwitch.OnSwitchInitialized();
 
                 _levelDataDictionary.Add(_data.levelType, levelSwitch);
+                levelSwitch.HideLevel();
             }
 
             _currentLevelType = defaultLevelType;
