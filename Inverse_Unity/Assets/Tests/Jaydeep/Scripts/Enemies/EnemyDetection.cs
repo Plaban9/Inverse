@@ -8,7 +8,7 @@ namespace Minimilist.Enemies
     [RequireComponent(typeof(Collider2D))]
     public class EnemyDetection : MonoBehaviour
     {
-        public bool HasDetected {  get; private set; }
+        [field:SerializeField] public bool HasDetected {  get; private set; }
 
         private void OnTriggerEnter2D(Collider2D other)
         {

@@ -67,7 +67,5 @@ namespace Minimalist.Manager
                 listener.OnNotify(type);
             }
         }
-
-
     }
 }

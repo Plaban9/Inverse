@@ -20,7 +20,13 @@ namespace Managers.BWEffectManager
         [Header("Debug")]
         [Range(0.0f, 1.0f)][SerializeField] private float          _percent;
 
-        private LevelManager   _levelManager;
+        private Coroutine realmChangeRoutine;
+
+        private void Start()
+        {
+            _frontMaterial.SetFloat("_Interpolate", 0);
+            _backMaterial.SetFloat("_Interpolate", 0);
+        }
 
         public BWState GetMode()
         {
@@ -32,7 +38,6 @@ namespace Managers.BWEffectManager
                 return BWState.LIGHT_MODE;
             }
             return BWState.TRANSITION;
-
         }
 
         public float GetPercentage()
@@ -43,6 +48,7 @@ namespace Managers.BWEffectManager
         public void SetPercent(float percent)
         {
             _percent = Mathf.Clamp(percent, 0.0f, 1.0f);
+            Debug.Log(percent);
             _frontMaterial.SetFloat("_Interpolate", _percent);
             _backMaterial.SetFloat("_Interpolate", _percent);
         }
@@ -51,18 +57,16 @@ namespace Managers.BWEffectManager
         {
             BWState currentState = GetMode();
 
-
-            if (currentState == BWState.TRANSITION)
+            if (currentState == BWState.TRANSITION && realmChangeRoutine != null)
             {
-                return;
+                StopCoroutine(realmChangeRoutine);
             }
 
-            StartCoroutine(SwapCoroutine());
+            realmChangeRoutine = StartCoroutine(SwapCoroutine());
         }
 
         private IEnumerator SwapCoroutine()
         {
-
             float currentPct = GetPercentage();
             float finalPct = currentPct == 1.0f ? 0.0f : 1.0f;
             float halfDuration = _swapDurationInMs / 2f;
@@ -71,10 +75,7 @@ namespace Managers.BWEffectManager
             {
                 float t = i / halfDuration;
                 float transAmount = _transition.Evaluate(t);
-                SetPercent(
-                    currentPct * (1.0f - transAmount) +
-                    0.5f * (transAmount)
-                    );
+                SetPercent(currentPct * (1.0f - transAmount) + 0.5f * (transAmount));
                 yield return null;
             }
             SetPercent(0.5f);
@@ -92,8 +93,7 @@ namespace Managers.BWEffectManager
             }
 
             SetPercent(finalPct);
+            realmChangeRoutine = null;
         }
-
     }
-
 }

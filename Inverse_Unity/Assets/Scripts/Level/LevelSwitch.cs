@@ -91,14 +91,14 @@ namespace Minimalist.Level
 
         private void SetRealmData()
         {
-            if (_switchObjects != null)
-            {
-                _switchObjects.Clear();
-            }
-            else
-            {
-                _switchObjects = new List<GameObject>();
-            }
+            //if (_switchObjects != null)
+            //{
+            //    _switchObjects.Clear();
+            //}
+            //else
+            //{
+            //    _switchObjects = new List<GameObject>();
+            //}
 
             Debug.Log("Child Count: " + transform.childCount);
 

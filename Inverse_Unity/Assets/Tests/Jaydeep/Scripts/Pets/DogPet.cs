@@ -19,7 +19,7 @@ namespace Minimilist.Pet
 
         public float Speed
         {
-            get 
+            get
             {
                 if (FollowState == FollowStates.Follow)
                 {
@@ -104,16 +104,17 @@ namespace Minimilist.Pet
 
         private void HandleDetection()
         {
+
             if (detectionForGrowling.HasDetected && DetectionState != DetectionStates.Alert)
             {
                 DetectionState = DetectionStates.Alert;
-                //Debug.Log("Enemy Is Close!");
+                Debug.Log("Enemy Is Close!");
                 OnGrowling?.Invoke(detectionForGrowling.HasDetected);
             }
             else if (detectionForBarking.HasDetected && DetectionState != DetectionStates.Spotted)
             {
                 DetectionState = DetectionStates.Spotted;
-                //Debug.Log("Enemy Spotted!");
+                Debug.Log("Enemy Spotted!");
                 OnBarking?.Invoke(detectionForBarking.HasDetected);
             }
             else

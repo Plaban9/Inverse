@@ -53,6 +53,18 @@ namespace Minimalist.Player
         }
         #endregion
 
+        private void Start()
+        {
+            Invoke(nameof(SwitchTemp), .01f);
+            Invoke(nameof(SwitchTemp), 1f);
+        }
+
+        private void SwitchTemp()
+        {
+            var isDarkRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType() == Level.LevelType.Dark;
+            LevelManager.Instance.SwitchLevel(!isDarkRealm);
+        }
+
         private void Update()
         {
             IsJumped = _inputs.Player.Jump.WasPerformedThisFrame();

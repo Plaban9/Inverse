@@ -7,7 +7,7 @@ namespace Minimilist.Utilities
     public class ObjectMovement : MonoBehaviour
     {
         [SerializeField] private bool flip;
-        [SerializeField] private float speed = 0f;
+        [SerializeField] private float speed = 5f;
         [SerializeField] private Transform startPos = null;
         [SerializeField] private Transform targetPos = null;
         private bool isReached = false;

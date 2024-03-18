@@ -1,3 +1,4 @@
+using Minimalist.Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,16 @@ namespace Minimalist.Player
             if(isGrounded && _playerInput.IsJumped)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.CompareTag("Death"))
+            {
+                
+                Debug.Log("Loading Level " + transform.name + "----" + collision.name);
+                SceneManager.Instance.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, "CrossFade");
             }
         }
     }

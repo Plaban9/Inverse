@@ -42,10 +42,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fuzziness: 0
-    - _Interpolate: 0
+    - _Interpolate: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Range: 0.639
+    - _Range: 0.391
     - _blurAmount: 0
     - _interpolate: 1
     m_Colors:

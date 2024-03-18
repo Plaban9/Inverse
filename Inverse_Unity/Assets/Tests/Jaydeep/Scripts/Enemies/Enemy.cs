@@ -5,6 +5,8 @@ using UnityEngine;
 using Minimalist.Interfaces;
 using Minimalist.Level;
 using Minimalist.Manager;
+using DG.Tweening;
+using Minimalist.Player;
 
 namespace Minimilist.Enemies
 {
@@ -20,7 +22,8 @@ namespace Minimilist.Enemies
         private ObjectMovement patrolling;
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         private Rigidbody2D rb;
-        private bool _darkState = false;
+        private Animator animator;
+        [SerializeField] private bool _darkState = false;
 
         public bool IsChasing { get => state == PatrolStates.Chase; }
         public bool IsAlert { get => state == PatrolStates.Alert; }
@@ -35,13 +38,12 @@ namespace Minimilist.Enemies
             Patrol,
         }
 
-
         private void Awake()
         {
-
             player = GameObject.FindGameObjectWithTag("Player").transform;
             patrolling = GetComponent<ObjectMovement>();
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
             if (enemyDetection == null)
                 enemyDetection = GetComponentInChildren<EnemyDetection>();
         }
@@ -55,13 +57,12 @@ namespace Minimilist.Enemies
         {
             state = PatrolStates.Idle;
             LevelManager.Instance.RealmManager.AddListener(this);
-            _darkState = LevelManager.Instance.RealmManager.GetCurrentLevelType() == LevelType.Dark;
-
+            OnNotify(LevelManager.Instance.RealmManager.GetCurrentLevelType());
         }
 
         private void Update()
         {
-            if (_darkState)
+            if (!_darkState)
                 state = PatrolStates.Statue;
             else if (enemyDetection.HasDetected && state != PatrolStates.Chase)
                 state = PatrolStates.Chase;
@@ -100,7 +101,7 @@ namespace Minimilist.Enemies
                 var xScale = Mathf.Abs(transform.localScale.x);
                 transform.localScale = new Vector2(dir.x < 0 ? -xScale : xScale, transform.localScale.y);
 
-                Vector2 targetPos = new Vector2(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
+                Vector2 targetPos = new(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
                 rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed);
                 lastPlayerPos = player.position;
                 lastPlayerPos.y = transform.position.y;
@@ -111,7 +112,7 @@ namespace Minimilist.Enemies
                 var dir = (Vector3)lastPlayerPos - transform.position;
                 dir.Normalize();
 
-                Vector2 targetPos = new Vector2(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
+                Vector2 targetPos = new (dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
                 if (Mathf.Abs(lastPlayerPos.x - transform.position.x) > 0)
                     rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed / 2);
                 else
@@ -138,30 +139,45 @@ namespace Minimilist.Enemies
 
         public void OnNotify(LevelType type)
         {
+            _darkState = type == LevelType.Dark;
             Debug.Log($"Enemy state {type}");
             switch (type)
             {
                 case LevelType.Dark:
-                    ActivateLightState();
+                    ActivateDarkState();
                     break;
                 case LevelType.Light:
-                    ActivateDarkState();
+                    ActivateLightState();
                     break;
             }
         }
 
         private void ActivateLightState()
         {
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Animator>().speed = 0;
-            _darkState = true;
+            _darkState = false;
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+            rb.mass = 100 * 100;
+            animator.speed = 0;
+            gameObject.layer = 9;
         }
 
         private void ActivateDarkState()
         {
-            GetComponent<SpriteRenderer>().enabled = true;
-            GetComponent<Animator>().speed = 1;
-            _darkState = false;
+            _darkState = true;
+            rb.isKinematic = false;
+            state = PatrolStates.Idle;
+            rb.mass = 10;
+            animator.speed = 1;
+            gameObject.layer = 0;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.transform.TryGetComponent<PlayerMovements>(out var playerMovements))
+            {
+                Debug.Log("GAME OVER");
+            }
         }
     }
 }
