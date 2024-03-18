@@ -28,8 +28,10 @@ namespace Minimilist.Utilities
 
             var xScale = Mathf.Abs(transform.localScale.x);
             bool isMovingRight = target.position.x - transform.position.x < 0;
-            transform.localScale = new Vector2(isMovingRight ? -xScale : xScale, transform.localScale.y);
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.fixedDeltaTime);
+
+            if (flip)
+                transform.localScale = new Vector2(isMovingRight ? -xScale : xScale, transform.localScale.y);
         }
 
         public void StartMoving() { IsMoving = true; }

@@ -16,6 +16,11 @@ namespace Minimilist.Enemies
         [SerializeField] private PatrolStates state;
         [SerializeField] private float chaseSpeed = 2;
 
+        [Header("Colliders")]
+        [SerializeField] private Collider2D idleCollider;
+        [SerializeField] private Collider2D alertCollider;
+        [SerializeField] private Collider2D chaseCollider;
+
         [Header("Detection")]
         [SerializeField] private EnemyDetection enemyDetection;
 
@@ -46,6 +51,7 @@ namespace Minimilist.Enemies
             animator = GetComponent<Animator>();
             if (enemyDetection == null)
                 enemyDetection = GetComponentInChildren<EnemyDetection>();
+            patrolling.StopMoving();
         }
 
         private void OnDestroy()
@@ -68,20 +74,19 @@ namespace Minimilist.Enemies
                 state = PatrolStates.Chase;
             else if(!enemyDetection.HasDetected && state == PatrolStates.Chase)
                 state = PatrolStates.Alert;
+
+            HandleColliders();
         }
 
         private void FixedUpdate()
         {
             switch (state)
             {
-                case PatrolStates.Idle:     HandleIdleState();  break;
-                case PatrolStates.Chase:    HandleChaseState(); break;
-                case PatrolStates.Alert:    HandleAlertState(); break;
-                case PatrolStates.Patrol:   HandlePatrolState(); break;
-                case PatrolStates.Statue:
-                    // Statue
-                    // Dont do anything
-                    break;
+                case PatrolStates.Idle:     HandleIdleState();      break;
+                case PatrolStates.Chase:    HandleChaseState();     break;
+                case PatrolStates.Alert:    HandleAlertState();     break;
+                case PatrolStates.Patrol:   HandlePatrolState();    break;
+                case PatrolStates.Statue:   HandleStatueState();    break;
                 default: Debug.LogError($"Something went wrong! {state} is not implemented!"); break;
             }
 
@@ -133,8 +138,36 @@ namespace Minimilist.Enemies
                 StopAllCoroutines();
                 state = newState;
             }
+
+            void HandleStatueState()
+            {
+                patrolling.StopMoving();
+            }
         }
 
+        private void HandleColliders()
+        {
+            switch (state)
+            {
+                case PatrolStates.Idle:
+                    idleCollider.enabled = true;
+                    alertCollider.enabled = false;
+                    chaseCollider.enabled = false;
+                    break;
+                case PatrolStates.Chase:
+                    idleCollider.enabled = false;
+                    alertCollider.enabled = false;
+                    chaseCollider.enabled = true;
+                    break;
+
+                case PatrolStates.Patrol:
+                case PatrolStates.Alert:
+                    idleCollider.enabled = false;
+                    alertCollider.enabled = true;
+                    chaseCollider.enabled = false;
+                    break;
+            }
+        }
 
 
         public void OnNotify(LevelType type)
@@ -155,7 +188,7 @@ namespace Minimilist.Enemies
         private void ActivateLightState()
         {
             _darkState = false;
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
             rb.velocity = Vector2.zero;
             rb.mass = 100 * 100;
             animator.speed = 0;
@@ -165,7 +198,7 @@ namespace Minimilist.Enemies
         private void ActivateDarkState()
         {
             _darkState = true;
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
             state = PatrolStates.Idle;
             rb.mass = 10;
             animator.speed = 1;

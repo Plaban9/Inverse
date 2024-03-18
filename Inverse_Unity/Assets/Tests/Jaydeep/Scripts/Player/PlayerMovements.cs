@@ -73,11 +73,11 @@ namespace Minimalist.Player
 
             if (_rb.velocity.y < 0)
             {
-                _rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+                _rb.velocity += (fallMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
             }
             else if (_rb.velocity.y > 0 && !_playerInput.IsJumped)
             {
-                _rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+                _rb.velocity += (lowJumpMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
             }
         }
 
