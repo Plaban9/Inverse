@@ -59,6 +59,7 @@ namespace Managers.BWEffectManager
 
             if (currentState == BWState.TRANSITION && realmChangeRoutine != null)
             {
+                return;
                 StopCoroutine(realmChangeRoutine);
             }
 
