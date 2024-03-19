@@ -53,6 +53,13 @@ namespace Minimalist.Audio
         }
 
         #region Music
+        /// <summary>
+        /// Plays Music by supplied Music Type.
+        /// Note: Has additional default parameters.
+        /// </summary>
+        /// <param name="musicType"></param>
+        /// <param name="fadeDuration"></param>
+        /// <param name="loop"></param>
         public static void PlayMusic(MusicType musicType, float fadeDuration = 0.5f, bool loop = true)
         {
             if (!PlayMusic(Instance._audioLibrary.GetMusicFromType(musicType), fadeDuration, loop))
@@ -61,6 +68,13 @@ namespace Minimalist.Audio
             }
         }
 
+        /// <summary>
+        /// Plays Music by supplied music name.
+        /// Note: Has additional default parameters.
+        /// </summary>
+        /// <param name="musicName"></param>
+        /// <param name="fadeDuration"></param>
+        /// <param name="loop"></param>
         public static void PlayMusic(string musicName, float fadeDuration = 0.5f, bool loop = true)
         {
             if (!PlayMusic(Instance._audioLibrary.GetMusicFromName(musicName), fadeDuration, loop))
@@ -82,6 +96,10 @@ namespace Minimalist.Audio
         #endregion
 
         #region SFX
+        /// <summary>
+        /// Plays SFX by supplied Sound Type.
+        /// </summary>
+        /// <param name="sfxType"></param>
         public static void PlaySFX(SoundType sfxType)
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
@@ -90,6 +108,10 @@ namespace Minimalist.Audio
             }
         }
 
+        /// <summary>
+        /// Plays SFX by supplied SFX name.
+        /// </summary>
+        /// <param name="sfxName"></param>
         public static void PlaySFX(string sfxName)
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), false, Vector3.zero))
@@ -98,6 +120,11 @@ namespace Minimalist.Audio
             }
         }
 
+        /// <summary>
+        /// Plays SFX by supplied Sound Type at given position.
+        /// </summary>
+        /// <param name="sfxType"></param>
+        /// <param name="position"></param>
         public static void PlaySFX3D(SoundType sfxType, Vector3 position)
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), true, position))
@@ -106,6 +133,11 @@ namespace Minimalist.Audio
             }
         }
 
+        /// <summary>
+        /// Plays SFX by supplied Sound name at given position.
+        /// </summary>
+        /// <param name="sfxName"></param>
+        /// <param name="position"></param>
         public static void PlaySFX3D(string sfxName, Vector3 position)
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), true, position))
