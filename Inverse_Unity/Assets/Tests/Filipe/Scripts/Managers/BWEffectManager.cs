@@ -67,6 +67,8 @@ namespace Managers.BWEffectManager
             realmChangeRoutine = StartCoroutine(SwapCoroutine(action));
         }
 
+        // TO-DO: Refector (It's frame rate dependent rn)
+        // At 60FPS transistation is taking 1.66Sec rather than 100ms
         private IEnumerator SwapCoroutine(Action action)
         {
             float currentPct = GetPercentage();
