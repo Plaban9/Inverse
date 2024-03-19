@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511981b6c2146894fbd87855374f98a6, type: 3}
+  m_Name: Test_Plaban
+  m_EditorClassIdentifier: 
+  musicLibrary:
+  - name: Menu
+    musicType: 1
+    audioClip: {fileID: 8300000, guid: dc5a519c9c76bcd4d9847891be713b1c, type: 3}
+    shouldLoop: 1
+  - name: Gameplay
+    musicType: 0
+    audioClip: {fileID: 8300000, guid: 065bc9a8c8b4b33479555dd076ee1457, type: 3}
+    shouldLoop: 1
+  soundLibrary:
+  - name: Jump
+    soundType: 1
+    play3D: 0
+    clips:
+    - {fileID: 8300000, guid: 8ce86cbeef243964d953f92605d442b3, type: 3}
+    - {fileID: 8300000, guid: ae24cc7d84f73d540b8bed9bb87da8ec, type: 3}
+    - {fileID: 8300000, guid: 3020cf7552cdabe448e8958adf2e9489, type: 3}

@@ -1,13 +1,16 @@
-using System;
-
 using UnityEngine;
 
 namespace Minimalist.Audio.Music
 {
-    [Serializable]
-    public struct MusicTrack
+    /// <summary>
+    /// Contains data for a Music.
+    /// </summary>
+    [System.Serializable]
+    public class MusicTrack
     {
-        public string trackName;
+        public string name;
+        public MusicType musicType;
         public AudioClip audioClip;
+        public bool shouldLoop;
     }
 }

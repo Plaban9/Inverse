@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Music
 {
-    [RequireComponent(typeof(MusicLibrary))]
-    public class MusicManager : MonoBehaviour
+    /// <summary>
+    /// Handles Music.
+    /// Contains methods to play types of Music.
+    /// </summary>
+    internal class MusicManager : MonoBehaviour
     {
-        public static MusicManager Instance { get; private set; }
-
-        [SerializeField] private MusicLibrary _musicLibrary;
+        internal static MusicManager Instance { get; private set; }
 
         [SerializeField] private AudioSource _musicSource;
 
@@ -26,13 +27,34 @@ namespace Minimalist.Audio.Music
             }
         }
 
-        public void PlayMusic(string trackName, float fadeDuration = 0.5f)
+        /// <summary>
+        /// Plays Music. Tip: Call with audioClip as null to give a fade out with no audio.
+        /// </summary>
+        /// <param name="audioClip"></param>
+        /// <param name="fadeDuration"></param>
+        /// <param name="loop"></param>
+        internal void PlayMusic(AudioClip audioClip, float fadeDuration = 0.5f, bool loop = true)
         {
-            StartCoroutine(AnimateMusicCrossFade(_musicLibrary.GetClipFromName(trackName), fadeDuration));
+            StartCoroutine(AnimateMusicCrossFade(audioClip, fadeDuration, loop));
         }
 
+        internal void StopMusic()
+        {
+            if (_musicSource != null)
+            {
+                _musicSource.Stop();
+            }
+        }
 
-        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f)
+        internal void PauseMusic()
+        {
+            if (_musicSource != null)
+            {
+                _musicSource.Pause();
+            }
+        }
+
+        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f, bool loop = true)
         {
             float percent = 0; // Used as intermediate variable for lerping
 
@@ -44,7 +66,13 @@ namespace Minimalist.Audio.Music
                 yield return null;
             }
 
+            if (nextTrack == null)
+            {
+                yield break;
+            }
+
             _musicSource.clip = nextTrack;
+            _musicSource.loop = loop;
             _musicSource.Play();
 
             percent = 0;

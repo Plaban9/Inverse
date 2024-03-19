@@ -1,8 +1,8 @@
-
 using UnityEngine;
 
 namespace Minimalist.Audio.Sound
 {
+    [System.Serializable]
     public class SoundLibrary : MonoBehaviour
     {
         [SerializeField] private SoundEffect[] _soundEffects;
@@ -11,7 +11,7 @@ namespace Minimalist.Audio.Sound
         {
             foreach (var soundEffect in _soundEffects)
             {
-                if (soundEffect.groupID.Equals(name))
+                if (soundEffect.name.Equals(name))
                 {
                     return soundEffect.clips[Random.Range(0, soundEffect.clips.Length)];
                 }
