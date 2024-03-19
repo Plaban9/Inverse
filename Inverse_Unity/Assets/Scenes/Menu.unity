@@ -703,14 +703,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 139688494296351916, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: _transitions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 139688494296351916, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: _transitions.Array.data[0]
-      value: 
-      objectReference: {fileID: 547814284}
     - target: {fileID: 3186212918864119515, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -791,50 +783,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5908575731772695352, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5908575731772695352, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_IgnoreReversedGraphics
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7309919308892148635, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
       propertyPath: m_Name
       value: SceneManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970377500750574047, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970377500750574047, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970377500750574047, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970377500750574047, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
---- !u!114 &547814284 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 512128018481632846, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-  m_PrefabInstance: {fileID: 547814283}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274827fa0be97f745b2f32f954a9d6a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &697416339
 GameObject:
   m_ObjectHideFlags: 0

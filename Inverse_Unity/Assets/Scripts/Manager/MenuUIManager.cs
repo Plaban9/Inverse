@@ -18,12 +18,16 @@ namespace Minimalist.Manager
         [SerializeField] private TextMeshProUGUI _quitButton;
         [SerializeField] private Dictionary<string, TextMeshProUGUI> _menuButtonList;
 
+        private bool _isLevelBeingLoaded = false;
+
         private void Awake()
         {
             if (_menuButtonList == null)
             {
                 _menuButtonList = new Dictionary<string, TextMeshProUGUI>();
             }
+
+            _isLevelBeingLoaded = false;
 
             RefreshDictionary();
         }
@@ -79,9 +83,14 @@ namespace Minimalist.Manager
             switch (action)
             {
                 case "play":
-                    AudioManager.PlaySFX(SoundType.UI_Click);
-                    SceneManager.Instance.LoadScene("Level1", "CrossFade");
+                    if (!_isLevelBeingLoaded)
+                    {
+                        _isLevelBeingLoaded = true;
+                        AudioManager.PlaySFX(SoundType.UI_Click);
+                        SceneManager.Instance.LoadScene("Level1", "CrossFade");
+                    }
                     break;
+
                 case "quit":
                     AudioManager.PlaySFX(SoundType.UI_Quit);
                     Invoke("QuitGame", 1f);
