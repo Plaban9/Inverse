@@ -64,7 +64,7 @@ namespace Minimalist.Audio
         {
             if (!PlayMusic(Instance._audioLibrary.GetMusicFromType(musicType), fadeDuration, loop))
             {
-                d("Unable to play Music Track with type: " + musicType.DisplayName());
+                d("Unable to play Music Track with type: " + musicType.ToString());
             }
         }
 
@@ -104,7 +104,7 @@ namespace Minimalist.Audio
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
             {
-                d("Unable to play SFX with type: " + sfxType.DisplayName());
+                d("Unable to play SFX with type: " + sfxType.ToString());
             }
         }
 
@@ -129,7 +129,7 @@ namespace Minimalist.Audio
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), true, position))
             {
-                d("Unable to play 3D SFX with type: " + sfxType.DisplayName());
+                d("Unable to play 3D SFX with type: " + sfxType.ToString());
             }
         }
 

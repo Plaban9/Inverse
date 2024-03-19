@@ -21,14 +21,14 @@ MonoBehaviour:
   - name: Hover
     soundType: 20
     clips:
-    - {fileID: 8300000, guid: 511a877b501424448a3a7b30999f0364, type: 3}
     - {fileID: 8300000, guid: 4a26a4b19310fa64fb62f4625db88f78, type: 3}
-    - {fileID: 8300000, guid: 4d7f7b473b6edf844bccbef37303e715, type: 3}
+    - {fileID: 8300000, guid: 511a877b501424448a3a7b30999f0364, type: 3}
+    - {fileID: 8300000, guid: 8b7f56d3cd32e5d4f86d45caf6071eaa, type: 3}
   - name: Click
     soundType: 18
     clips:
-    - {fileID: 8300000, guid: 8b7f56d3cd32e5d4f86d45caf6071eaa, type: 3}
     - {fileID: 8300000, guid: b6f4545e61769d84d8c9d93970ce7a0d, type: 3}
+    - {fileID: 8300000, guid: 3cbb361d516c36e429501aaf74f1c939, type: 3}
   - name: Quit
     soundType: 19
     clips:
