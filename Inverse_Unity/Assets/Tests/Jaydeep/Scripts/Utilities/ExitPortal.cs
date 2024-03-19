@@ -1,4 +1,5 @@
 using Minimalist.Manager;
+using Minimalist.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,9 @@ namespace Minimilist.Utilities
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.TryGetComponent<MyPlayerInput>(out var playerInput))
             {
+                playerInput.enabled = false;
                 SceneManager.Instance.LoadScene(nextLevelName, "CrossFade");
             }
         }
