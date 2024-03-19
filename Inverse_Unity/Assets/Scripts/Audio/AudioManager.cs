@@ -7,17 +7,27 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Minimalist.Audio
 {
     public class AudioManager : MonoBehaviour
     {
+        private static AudioManager _currentInstance;
+        private static Dictionary<UnityEngine.SceneManagement.Scene, AudioManager> _sceneToAudioManagerDictionary;
+
         public static AudioManager Instance { get; private set; }
         [SerializeField] private AudioLibrary _audioLibrary;
 
         private void Awake()
         {
-            Instance = this;
+            InitializeSceneDictionary();
+        }
+
+        private void OnDisable()
+        {
+            Instance = null;
+            _currentInstance = null;
         }
 
         private void Start()
@@ -27,6 +37,7 @@ namespace Minimalist.Audio
                 d("Audio Library is not set");
             }
         }
+
         #region Music
         public static void PlayMusic(MusicType musicType, float fadeDuration = 0.5f, bool loop = true)
         {
@@ -111,6 +122,37 @@ namespace Minimalist.Audio
             }
 
             return false;
+        }
+        #endregion
+
+        #region Utility
+        private void InitializeSceneDictionary()
+        {
+            if (_sceneToAudioManagerDictionary == null)
+            {
+                _sceneToAudioManagerDictionary = new Dictionary<UnityEngine.SceneManagement.Scene, AudioManager>();
+            }
+
+            if (_sceneToAudioManagerDictionary.ContainsKey(gameObject.scene))
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _sceneToAudioManagerDictionary[gameObject.scene] = this;
+                _currentInstance = this;
+                Instance = this;
+            }
+        }
+
+        public AudioManager GetInstanceBasedOnScene(UnityEngine.SceneManagement.Scene scene)
+        {
+            if (_sceneToAudioManagerDictionary.ContainsKey(scene))
+            {
+                return _sceneToAudioManagerDictionary[scene];
+            }
+
+            return null;
         }
         #endregion
 

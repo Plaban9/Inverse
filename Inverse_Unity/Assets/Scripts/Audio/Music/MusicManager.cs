@@ -41,6 +41,11 @@ namespace Minimalist.Audio.Music
                 yield return null;
             }
 
+            if (nextTrack == null)
+            {
+                yield break;
+            }
+
             _musicSource.clip = nextTrack;
             _musicSource.loop = loop;
             _musicSource.Play();
