@@ -675,6 +675,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.01
+--- !u!1001 &502508204
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1099065029}
+    m_Modifications:
+    - target: {fileID: 5239656687682859538, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_Name
+      value: background 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8816250363866838789, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+      propertyPath: m_SortingOrder
+      value: -999
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
 --- !u!1 &565264444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7772582932016674948, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
@@ -1327,7 +1388,8 @@ Transform:
   m_LocalPosition: {x: 352.8, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1214077303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1099065030
@@ -1424,6 +1486,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2596584470025810238, guid: 8d4f9e25797f1f746b830526b9f7f396, type: 3}
   m_PrefabInstance: {fileID: 4879597211219167318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1214077303 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
+  m_PrefabInstance: {fileID: 502508204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1283258518
 GameObject:
@@ -2818,6 +2885,10 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 576
       objectReference: {fileID: 0}
+    - target: {fileID: 2774338841753004086, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 74c745875e059ba43b6560a386b068cc, type: 3}
     - target: {fileID: 2774338841753004086, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
       propertyPath: m_DrawMode
       value: 2
