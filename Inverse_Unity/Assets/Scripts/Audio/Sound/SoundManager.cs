@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Sound
 {
+    /// <summary>
+    /// Handles SFX.
+    /// Contains methods to play types of SFX.
+    /// </summary>
     internal class SoundManager : MonoBehaviour
     {
         internal static SoundManager Instance { get; private set; }
@@ -21,13 +25,22 @@ namespace Minimalist.Audio.Sound
             }
         }
 
-        // For UI sounds (mostly)
+        /// <summary>
+        /// Plays sound using PlayOneShot(). 
+        /// Mostly used in UI.
+        /// </summary>
+        /// <param name="audioClip"></param>
         internal void PlaySound2D(AudioClip audioClip)
         {
             _sfxSource2D.PlayOneShot(audioClip);
         }
 
-        // When not in List
+        /// <summary>
+        /// Plays sound at a location using PlayClipAtPoint().
+        /// Mostly used in gameplay.
+        /// </summary>
+        /// <param name="audioClip"></param>
+        /// <param name="position"></param>
         internal void PlaySound3D(AudioClip audioClip, Vector3 position)
         {
             if (audioClip != null)

@@ -1,9 +1,11 @@
-using Minimalist.Audio.Music;
-
 using UnityEngine;
 
 namespace Minimalist.Audio.Sound
 {
+    /// <summary>
+    /// Contains data for a sound effect.
+    /// Has multiple clips for randomness of the effect needed.
+    /// </summary>
     [System.Serializable]
     public class SoundEffect
     {

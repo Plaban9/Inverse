@@ -5,6 +5,10 @@ using UnityEngine;
 
 namespace Minimalist.Audio
 {
+    /// <summary>
+    /// Contains data for SFX and Music.
+    /// It is a scriptable object.
+    /// </summary>
     [CreateAssetMenu(fileName = "Audio Library", menuName = "Minimalist/Audio", order = 1)]
     public class AudioLibrary : ScriptableObject
     {

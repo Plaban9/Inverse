@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 namespace Minimalist.Audio.Sound

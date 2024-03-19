@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Music
 {
+    /// <summary>
+    /// Handles Music.
+    /// Contains methods to play types of Music.
+    /// </summary>
     internal class MusicManager : MonoBehaviour
     {
         internal static MusicManager Instance { get; private set; }
@@ -23,11 +27,32 @@ namespace Minimalist.Audio.Music
             }
         }
 
+        /// <summary>
+        /// Plays Music. Tip: Call with audioClip as null to give a fade out with no audio.
+        /// </summary>
+        /// <param name="audioClip"></param>
+        /// <param name="fadeDuration"></param>
+        /// <param name="loop"></param>
         internal void PlayMusic(AudioClip audioClip, float fadeDuration = 0.5f, bool loop = true)
         {
             StartCoroutine(AnimateMusicCrossFade(audioClip, fadeDuration, loop));
         }
 
+        internal void StopMusic()
+        {
+            if (_musicSource != null)
+            {
+                _musicSource.Stop();
+            }
+        }
+
+        internal void PauseMusic()
+        {
+            if (_musicSource != null)
+            {
+                _musicSource.Pause();
+            }
+        }
 
         private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f, bool loop = true)
         {

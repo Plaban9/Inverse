@@ -1,31 +1,43 @@
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
 
-using System.Collections;
 using System.Collections.Generic;
 
 using Unity.VisualScripting;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Minimalist.Audio
 {
+    /// <summary>
+    /// Handles audio data (SFX and Music) for a scene.
+    /// It is a non-persistant singleton.
+    /// </summary>
     public class AudioManager : MonoBehaviour
     {
         private static AudioManager _currentInstance;
         private static Dictionary<UnityEngine.SceneManagement.Scene, AudioManager> _sceneToAudioManagerDictionary;
 
         public static AudioManager Instance { get; private set; }
+
+        [SerializeField] private bool _stopMusicOnSceneExit = false;
         [SerializeField] private AudioLibrary _audioLibrary;
 
         private void Awake()
         {
-            InitializeSceneDictionary();
+            //For a scenario where we loaded scene music in memory.
+            //InitializeSceneDictionary();
+
+            Instance = this;
         }
 
         private void OnDisable()
         {
+            if (_stopMusicOnSceneExit)
+            {
+                MusicManager.Instance.StopMusic();
+            }
+
             Instance = null;
             _currentInstance = null;
         }
@@ -118,7 +130,7 @@ namespace Minimalist.Audio
                     }
 
                     return true;
-                }                
+                }
             }
 
             return false;
@@ -135,13 +147,13 @@ namespace Minimalist.Audio
 
             if (_sceneToAudioManagerDictionary.ContainsKey(gameObject.scene))
             {
+                _currentInstance = _sceneToAudioManagerDictionary[gameObject.scene];
                 Destroy(this.gameObject);
             }
             else
             {
                 _sceneToAudioManagerDictionary[gameObject.scene] = this;
-                _currentInstance = this;
-                Instance = this;
+                _currentInstance = _sceneToAudioManagerDictionary[gameObject.scene];
             }
         }
 

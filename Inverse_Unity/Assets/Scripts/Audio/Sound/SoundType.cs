@@ -1,5 +1,9 @@
 namespace Minimalist.Audio.Sound
 {
+    /// <summary>
+    /// Catalog of Sounds used in game.
+    /// Note: Actions are separted by _ with tags/type.
+    /// </summary>
     public enum SoundType
     {
         #region Player

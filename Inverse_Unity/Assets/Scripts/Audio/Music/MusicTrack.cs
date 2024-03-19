@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Music
 {
+    /// <summary>
+    /// Contains data for a Music.
+    /// </summary>
     [System.Serializable]
     public class MusicTrack
     {

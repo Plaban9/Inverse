@@ -1,5 +1,8 @@
 namespace Minimalist.Inverse
 {
+    /// <summary>
+    /// Contains constants for various aspects of the game.
+    /// </summary>
     public class Constants
     {
         public class Gameplay
