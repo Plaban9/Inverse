@@ -15,8 +15,10 @@ namespace Minimalist.Audio
     /// </summary>
     public class AudioManager : MonoBehaviour
     {
+        #region Instance Dictionary for scenes
         private static AudioManager _currentInstance;
         private static Dictionary<UnityEngine.SceneManagement.Scene, AudioManager> _sceneToAudioManagerDictionary;
+        #endregion
 
         public static AudioManager Instance { get; private set; }
 
