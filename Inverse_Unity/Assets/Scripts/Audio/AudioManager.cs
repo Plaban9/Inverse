@@ -1,0 +1,123 @@
+using Minimalist.Audio.Music;
+using Minimalist.Audio.Sound;
+
+using System.Collections;
+using System.Collections.Generic;
+
+using Unity.VisualScripting;
+
+using UnityEngine;
+
+namespace Minimalist.Audio
+{
+    public class AudioManager : MonoBehaviour
+    {
+        public static AudioManager Instance { get; private set; }
+        [SerializeField] private AudioLibrary _audioLibrary;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        private void Start()
+        {
+            if (_audioLibrary == null)
+            {
+                d("Audio Library is not set");
+            }
+        }
+        #region Music
+        public static void PlayMusic(MusicType musicType, float fadeDuration = 0.5f, bool loop = true)
+        {
+            if (!PlayMusic(Instance._audioLibrary.GetMusicFromType(musicType), fadeDuration, loop))
+            {
+                d("Unable to play Music Track with type: " + musicType.DisplayName());
+            }
+        }
+
+        public static void PlayMusic(string musicName, float fadeDuration = 0.5f, bool loop = true)
+        {
+            if (!PlayMusic(Instance._audioLibrary.GetMusicFromName(musicName), fadeDuration, loop))
+            {
+                d("Unable to play Music Track with name: " + musicName);
+            }
+        }
+
+        private static bool PlayMusic(MusicTrack musicTrack, float fadeDuration = 0.5f, bool loop = true)
+        {
+            if (musicTrack != null)
+            {
+                MusicManager.Instance.PlayMusic(musicTrack.audioClip, fadeDuration, loop ? loop : musicTrack.shouldLoop);
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region SFX
+        public static void PlaySFX(SoundType sfxType)
+        {
+            if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
+            {
+                d("Unable to play SFX with type: " + sfxType.DisplayName());
+            }
+        }
+
+        public static void PlaySFX(string sfxName)
+        {
+            if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), false, Vector3.zero))
+            {
+                d("Unable to play SFX with name: " + sfxName);
+            }
+        }
+
+        public static void PlaySFX3D(SoundType sfxType, Vector3 position)
+        {
+            if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), true, position))
+            {
+                d("Unable to play 3D SFX with type: " + sfxType.DisplayName());
+            }
+        }
+
+        public static void PlaySFX3D(string sfxName, Vector3 position)
+        {
+            if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), true, position))
+            {
+                d("Unable to play 3D SFX with name: " + sfxName);
+            }
+        }
+
+        private static bool PlaySFX(SoundEffect soundEffect, bool play3D, Vector3 position)
+        {
+            if (soundEffect != null)
+            {
+                AudioClip audioClip = soundEffect.GetRandomClip();
+
+                if (audioClip != null)
+                {
+                    if (play3D)
+                    {
+                        SoundManager.Instance.PlaySound3D(audioClip, position);
+                    }
+                    else
+                    {
+                        SoundManager.Instance.PlaySound2D(audioClip);
+                    }
+
+                    return true;
+                }                
+            }
+
+            return false;
+        }
+        #endregion
+
+        private static void d(string message)
+        {
+            Debug.Log("<<AudioManager>> " + message);
+        }
+
+    }
+}

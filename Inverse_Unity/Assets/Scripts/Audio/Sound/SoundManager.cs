@@ -2,12 +2,9 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Sound
 {
-    [RequireComponent(typeof(SoundLibrary))]
-    public class SoundManager : MonoBehaviour
+    internal class SoundManager : MonoBehaviour
     {
-        public static SoundManager Instance { get; private set; }
-
-        [SerializeField] private SoundLibrary _sfxLibrary;
+        internal static SoundManager Instance { get; private set; }
 
         [SerializeField] private AudioSource _sfxSource2D;
 
@@ -24,32 +21,19 @@ namespace Minimalist.Audio.Sound
             }
         }
 
-        private void Start()
-        {
-            if (_sfxLibrary == null)
-            {
-                _sfxLibrary = GetComponent<SoundLibrary>();
-            }
-        }
-
         // For UI sounds (mostly)
-        public void PlaySound2D(string soundName)
+        internal void PlaySound2D(AudioClip audioClip)
         {
-            _sfxSource2D.PlayOneShot(_sfxLibrary.GetClipFromName(soundName));
+            _sfxSource2D.PlayOneShot(audioClip);
         }
 
         // When not in List
-        public void PlaySound3D(AudioClip audioClip, Vector3 position)
+        internal void PlaySound3D(AudioClip audioClip, Vector3 position)
         {
             if (audioClip != null)
             {
                 AudioSource.PlayClipAtPoint(audioClip, position);
             }
-        }
-
-        public void PlaySound3D(string soundName, Vector3 position)
-        {
-            PlaySound3D(_sfxLibrary.GetClipFromName(soundName), position);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Minimalist.Audio;
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
 using Minimalist.Manager;
@@ -38,17 +39,17 @@ namespace Minimalist.Tests
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                MusicManager.Instance.PlayMusic("Menu", 5f);
+                AudioManager.PlayMusic(MusicType.Menu);
             }
 
             if (Input.GetKeyDown(KeyCode.G))
             {
-                MusicManager.Instance.PlayMusic("Gameplay", 5f);
+                AudioManager.PlayMusic(MusicType.Gameplay);
             }
-
+            
             if (Input.GetKeyDown(KeyCode.J))
             {
-                SoundManager.Instance.PlaySound2D("Jump");
+                AudioManager.PlaySFX(SoundType.Player_Jump);
             }
         }
     }

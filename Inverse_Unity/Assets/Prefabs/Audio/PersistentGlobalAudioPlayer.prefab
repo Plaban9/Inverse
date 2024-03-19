@@ -138,11 +138,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6798042402383917150}
   - component: {fileID: 4887396106419626535}
-  - component: {fileID: 6488087601912740435}
   - component: {fileID: 3473803707567073258}
-  - component: {fileID: 2337600790638491831}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: PersistentGlobalAudioPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,25 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155d26fc433aa804bb027053ff0c2179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicLibrary: {fileID: 6488087601912740435}
   _musicSource: {fileID: 6298418096831496753}
---- !u!114 &6488087601912740435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464371201008942357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405131516d9cd75439791560716cd4e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicTracks:
-  - trackName: Menu
-    audioClip: {fileID: 8300000, guid: dc5a519c9c76bcd4d9847891be713b1c, type: 3}
-  - trackName: Gameplay
-    audioClip: {fileID: 8300000, guid: 065bc9a8c8b4b33479555dd076ee1457, type: 3}
 --- !u!114 &3473803707567073258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,30 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8d1a9d2e36d8d4c979322416bd521a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxLibrary: {fileID: 2337600790638491831}
   _sfxSource2D: {fileID: 579293400099914024}
---- !u!114 &2337600790638491831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464371201008942357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceda8a2ae3bed934dab30772f8d78b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _soundEffects:
-  - groupID: Jump
-    clips:
-    - {fileID: 8300000, guid: 8ce86cbeef243964d953f92605d442b3, type: 3}
-    - {fileID: 8300000, guid: ae24cc7d84f73d540b8bed9bb87da8ec, type: 3}
-    - {fileID: 8300000, guid: 3020cf7552cdabe448e8958adf2e9489, type: 3}
-  - groupID: Death
-    clips: []
-  - groupID: Scream
-    clips: []
 --- !u!1 &9047030181547410069
 GameObject:
   m_ObjectHideFlags: 0

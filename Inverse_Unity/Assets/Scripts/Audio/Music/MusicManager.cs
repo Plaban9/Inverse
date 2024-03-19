@@ -4,12 +4,9 @@ using UnityEngine;
 
 namespace Minimalist.Audio.Music
 {
-    [RequireComponent(typeof(MusicLibrary))]
-    public class MusicManager : MonoBehaviour
+    internal class MusicManager : MonoBehaviour
     {
-        public static MusicManager Instance { get; private set; }
-
-        [SerializeField] private MusicLibrary _musicLibrary;
+        internal static MusicManager Instance { get; private set; }
 
         [SerializeField] private AudioSource _musicSource;
 
@@ -26,13 +23,13 @@ namespace Minimalist.Audio.Music
             }
         }
 
-        public void PlayMusic(string trackName, float fadeDuration = 0.5f)
+        internal void PlayMusic(AudioClip audioClip, float fadeDuration = 0.5f, bool loop = true)
         {
-            StartCoroutine(AnimateMusicCrossFade(_musicLibrary.GetClipFromName(trackName), fadeDuration));
+            StartCoroutine(AnimateMusicCrossFade(audioClip, fadeDuration, loop));
         }
 
 
-        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f)
+        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f, bool loop = true)
         {
             float percent = 0; // Used as intermediate variable for lerping
 
@@ -45,6 +42,7 @@ namespace Minimalist.Audio.Music
             }
 
             _musicSource.clip = nextTrack;
+            _musicSource.loop = loop;
             _musicSource.Play();
 
             percent = 0;
