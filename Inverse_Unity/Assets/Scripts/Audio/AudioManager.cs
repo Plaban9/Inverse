@@ -87,7 +87,7 @@ namespace Minimalist.Audio
         {
             if (musicTrack != null)
             {
-                MusicManager.Instance.PlayMusic(musicTrack.audioClip, fadeDuration, loop ? loop : musicTrack.shouldLoop);
+                MusicManager.Instance.PlayMusic(musicTrack.audioClip, fadeDuration, loop ? loop : musicTrack.shouldLoop, musicTrack.volume);
                 return true;
             }
 
@@ -156,11 +156,11 @@ namespace Minimalist.Audio
                 {
                     if (play3D)
                     {
-                        SoundManager.Instance.PlaySound3D(audioClip, position);
+                        SoundManager.Instance.PlaySound3D(audioClip, position, soundEffect.volume);
                     }
                     else
                     {
-                        SoundManager.Instance.PlaySound2D(audioClip);
+                        SoundManager.Instance.PlaySound2D(audioClip, soundEffect.volume);
                     }
 
                     return true;

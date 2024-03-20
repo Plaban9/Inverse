@@ -33,9 +33,9 @@ namespace Minimalist.Audio.Music
         /// <param name="audioClip"></param>
         /// <param name="fadeDuration"></param>
         /// <param name="loop"></param>
-        internal void PlayMusic(AudioClip audioClip, float fadeDuration = 0.5f, bool loop = true)
+        internal void PlayMusic(AudioClip audioClip, float fadeDuration = 0.5f, bool loop = true, float volume = 1f)
         {
-            StartCoroutine(AnimateMusicCrossFade(audioClip, fadeDuration, loop));
+            StartCoroutine(AnimateMusicCrossFade(audioClip, fadeDuration, loop, volume));
         }
 
         internal void StopMusic()
@@ -54,14 +54,14 @@ namespace Minimalist.Audio.Music
             }
         }
 
-        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f, bool loop = true)
+        private IEnumerator AnimateMusicCrossFade(AudioClip nextTrack, float fadeDuration = 0.5f, bool loop = true, float volume = 1f)
         {
             float percent = 0; // Used as intermediate variable for lerping
 
             while (percent < 1)
             {
                 percent += Time.deltaTime * 1 / fadeDuration;
-                _musicSource.volume = Mathf.Lerp(1f, 0, percent);
+                _musicSource.volume = Mathf.Lerp(_musicSource.volume, 0, percent);
 
                 yield return null;
             }
@@ -80,7 +80,7 @@ namespace Minimalist.Audio.Music
             while (percent < 1)
             {
                 percent += Time.deltaTime * 1 / fadeDuration;
-                _musicSource.volume = Mathf.Lerp(0f, 1f, percent);
+                _musicSource.volume = Mathf.Lerp(0f, volume, percent);
 
                 yield return null;
             }

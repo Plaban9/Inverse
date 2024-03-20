@@ -1139,17 +1139,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 579293400099914024, guid: 778defc7bb1acfb4fb8489209a6583a8, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5464371201008942357, guid: 778defc7bb1acfb4fb8489209a6583a8, type: 3}
       propertyPath: m_Name
       value: PersistentGlobalAudioPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6298418096831496753, guid: 778defc7bb1acfb4fb8489209a6583a8, type: 3}
-      propertyPath: m_Volume
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6798042402383917150, guid: 778defc7bb1acfb4fb8489209a6583a8, type: 3}
       propertyPath: m_LocalPosition.x

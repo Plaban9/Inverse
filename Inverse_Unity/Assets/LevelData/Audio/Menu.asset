@@ -16,6 +16,7 @@ MonoBehaviour:
   - name: Menu
     musicType: 1
     audioClip: {fileID: 8300000, guid: 1fd56356d632c8043ae2ddc9e0a0745a, type: 3}
+    volume: 0.675
     shouldLoop: 1
   soundLibrary:
   - name: Hover
@@ -24,12 +25,15 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4a26a4b19310fa64fb62f4625db88f78, type: 3}
     - {fileID: 8300000, guid: 511a877b501424448a3a7b30999f0364, type: 3}
     - {fileID: 8300000, guid: 8b7f56d3cd32e5d4f86d45caf6071eaa, type: 3}
+    volume: 1
   - name: Click
     soundType: 18
     clips:
     - {fileID: 8300000, guid: b6f4545e61769d84d8c9d93970ce7a0d, type: 3}
     - {fileID: 8300000, guid: 3cbb361d516c36e429501aaf74f1c939, type: 3}
+    volume: 1
   - name: Quit
     soundType: 19
     clips:
     - {fileID: 8300000, guid: 08c0896f0c477334db6e5ed15e29c52e, type: 3}
+    volume: 1
