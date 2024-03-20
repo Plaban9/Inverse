@@ -1,3 +1,5 @@
+using Minimalist.Audio;
+using Minimalist.Audio.Sound;
 using Minimalist.Manager;
 using Minimalist.Player;
 using System.Collections;
@@ -15,6 +17,7 @@ namespace Minimilist.Utilities
             if (collision.TryGetComponent<MyPlayerInput>(out var playerInput))
             {
                 playerInput.enabled = false;
+                AudioManager.PlaySFX3D(SoundType.Gameplay_LevelComplete, transform.position);
                 SceneManager.Instance.LoadScene(nextLevelName, "CrossFade");
             }
         }

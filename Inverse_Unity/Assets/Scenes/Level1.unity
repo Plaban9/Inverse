@@ -184,11 +184,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 376496794406294712, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.21
+      value: -24.390022
       objectReference: {fileID: 0}
     - target: {fileID: 376496794406294712, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.84
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 670225023963809630, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_Size.x
@@ -204,11 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801470009888138986, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.209991
+      value: -24.39
       objectReference: {fileID: 0}
     - target: {fileID: 2801470009888138986, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.84
+      value: 5.92
       objectReference: {fileID: 0}
     - target: {fileID: 3287656875476042858, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1622,6 +1622,71 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1340915985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4407214526136824654, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_Name
+      value: LocalAudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097128351440901728, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: _audioLibrary
+      value: 
+      objectReference: {fileID: 11400000, guid: e7c8e1925c69d1d4cb3ac5ecb8e0ea14, type: 2}
+    - target: {fileID: 7097128351440901728, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: _stopMusicOnSceneExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520390924907854596, guid: f9118e195b873254c880436b228a8979, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f9118e195b873254c880436b228a8979, type: 3}
 --- !u!1 &1412590810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5469926596405568867, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
@@ -3398,3 +3463,4 @@ SceneRoots:
   - {fileID: 4879597211219167318}
   - {fileID: 92459497}
   - {fileID: 1720648676}
+  - {fileID: 1340915985}

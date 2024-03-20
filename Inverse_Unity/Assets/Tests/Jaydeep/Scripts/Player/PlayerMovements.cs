@@ -27,6 +27,8 @@ namespace Minimalist.Player
         private float fallMultiplier = 2.5f;
         private float lowJumpMultiplier = 2f;
 
+        public bool IsPlayerJumped { get; private set; }
+
 
         public Vector2 Velocity { get => _rb.velocity; }
         public bool IsGrounded { get => isGrounded; }
@@ -59,6 +61,7 @@ namespace Minimalist.Player
             _rb.velocity = myVelocity; // Vector2.Lerp(_rb.velocity, myVelocity, Time.deltaTime * speed);
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            IsPlayerJumped = false;
 
             if (isGrounded)
             {
@@ -67,6 +70,7 @@ namespace Minimalist.Player
 
             if ((isGrounded || airJumpCap > _airJumpCount) && _playerInput.IsJumped)
             {
+                IsPlayerJumped = true;
                 if (!isGrounded) { _airJumpCount++; }
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);
             }
