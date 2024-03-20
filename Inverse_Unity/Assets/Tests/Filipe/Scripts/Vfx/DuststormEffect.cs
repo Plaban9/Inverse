@@ -54,9 +54,9 @@ namespace Minimalist.Effect
             layer2Mat.SetFloat("_stretch", Mathf.Sin(time * Mathf.PI / 2) * skew2/2 + skew1/2 + 0.2f);
             layer3Mat.SetFloat("_stretch", Mathf.Sin(time * Mathf.PI) * skew3/2 + skew3/2 + 0.2f);
 
-            layer1Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 12) * 0.3f + 0.1f) ;
-            layer2Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 5) * 0.3f + 0.1f);
-            layer3Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 7) * 0.4f + 0.1f);
+            layer1Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 12) * 0.1f + 0.1f) ;
+            layer2Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 5) * 0.1f + 0.1f);
+            layer3Mat.SetFloat("_alpha", Mathf.Sin(time * Mathf.PI / 7) * 0.1f + 0.1f);
 
         }
     }
