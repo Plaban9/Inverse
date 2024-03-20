@@ -75,7 +75,7 @@ namespace Managers.BWEffectManager
             float finalPct = currentPct == 1.0f ? 0.0f : 1.0f;
             float halfDuration = _swapDurationInMs / 2f;
 
-            for (float i = 0.0f; i < halfDuration; i++)
+            for (float i = 0.0f; i < halfDuration; i += Time.deltaTime)
             {
                 float t = i / halfDuration;
                 float transAmount = _transition.Evaluate(t);
@@ -87,7 +87,7 @@ namespace Managers.BWEffectManager
 
             float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
 
-            for (float i = 0.0f; i < halfDuration; i++)
+            for (float i = 0.0f; i < halfDuration; i+= Time.deltaTime)
             {
                 float t = i / halfDuration;
                 float transAmount = _transition.Evaluate(t);

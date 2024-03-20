@@ -41,7 +41,6 @@ namespace Minimalist.Effect
         void Update()
         {
             time += Time.deltaTime;
-            Debug.Log(time);
 
             layer1Offset += speed1 * Time.deltaTime;// + Mathf.Sin(time * Mathf.PI) * speed1 * Time.deltaTime;
             layer2Offset += speed2 * Time.deltaTime;// + Mathf.Sin(time * Mathf.PI * 2) * speed2 * Time.deltaTime;
