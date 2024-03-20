@@ -22,7 +22,7 @@ namespace Minimilist.Player
 
         private void OnEnable()
         {
-            LevelManager.Instance.RealmManager.AddListener(this);
+            
         }
 
         private void OnDisable()
@@ -32,6 +32,7 @@ namespace Minimilist.Player
 
         private void Start()
         {
+            LevelManager.Instance.RealmManager.AddListener(this);
             AudioManager.PlayMusic(MusicType.Gameplay);
             AudioManager.PlaySFX3D(SoundType.Player_Spawn, transform.position);
         }
