@@ -30,9 +30,9 @@ namespace Minimalist.Audio.Sound
         /// Mostly used in UI.
         /// </summary>
         /// <param name="audioClip"></param>
-        internal void PlaySound2D(AudioClip audioClip)
+        internal void PlaySound2D(AudioClip audioClip, float volume)
         {
-            _sfxSource2D.PlayOneShot(audioClip);
+            _sfxSource2D.PlayOneShot(audioClip, volume);
         }
 
         /// <summary>
@@ -41,11 +41,11 @@ namespace Minimalist.Audio.Sound
         /// </summary>
         /// <param name="audioClip"></param>
         /// <param name="position"></param>
-        internal void PlaySound3D(AudioClip audioClip, Vector3 position)
+        internal void PlaySound3D(AudioClip audioClip, Vector3 position, float volume)
         {
             if (audioClip != null)
             {
-                AudioSource.PlayClipAtPoint(audioClip, position);
+                AudioSource.PlayClipAtPoint(audioClip, position, volume);
             }
         }
     }

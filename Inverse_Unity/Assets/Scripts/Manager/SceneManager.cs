@@ -41,8 +41,10 @@ namespace Minimalist.Manager
             StartCoroutine(LoadSceneAsync(sceneName, transitionName));
         }
 
-        private IEnumerator LoadSceneAsync(string sceneName, string transitionName)
+        private IEnumerator LoadSceneAsync(string sceneName, string transitionName, float delay = 0.5f)
         {
+            yield return new WaitForSeconds(delay);
+
             SceneTransition transition = _transitions.First(element => element.name.Equals(transitionName));
 
             AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);

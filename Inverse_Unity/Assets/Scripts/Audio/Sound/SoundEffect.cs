@@ -12,6 +12,8 @@ namespace Minimalist.Audio.Sound
         public string name;
         public SoundType soundType;
         public AudioClip[] clips;
+        [Range(0f, 1f)]
+        public float volume = 1f;
 
         public AudioClip GetRandomClip()
         {
