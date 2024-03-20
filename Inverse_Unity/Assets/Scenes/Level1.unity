@@ -2680,7 +2680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8348457590888235613, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: _switchObjects.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8348457590888235613, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: _switchObjects.Array.data[0]
