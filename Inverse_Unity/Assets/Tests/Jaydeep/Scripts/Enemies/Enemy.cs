@@ -24,6 +24,10 @@ namespace Minimilist.Enemies
         [Header("Detection")]
         [SerializeField] private EnemyDetection enemyDetection;
 
+        [Header("EnemyRealm")]
+        [SerializeField] private bool isRealmIndependentEnemy;
+        [SerializeField] private bool isLightRealmEnemy;
+
         private ObjectMovement patrolling;
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         private Rigidbody2D rb;
@@ -150,9 +154,9 @@ namespace Minimilist.Enemies
             switch (state)
             {
                 case PatrolStates.Idle:
-                    idleCollider.enabled = true;
                     alertCollider.enabled = false;
                     chaseCollider.enabled = false;
+                    idleCollider.enabled = true;
                     break;
                 case PatrolStates.Chase:
                     idleCollider.enabled = false;
@@ -163,8 +167,8 @@ namespace Minimilist.Enemies
                 case PatrolStates.Patrol:
                 case PatrolStates.Alert:
                     idleCollider.enabled = false;
-                    alertCollider.enabled = true;
                     chaseCollider.enabled = false;
+                    alertCollider.enabled = true;
                     break;
             }
         }
@@ -190,6 +194,7 @@ namespace Minimilist.Enemies
             _darkState = false;
             //rb.isKinematic = true;
             rb.velocity = Vector2.zero;
+            rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 1 : 0;
             rb.mass = 100 * 100;
             animator.speed = 0;
             gameObject.layer = 9;
@@ -199,6 +204,7 @@ namespace Minimilist.Enemies
         {
             _darkState = true;
             //rb.isKinematic = false;
+            rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 0 : 1;
             state = PatrolStates.Idle;
             rb.mass = 10;
             animator.speed = 1;
