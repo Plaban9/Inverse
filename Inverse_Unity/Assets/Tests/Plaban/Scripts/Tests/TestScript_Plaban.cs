@@ -1,7 +1,9 @@
 using Minimalist.Audio;
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
+using Minimalist.Inverse;
 using Minimalist.Manager;
+using Minimalist.SaveSystem;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -50,6 +52,11 @@ namespace Minimalist.Tests
             if (Input.GetKeyDown(KeyCode.J))
             {
                 AudioManager.PlaySFX(SoundType.Player_Jump);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                SaveManager.SaveData(Constants.SaveSystem.GAMEPLAY_LAST_LEVEL_PLAYED, ++GameAttributes.Stat_LastLevelPlayed);
             }
         }
     }

@@ -12,5 +12,32 @@ namespace Minimalist.Inverse
                 public const float JUMP_HEIGHT = 20f;
             }
         }
+
+        public class General
+        {
+            public class Audio
+            {
+                public const float MAX_MUSIC_VOLUME = 1;
+                public const float MAX_SOUND_VOLUME = 1;
+            }
+        }
+
+        public class SaveSystem
+        {
+            #region GameStats
+            public const string STAT_LAUNCH_COUNT = "launch_count";
+            #endregion
+
+
+            #region GAMEPLAY_CONSTANTS
+            public const string GAMEPLAY_LAST_LEVEL_UNLOCKED = "last_level_unlocked";
+            public const string GAMEPLAY_LAST_LEVEL_PLAYED = "last_level_played";
+            #endregion
+
+            #region SETTINGS_CONSTANTS
+            public const string SETTINGS_SOUND_VOLUME = "volume_sound";
+            public const string SETTINGS_MUSIC_VOLUME = "volume_music";
+            #endregion
+        }
     }
 }
