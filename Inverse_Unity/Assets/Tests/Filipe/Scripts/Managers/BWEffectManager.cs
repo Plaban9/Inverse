@@ -83,7 +83,7 @@ namespace Managers.BWEffectManager
                 yield return null;
             }
             SetPercent(0.5f);
-            action.Invoke();
+            action?.Invoke();
 
             float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
 

@@ -50,15 +50,21 @@ namespace Minimalist.Manager
 
             AudioManager.PlaySFX(SoundType.UI_Hover);
 
-            _camera.backgroundColor = Color.white;
-            _title.color = Color.black;
+            Color colorToChangeTo = Color.black;
 
+            if (elementName.Equals("quit"))
+            {
+                colorToChangeTo = Color.red;
+            }
+
+            _camera.backgroundColor = Color.white;
+            _title.color = colorToChangeTo;        
 
             foreach (var fontItem in _menuButtonList)
             {
                 if (fontItem.Key.Equals(elementName))
                 {
-                    fontItem.Value.color = Color.black;
+                    fontItem.Value.color = colorToChangeTo;
                 }
             }
         }

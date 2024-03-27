@@ -7,7 +7,7 @@ namespace Minimalist.SaveSystem
     /// Note: All the parameters shpuld be a primitive type.
     /// Additional Note: If saving something like JSON, convert it into string.
     /// </summary>
-    public class SaveManager : MonoBehaviour
+    public class SaveManager
     {
         #region Read Methods
         public static string ReadData(string key, string defaultValue = "")
@@ -47,7 +47,7 @@ namespace Minimalist.SaveSystem
 
         private static void d(string message)
         {
-            Debug.Log("<<SaveManager>> " + message);
+            //Debug.Log("<<SaveManager>> " + message);
         }
     }
 }

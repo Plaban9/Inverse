@@ -28,6 +28,6 @@ public class GameAttributes
 
     private static void d(string message)
     {
-        Debug.Log("<<GameAttributes>> " + message);
+        //Debug.Log("<<GameAttributes>> " + message);
     }
 }
