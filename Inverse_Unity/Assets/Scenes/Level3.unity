@@ -565,6 +565,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.01
+--- !u!114 &462551776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8246257870933542819, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
+  m_PrefabInstance: {fileID: 2077231698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462551771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10c0702aac00a4a8cfa3324fc85745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &473589165
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +820,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.017
+--- !u!114 &565264449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2105323142170794392, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
+  m_PrefabInstance: {fileID: 2077231698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565264444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10c0702aac00a4a8cfa3324fc85745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &618921164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,6 +2389,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.03
+--- !u!114 &1412590815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1391612449602503113, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
+  m_PrefabInstance: {fileID: 2077231698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412590810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10c0702aac00a4a8cfa3324fc85745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1415307454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121455392638749988, guid: 64ed927b2c38e374aa6dff97a00dfbda, type: 3}
@@ -2447,6 +2480,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0.026
+--- !u!114 &1514691783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4265033025604414694, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
+  m_PrefabInstance: {fileID: 2077231698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514691778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea10c0702aac00a4a8cfa3324fc85745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1531487962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7572885339966001835, guid: 9070765a42845ab4c8373e5af3fc71aa, type: 3}
@@ -2821,10 +2865,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parallaxCamera: {fileID: 1099065032}
   _parallaxLayers:
-  - {fileID: 1412590813}
-  - {fileID: 1514691781}
-  - {fileID: 565264447}
-  - {fileID: 462551774}
+  - {fileID: 1412590815}
+  - {fileID: 1514691783}
+  - {fileID: 565264449}
+  - {fileID: 462551776}
 --- !u!4 &1804386081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2786196864687230118, guid: c183bf8e5318c294991afb10e1cf7306, type: 3}
@@ -3007,7 +3051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7019451917124155193, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: _swapDurationInMs
-      value: 50
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7167414219357140805, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: m_LocalPosition.x

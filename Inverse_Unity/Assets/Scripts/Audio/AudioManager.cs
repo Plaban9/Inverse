@@ -1,6 +1,6 @@
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
-
+using System;
 using System.Collections.Generic;
 
 using Unity.VisualScripting;
@@ -102,11 +102,17 @@ namespace Minimalist.Audio
         /// <param name="sfxType"></param>
         public static void PlaySFX(SoundType sfxType)
         {
-            if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
+            try
             {
-                d("Unable to play SFX with type: " + sfxType.ToString());
+                if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
+                {
+                    d("Unable to play SFX with type: " + sfxType.ToString());
+                }
             }
-        }
+            catch (NullReferenceException exception)
+            {
+            }
+            }
 
         /// <summary>
         /// Plays SFX by supplied SFX name.

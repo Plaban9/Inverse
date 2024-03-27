@@ -1,3 +1,4 @@
+using Managers.BWEffectManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,19 +19,12 @@ namespace Minimalist.Effect
         private float skew2 = 0.47f;
         private float skew3 = 0.47f;
 
-        private Material layer1Mat;
-        private Material layer2Mat;
-        private Material layer3Mat;
-        
-
-        private void Start()
-        {
-            layer1Mat = layer1.material;
-            layer2Mat = layer2.material;
-            layer3Mat = layer3.material;
+        public Material layer1Mat;
+        public Material layer2Mat;
+        public Material layer3Mat;
 
 
-        }
+
 
         private float time = 0;
         private float layer1Offset = 0;

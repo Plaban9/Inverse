@@ -45,6 +45,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Interpolate: 0
     - _alpha: 1
     - _speed: 1
     - _stretch: 0.47

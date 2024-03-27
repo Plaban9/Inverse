@@ -6,11 +6,12 @@ namespace Managers.BWEffectManager
     using Minimalist.Level;
     using Minimalist.Manager;
     using System;
+    using System.Collections.Generic;
 
     public class BWEffectManager : MonoBehaviour
     {
         [Header("Data")]
-        [SerializeField] private Material       _frontMaterial;
+        [SerializeField] private List<Material> _frontMaterials;
         [SerializeField] private Material       _backMaterial;
 
         [Header("Specifications")]
@@ -24,8 +25,7 @@ namespace Managers.BWEffectManager
 
         private void Start()
         {
-            _frontMaterial.SetFloat("_Interpolate", 0);
-            _backMaterial.SetFloat("_Interpolate", 0);
+            SetPercent(0f);
         }
 
         public BWState GetMode()
@@ -48,14 +48,17 @@ namespace Managers.BWEffectManager
         public void SetPercent(float percent)
         {
             _percent = Mathf.Clamp(percent, 0.0f, 1.0f);
-            _frontMaterial.SetFloat("_Interpolate", _percent);
+            foreach (Material mat in _frontMaterials)
+            {
+                mat?.SetFloat("_Interpolate", _percent);
+            }
             _backMaterial.SetFloat("_Interpolate", _percent);
         }
 
         public void SwapMode(Action action)
         {
             BWState currentState = GetMode();
-
+            FlushNullMaterials();
 
             if (currentState == BWState.TRANSITION && realmChangeRoutine != null)
             {
@@ -100,5 +103,23 @@ namespace Managers.BWEffectManager
             SetPercent(finalPct);
             realmChangeRoutine = null;
         }
+
+        public void AddFrontMaterial(Material material)
+        {
+            _frontMaterials.Add(material);
+        }
+
+        private void FlushNullMaterials()
+        {
+            foreach(Material material in _frontMaterials)
+            {
+                if(material == null)
+                {
+                    _frontMaterials.Remove(material);
+                }
+            }
+        }
     }
+
+
 }
