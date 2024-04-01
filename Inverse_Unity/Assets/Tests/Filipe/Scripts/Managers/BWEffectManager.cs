@@ -12,14 +12,14 @@ namespace Managers.BWEffectManager
     {
         [Header("Data")]
         [SerializeField] private List<Material> _frontMaterials;
-        [SerializeField] private Material       _backMaterial;
+        [SerializeField] private Material _backMaterial;
 
         [Header("Specifications")]
-        [SerializeField] private float          _swapDurationInMs;
+        [SerializeField] private float _swapDurationInMs;
         [SerializeField] private AnimationCurve _transition;
 
         [Header("Debug")]
-        [Range(0.0f, 1.0f)][SerializeField] private float          _percent;
+        [Range(0.0f, 1.0f)][SerializeField] private float _percent;
 
         private Coroutine realmChangeRoutine;
 
@@ -33,7 +33,8 @@ namespace Managers.BWEffectManager
             if (_percent == 1.0f)
             {
                 return BWState.DARK_MODE;
-            }else if(_percent == 0.0f)
+            }
+            else if (_percent == 0.0f)
             {
                 return BWState.LIGHT_MODE;
             }
@@ -63,7 +64,6 @@ namespace Managers.BWEffectManager
             if (currentState == BWState.TRANSITION && realmChangeRoutine != null)
             {
                 return;
-                StopCoroutine(realmChangeRoutine);
             }
 
 
@@ -74,9 +74,10 @@ namespace Managers.BWEffectManager
         // At 60FPS transistation is taking 1.66Sec rather than 100ms
         private IEnumerator SwapCoroutine(Action action)
         {
+            float actualSpawnDurationms = _swapDurationInMs / 1000f;
             float currentPct = GetPercentage();
             float finalPct = currentPct == 1.0f ? 0.0f : 1.0f;
-            float halfDuration = _swapDurationInMs / 2f;
+            float halfDuration = actualSpawnDurationms / 2f;
 
             for (float i = 0.0f; i < halfDuration; i += Time.deltaTime)
             {
@@ -90,11 +91,11 @@ namespace Managers.BWEffectManager
 
             float remaining = finalPct == 1.0f ? 0.5f : -0.5f;
 
-            for (float i = 0.0f; i < halfDuration; i+= Time.deltaTime)
+            for (float i = 0.0f; i < halfDuration; i += Time.deltaTime)
             {
                 float t = i / halfDuration;
                 float transAmount = _transition.Evaluate(t);
-                SetPercent( 0.5f +
+                SetPercent(0.5f +
                     remaining * (transAmount)
                     );
                 yield return null;
@@ -111,9 +112,9 @@ namespace Managers.BWEffectManager
 
         private void FlushNullMaterials()
         {
-            foreach(Material material in _frontMaterials)
+            foreach (Material material in _frontMaterials)
             {
-                if(material == null)
+                if (material == null)
                 {
                     _frontMaterials.Remove(material);
                 }
