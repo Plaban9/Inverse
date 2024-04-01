@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEnabledStatus: 0
   levelType: 1
-  _spriteRenderers: []
+  _switchObjects: []
 --- !u!1 &5486213075722178788
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEnabledStatus: 0
   levelType: 0
-  _spriteRenderers: []
+  _switchObjects: []
 --- !u!1 &8823319759468836583
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,9 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bea259fb17a9f344a8aa1e0bc8abad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frontMaterial: {fileID: 2100000, guid: ccbc668c4a1d5d24b90ffb2d2c8d1fc7, type: 2}
+  _frontMaterials:
+  - {fileID: 2100000, guid: ccbc668c4a1d5d24b90ffb2d2c8d1fc7, type: 2}
   _backMaterial: {fileID: 2100000, guid: 992f6713041285e4a84373f7b52e2342, type: 2}
-  _swapDurationInMs: 100
+  _swapDurationInMs: 500
   _transition:
     serializedVersion: 2
     m_Curve:

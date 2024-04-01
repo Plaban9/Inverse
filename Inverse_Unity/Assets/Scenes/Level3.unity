@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -3048,10 +3048,6 @@ PrefabInstance:
     - target: {fileID: 418235141970381914, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: _switchObjects.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7019451917124155193, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
-      propertyPath: _swapDurationInMs
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7167414219357140805, guid: 6ab4e12c2db90e44497e44e0b2bc680b, type: 3}
       propertyPath: m_LocalPosition.x
