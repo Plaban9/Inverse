@@ -520,6 +520,7 @@ MonoBehaviour:
   _transitionContainer: {fileID: 2538202953549587103}
   _transitions:
   - {fileID: 512128018481632846}
+  - {fileID: 7555507632812254280}
   _progressBar: {fileID: 5686580473095416145}
 --- !u!1 &8201255173399825887
 GameObject:

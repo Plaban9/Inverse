@@ -39,6 +39,8 @@ namespace Minimalist.Manager
             effectManager = GetComponent<BWEffectManager>();
 
             InitializeLevel();
+
+            Cursor.visible = false;
         }
 
         public void InitializeLevel()

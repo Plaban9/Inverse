@@ -19,6 +19,8 @@ namespace Minimalist.Manager
             {
                 _uiElements = FindObjectsByType<UIElement>(FindObjectsSortMode.None).ToList();
             }
+
+            Cursor.visible = true;
         }
 
         private void Start()
