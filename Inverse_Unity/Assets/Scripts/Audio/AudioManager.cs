@@ -1,5 +1,6 @@
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
+
 using System;
 using System.Collections.Generic;
 
@@ -37,7 +38,14 @@ namespace Minimalist.Audio
         {
             if (_stopMusicOnSceneExit)
             {
-                MusicManager.Instance.StopMusic();
+                try
+                {
+                    MusicManager.Instance?.StopMusic();
+                }
+                catch (Exception exception)
+                {
+                    D("Error in stopping Music: " + exception.Message);
+                }
             }
 
             Instance = null;
@@ -48,7 +56,7 @@ namespace Minimalist.Audio
         {
             if (_audioLibrary == null)
             {
-                d("Audio Library is not set");
+                D("Audio Library is not set");
             }
         }
 
@@ -64,7 +72,7 @@ namespace Minimalist.Audio
         {
             if (!PlayMusic(Instance._audioLibrary.GetMusicFromType(musicType), fadeDuration, loop))
             {
-                d("Unable to play Music Track with type: " + musicType.ToString());
+                D("Unable to play Music Track with type: " + musicType.ToString());
             }
         }
 
@@ -79,7 +87,7 @@ namespace Minimalist.Audio
         {
             if (!PlayMusic(Instance._audioLibrary.GetMusicFromName(musicName), fadeDuration, loop))
             {
-                d("Unable to play Music Track with name: " + musicName);
+                D("Unable to play Music Track with name: " + musicName);
             }
         }
 
@@ -87,8 +95,15 @@ namespace Minimalist.Audio
         {
             if (musicTrack != null)
             {
-                MusicManager.Instance.PlayMusic(musicTrack.audioClip, fadeDuration, loop ? loop : musicTrack.shouldLoop, musicTrack.volume);
-                return true;
+                try
+                {
+                    MusicManager.Instance?.PlayMusic(musicTrack.audioClip, fadeDuration, loop ? loop : musicTrack.shouldLoop, musicTrack.volume);
+                    return true;
+                }
+                catch (Exception exception)
+                {
+                    D("Error in playing Music: " + exception.Message);
+                }
             }
 
             return false;
@@ -102,17 +117,11 @@ namespace Minimalist.Audio
         /// <param name="sfxType"></param>
         public static void PlaySFX(SoundType sfxType)
         {
-            try
+            if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
             {
-                if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), false, Vector3.zero))
-                {
-                    d("Unable to play SFX with type: " + sfxType.ToString());
-                }
+                D("Unable to play SFX with type: " + sfxType.ToString());
             }
-            catch (NullReferenceException exception)
-            {
-            }
-            }
+        }
 
         /// <summary>
         /// Plays SFX by supplied SFX name.
@@ -122,7 +131,7 @@ namespace Minimalist.Audio
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), false, Vector3.zero))
             {
-                d("Unable to play SFX with name: " + sfxName);
+                D("Unable to play SFX with name: " + sfxName);
             }
         }
 
@@ -135,7 +144,7 @@ namespace Minimalist.Audio
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromType(sfxType), true, position))
             {
-                d("Unable to play 3D SFX with type: " + sfxType.ToString());
+                D("Unable to play 3D SFX with type: " + sfxType.ToString());
             }
         }
 
@@ -148,7 +157,7 @@ namespace Minimalist.Audio
         {
             if (!PlaySFX(Instance._audioLibrary.GetSFXFromName(sfxName), true, position))
             {
-                d("Unable to play 3D SFX with name: " + sfxName);
+                D("Unable to play 3D SFX with name: " + sfxName);
             }
         }
 
@@ -156,20 +165,27 @@ namespace Minimalist.Audio
         {
             if (soundEffect != null)
             {
-                AudioClip audioClip = soundEffect.GetRandomClip();
-
-                if (audioClip != null)
+                try
                 {
-                    if (play3D)
-                    {
-                        SoundManager.Instance.PlaySound3D(audioClip, position, soundEffect.volume);
-                    }
-                    else
-                    {
-                        SoundManager.Instance.PlaySound2D(audioClip, soundEffect.volume);
-                    }
+                    AudioClip audioClip = soundEffect.GetRandomClip();
 
-                    return true;
+                    if (audioClip != null)
+                    {
+                        if (play3D)
+                        {
+                            SoundManager.Instance?.PlaySound3D(audioClip, position, soundEffect.volume);
+                        }
+                        else
+                        {
+                            SoundManager.Instance?.PlaySound2D(audioClip, soundEffect.volume);
+                        }
+
+                        return true;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    D("Error in playing SFX: " + exception.Message);
                 }
             }
 
@@ -208,7 +224,7 @@ namespace Minimalist.Audio
         }
         #endregion
 
-        private static void d(string message)
+        private static void D(string message)
         {
             Debug.Log("<<AudioManager>> " + message);
         }

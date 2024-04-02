@@ -3,8 +3,10 @@ using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
 using Minimalist.UI;
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
 namespace Minimalist.Manager
@@ -94,6 +96,14 @@ namespace Minimalist.Manager
             }
 
             uiElement.OnClick(uiElement.UiProperty.ClickColor);
+        }
+        #endregion
+
+        #region Helpers
+        private Color LerpFunction(Color startColor, Color endColor, float duration_ms)
+        {
+            // TODO: Lerp Here
+            return startColor;
         }
         #endregion
 
