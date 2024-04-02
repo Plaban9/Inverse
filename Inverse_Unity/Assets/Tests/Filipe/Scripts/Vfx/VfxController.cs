@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Minimilist.Effect.Animations
+namespace Minimalist.Effect.Animations
 {
     public class VfxController : MonoBehaviour
     {

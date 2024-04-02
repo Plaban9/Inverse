@@ -1,4 +1,4 @@
-using Minimilist.Utilities;
+using Minimalist.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Minimalist.Manager;
 using DG.Tweening;
 using Minimalist.Player;
 
-namespace Minimilist.Enemies
+namespace Minimalist.Enemies
 {
     public class Enemy : MonoBehaviour, ILevelListener<LevelType>
     {

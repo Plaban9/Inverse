@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Utilities
+namespace Minimalist.Utilities
 {
     public class MovingPlatform : ObjectMovement
     {

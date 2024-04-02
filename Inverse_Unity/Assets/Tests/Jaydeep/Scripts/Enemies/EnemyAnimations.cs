@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Enemies
+namespace Minimalist.Enemies
 {
     [RequireComponent(typeof(Animator))]
     public class EnemyAnimations : MonoBehaviour

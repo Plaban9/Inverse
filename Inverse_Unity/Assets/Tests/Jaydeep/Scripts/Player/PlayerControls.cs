@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Minimilist.Player.PlayerActions
+namespace Minimalist.Player.PlayerActions
 {
     public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {

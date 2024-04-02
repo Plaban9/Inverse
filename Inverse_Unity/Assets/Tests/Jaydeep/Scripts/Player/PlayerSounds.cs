@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Player
+namespace Minimalist.Player
 {
     public class PlayerSounds : MonoBehaviour, ILevelListener<LevelType>
     {

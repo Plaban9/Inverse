@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Enemies
+namespace Minimalist.Enemies
 {
     [RequireComponent(typeof(Collider2D))]
     public class EnemyDetection : MonoBehaviour

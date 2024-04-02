@@ -1,4 +1,4 @@
-using Minimilist.Effect.Animations;
+using Minimalist.Effect.Animations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;

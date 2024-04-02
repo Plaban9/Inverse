@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Pet
+namespace Minimalist.Pet
 {
     [RequireComponent(typeof(Animator))]
     public class PetAnimations : MonoBehaviour

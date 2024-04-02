@@ -1,9 +1,9 @@
-using Minimilist.Enemies;
+using Minimalist.Enemies;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minimilist.Pet.Ability
+namespace Minimalist.Pet.Ability
 {
     [RequireComponent(typeof(Collider2D))]
     public class PetDetect : MonoBehaviour

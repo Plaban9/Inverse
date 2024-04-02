@@ -1,8 +1,8 @@
 using Minimalist.Interfaces;
-using Minimilist.Pet.Ability;
+using Minimalist.Pet.Ability;
 using UnityEngine;
 
-namespace Minimilist.Pet
+namespace Minimalist.Pet
 {
     public class DogPet : MonoBehaviour, IInteractable
     {
