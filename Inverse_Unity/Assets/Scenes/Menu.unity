@@ -776,7 +776,7 @@ MonoBehaviour:
   _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   _hoverColor: {r: 1, g: 0, b: 0, a: 1}
   _clickColor: {r: 0.5566038, g: 0.10852019, b: 0.10852019, a: 1}
-  _complementColor: {r: 1, g: 1, b: 1, a: 1}
+  _complementColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &492540854
 MonoBehaviour:
   m_ObjectHideFlags: 0
