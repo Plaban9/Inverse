@@ -26,7 +26,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
             case "settings":
                 AudioManager.PlaySFX(SoundType.UI_Click);
-                Invoke(nameof(QuitGame), 1.5f);
+                // TODO: Add Settings Action here
                 break;
 
             default:
