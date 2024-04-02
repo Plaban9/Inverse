@@ -750,6 +750,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1301070688}
     m_Modifications:
+    - target: {fileID: 2301074282622506638, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083667841213514455, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1250
+      objectReference: {fileID: 0}
     - target: {fileID: 6397292735242209950, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -833,6 +841,18 @@ PrefabInstance:
     - target: {fileID: 7078650417530638753, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899022300530727218, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8129315115377074646, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287387847761237700, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

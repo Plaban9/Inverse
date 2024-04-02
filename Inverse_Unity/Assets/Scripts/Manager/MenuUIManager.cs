@@ -1,9 +1,7 @@
 using Minimalist.Audio;
 using Minimalist.Audio.Music;
-using Minimalist.Audio.Sound;
 using Minimalist.UI;
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,7 +31,7 @@ namespace Minimalist.Manager
         {
             D("OnButtonHoverEnter: " + elementName);
 
-            var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
+            var uiElement = _uiElements.Find(element => element.UiProperty.Name.Trim().ToLower().Equals(elementName.ToLower()));
 
             if (uiElement == null)
             {
@@ -48,7 +46,7 @@ namespace Minimalist.Manager
 
             foreach (var elem in _uiElements)
             {
-                if (elem.UiProperty.Name.ToLower().Equals(elementName) || elem.UiProperty.KeepColorAsSelected)
+                if (elem.UiProperty.Name.ToLower().Equals(elementName.ToLower()) || elem.UiProperty.KeepColorAsSelected)
                 {
                     elem.OnHoverEnter(transitionColor);
                     continue;
@@ -63,7 +61,7 @@ namespace Minimalist.Manager
         {
             D("OnButtonHoverExit: " + elementName);
 
-            var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
+            var uiElement = _uiElements.Find(element => element.UiProperty.Name.Trim().ToLower().Equals(elementName.ToLower()));
 
             if (uiElement == null)
             {
@@ -81,7 +79,7 @@ namespace Minimalist.Manager
         {
             D("OnButtonPressed: " + elementName);
 
-            var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
+            var uiElement = _uiElements.Find(element => element.UiProperty.Name.Trim().ToLower().Equals(elementName.ToLower()));
 
             if (uiElement == null)
             {
