@@ -48,12 +48,6 @@ namespace Minimalist.Manager
 
             foreach (var elem in _uiElements)
             {
-                if (elem.UiProperty.Name.ToLower().Equals("camera"))
-                {
-                    elem.OnTransition(elem.UiProperty.ComplementColor);
-                    continue;
-                }
-
                 if (elem.UiProperty.Name.ToLower().Equals(elementName) || elem.UiProperty.KeepColorAsSelected)
                 {
                     elem.OnHoverEnter(transitionColor);
