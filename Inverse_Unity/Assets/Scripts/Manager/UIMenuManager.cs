@@ -1,15 +1,15 @@
-using Minimalist.Audio;
 using Minimalist.Audio.Music;
-using Minimalist.Audio.Sound;
+using Minimalist.Audio;
 using Minimalist.UI;
-
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
+using Minimalist.Audio.Sound;
 
 namespace Minimalist.Manager
 {
-    public class MenuUIManager : MonoBehaviour
+    public class UIMenuManager : MonoBehaviour
     {
         [SerializeField] private List<UIElement> _uiElements = new List<UIElement>();
 
@@ -29,13 +29,13 @@ namespace Minimalist.Manager
         #region UI Element Actions
         public void OnButtonHoverEnter(string elementName)
         {
-            D("OnButtonHoverEnter: " + elementName);
+            d("OnButtonHoverEnter: " + elementName);
 
             var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
 
             if (uiElement == null)
             {
-                D("OnButtonHoverEnter - Element not found with name: " + elementName);
+                d("OnButtonHoverEnter - Element not found with name: " + elementName);
                 return;
             }
 
@@ -46,32 +46,32 @@ namespace Minimalist.Manager
 
             foreach (var elem in _uiElements)
             {
-                if (elem.UiProperty.Name.ToLower().Equals("camera"))
+                if (elem.name.ToLower().Equals("camera"))
                 {
                     elem.OnTransition(elem.UiProperty.ComplementColor);
                     continue;
                 }
 
-                if (elem.UiProperty.Name.ToLower().Equals(elementName) || elem.UiProperty.KeepColorAsSelected)
+                if (elem.name.ToLower().Equals(elementName) || elem.UiProperty.KeepColorAsSelected)
                 {
                     elem.OnHoverEnter(transitionColor);
                     continue;
                 }
 
-                elem.OnTransition(complementColor);
+                elem.OnHoverEnter(complementColor);
             }
 
         }
 
         public void OnButtonHoverExit(string elementName)
         {
-            D("OnButtonHoverExit: " + elementName);
+            d("OnButtonHoverExit: " + elementName);
 
             var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
 
             if (uiElement == null)
             {
-                D("OnButtonHoverExit - Element not found with name: " + elementName);
+                d("OnButtonHoverExit - Element not found with name: " + elementName);
                 return;
             }
 
@@ -83,13 +83,13 @@ namespace Minimalist.Manager
 
         public void OnButtonPressed(string elementName)
         {
-            D("OnButtonPressed: " + elementName);
+            d("OnButtonPressed: " + elementName);
 
             var uiElement = _uiElements.Find(element => element.name.ToLower().Equals(elementName));
 
             if (uiElement == null)
             {
-                D("OnButtonPressed - Element not found with name: " + elementName);
+                d("OnButtonPressed - Element not found with name: " + elementName);
                 return;
             }
 
@@ -97,9 +97,9 @@ namespace Minimalist.Manager
         }
         #endregion
 
-        private static void D(string message)
+        private static void d(string message)
         {
-            //Debug.Log("<<MenuUIManager>> " + message);
+            Debug.Log("<<MenuUIManager>> " + message);
         }
     }
 }
