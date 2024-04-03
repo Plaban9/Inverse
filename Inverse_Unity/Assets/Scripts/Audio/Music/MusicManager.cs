@@ -95,7 +95,7 @@ namespace Minimalist.Audio.Music
             {
                 if (_musicSource.isPlaying)
                 {
-                    _musicSource.volume = _currentTrackVolume * GameAttributes.Settings_MusicVolume * volumeToSet;
+                    _musicSource.volume = _currentTrackVolume * volumeToSet;
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Minimalist.Audio.Music
             {
                 if (_musicSource.isPlaying)
                 {
-                    _musicSource.volume = _currentTrackVolume * volumeToSet * GameAttributes.Settings_MasterVolume;
+                    _musicSource.volume = _currentTrackVolume * volumeToSet;
                 }
             }
         }

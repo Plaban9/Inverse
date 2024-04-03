@@ -45,7 +45,7 @@ namespace Minimalist.Manager
 
                 _masterVolumeImage.sprite = _masterVolumeSprite[indexToSet];
 
-                AudioManager.SetMasterVolume(newValue);
+                AudioManager.SetMusicVolume(newValue * _musicVolumeSlider.value);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Minimalist.Manager
 
                 _musicVolumeImage.sprite = _musicVolumeSprite[indexToSet];
 
-                AudioManager.SetMusicVolume(newValue);
+                AudioManager.SetMusicVolume(newValue * _masterVolumeSlider.value);
             }
         }
 
