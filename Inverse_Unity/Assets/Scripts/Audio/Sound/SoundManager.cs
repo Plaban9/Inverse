@@ -32,7 +32,7 @@ namespace Minimalist.Audio.Sound
         /// <param name="audioClip"></param>
         internal void PlaySound2D(AudioClip audioClip, float volume)
         {
-            _sfxSource2D.PlayOneShot(audioClip, volume);
+            _sfxSource2D.PlayOneShot(audioClip, volume * GameAttributes.Settings_SFXVolume * GameAttributes.Settings_MasterVolume);
         }
 
         /// <summary>
@@ -45,8 +45,30 @@ namespace Minimalist.Audio.Sound
         {
             if (audioClip != null)
             {
-                AudioSource.PlayClipAtPoint(audioClip, position, volume);
+                AudioSource.PlayClipAtPoint(audioClip, position, volume * GameAttributes.Settings_SFXVolume * GameAttributes.Settings_MasterVolume);
             }
+        }
+
+        internal void SetMasterVolume(float volumeToSet)
+        {
+            //if (_sfxSource2D != null)
+            //{
+            //    if (_sfxSource2D.isPlaying)
+            //    {
+            //        _sfxSource2D.volume = 1f * GameAttributes.Settings_MusicVolume * volumeToSet;
+            //    }
+            //}
+        }
+
+        internal void SetSFXVolume(float volumeToSet)
+        {
+            //if (_sfxSource2D != null)
+            //{
+            //    if (_sfxSource2D.isPlaying)
+            //    {
+            //        _sfxSource2D.volume = 1f * volumeToSet * GameAttributes.Settings_MasterVolume;
+            //    }
+            //}
         }
     }
 }

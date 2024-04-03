@@ -58,6 +58,27 @@ namespace Minimalist.Audio
             }
         }
 
+        public static void SetMasterVolume(float volumeToSet)
+        {
+            try
+            {
+                MusicManager.Instance?.SetMasterVolume(volumeToSet);
+            }
+            catch (Exception exception)
+            {
+                D("Error in setting Master Volume for Music: " + exception.Message);
+            }
+
+            try
+            {
+                SoundManager.Instance?.SetMasterVolume(volumeToSet);
+            }
+            catch (Exception exception)
+            {
+                D("Error in setting Master Volume for Music: " + exception.Message);
+            }
+        }
+
         #region Music
         /// <summary>
         /// Plays Music by supplied Music Type.
@@ -105,6 +126,18 @@ namespace Minimalist.Audio
             }
 
             return false;
+        }
+
+        public static void SetMusicVolume(float volumeToSet)
+        {
+            try
+            {
+                MusicManager.Instance?.SetMusicVolume(volumeToSet);
+            }
+            catch (Exception exception)
+            {
+                D("Error in setting Volume for Music: " + exception.Message);
+            }
         }
         #endregion
 
@@ -188,6 +221,18 @@ namespace Minimalist.Audio
             }
 
             return false;
+        }
+
+        public static void SetSFXVolume(float volumeToSet)
+        {
+            try
+            {
+                SoundManager.Instance?.SetSFXVolume(volumeToSet);
+            }
+            catch (Exception exception)
+            {
+                D("Error in setting Volume for Music: " + exception.Message);
+            }
         }
         #endregion
 

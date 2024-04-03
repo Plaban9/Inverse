@@ -13,11 +13,24 @@ namespace Minimalist.Manager
     {
         [SerializeField] private List<UIElement> _uiElements = new List<UIElement>();
 
+        [SerializeField] private SettingsManager _settingsManager;
+
+        public static MenuUIManager Instance{ get; private set; }
+
         private void Awake()
         {
             if (_uiElements.Count == 0)
             {
                 _uiElements = FindObjectsByType<UIElement>(FindObjectsSortMode.None).ToList();
+            }
+
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
 
             Cursor.visible = true;
@@ -26,6 +39,11 @@ namespace Minimalist.Manager
         private void Start()
         {
             AudioManager.PlayMusic(MusicType.Menu, 1f, true);
+
+            if (_settingsManager == null) 
+            { 
+                _settingsManager = GetComponentInChildren<SettingsManager>(true);
+            }
         }
 
         #region UI Element Actions
@@ -98,6 +116,14 @@ namespace Minimalist.Manager
         {
             // TODO: Lerp Here
             return startColor;
+        }
+
+        internal void EnableSettings()
+        {
+            if (_settingsManager != null)
+            {
+                _settingsManager.gameObject.SetActive(true);
+            }
         }
         #endregion
 

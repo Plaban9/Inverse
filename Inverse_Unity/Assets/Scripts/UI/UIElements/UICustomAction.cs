@@ -26,7 +26,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
             case "settings":
                 AudioManager.PlaySFX(SoundType.UI_Click);
-                // TODO: Add Settings Action here
+                Settings();
                 break;
 
             default:
@@ -60,6 +60,14 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
             _isLevelBeingLoaded = true;
             AudioManager.PlaySFX(SoundType.UI_Click);
             SceneManager.Instance.LoadScene("Story", "CrossFade");
+        }
+    }
+
+    private void Settings()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.EnableSettings();
         }
     }
     #endregion

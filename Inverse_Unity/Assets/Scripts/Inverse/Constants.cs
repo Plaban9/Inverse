@@ -17,6 +17,7 @@ namespace Minimalist.Inverse
         {
             public class Audio
             {
+                public const float MAX_MASTER_VOLUME = 1;
                 public const float MAX_MUSIC_VOLUME = 1;
                 public const float MAX_SOUND_VOLUME = 1;
             }
@@ -36,6 +37,7 @@ namespace Minimalist.Inverse
             #endregion
 
             #region SETTINGS_CONSTANTS
+            public const string SETTINGS_MASTER_VOLUME = "volume_master";
             public const string SETTINGS_SOUND_VOLUME = "volume_sound";
             public const string SETTINGS_MUSIC_VOLUME = "volume_music";
             #endregion

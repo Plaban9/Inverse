@@ -10,6 +10,8 @@ namespace Minimalist.Audio.Music
     /// </summary>
     internal class MusicManager : MonoBehaviour
     {
+        private float _currentTrackVolume = 1.0f;
+
         internal static MusicManager Instance { get; private set; }
 
         [SerializeField] private AudioSource _musicSource;
@@ -61,7 +63,7 @@ namespace Minimalist.Audio.Music
             while (percent < 1)
             {
                 percent += Time.deltaTime * 1 / fadeDuration;
-                _musicSource.volume = Mathf.Lerp(_musicSource.volume, 0, percent);
+                _musicSource.volume = Mathf.Lerp(_musicSource.volume * GameAttributes.Settings_MusicVolume * GameAttributes.Settings_MasterVolume, 0, percent);
 
                 yield return null;
             }
@@ -71,6 +73,7 @@ namespace Minimalist.Audio.Music
                 yield break;
             }
 
+            _currentTrackVolume = volume;
             _musicSource.clip = nextTrack;
             _musicSource.loop = loop;
             _musicSource.Play();
@@ -80,9 +83,31 @@ namespace Minimalist.Audio.Music
             while (percent < 1)
             {
                 percent += Time.deltaTime * 1 / fadeDuration;
-                _musicSource.volume = Mathf.Lerp(0f, volume, percent);
+                _musicSource.volume = Mathf.Lerp(0f, volume * GameAttributes.Settings_MusicVolume * GameAttributes.Settings_MasterVolume, percent);
 
                 yield return null;
+            }
+        }
+
+        internal void SetMasterVolume(float volumeToSet)
+        {
+            if (_musicSource != null)
+            {
+                if (_musicSource.isPlaying)
+                {
+                    _musicSource.volume = _currentTrackVolume * GameAttributes.Settings_MusicVolume * volumeToSet;
+                }
+            }
+        }
+
+        internal void SetMusicVolume(float volumeToSet)
+        {
+            if (_musicSource != null)
+            {
+                if (_musicSource.isPlaying)
+                {
+                    _musicSource.volume = _currentTrackVolume * volumeToSet * GameAttributes.Settings_MasterVolume;
+                }
             }
         }
     }
