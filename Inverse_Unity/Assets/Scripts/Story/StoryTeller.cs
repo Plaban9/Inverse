@@ -1,5 +1,7 @@
 using DG.Tweening;
+using Minimalist.Inverse;
 using Minimalist.Manager;
+using Minimalist.SaveSystem;
 using Minimilist.Player.PlayerActions;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,7 +18,6 @@ public class StoryTeller : MonoBehaviour
     [SerializeField] private List<StorySO> story;
     [SerializeField] private AudioSource source;
 
-    private bool isSkipHidden;
     private PlayerControls inputs;
 
     private void Awake()
@@ -51,15 +52,14 @@ public class StoryTeller : MonoBehaviour
     {
         Debug.Log("Story Completed!");
         source.Pause();
-        SceneManager.Instance.LoadScene("Level1", "CircleWipe");
+        LoadNextScene();
     }
 
     private void HandleShowSkip(InputAction.CallbackContext ctx)
     {
         skipText.DOFade(1, 1).SetEase(Ease.OutQuint).OnComplete(() =>
         {
-            isSkipHidden = false;
-            skipText.DOFade(0, 1f).SetDelay(2f).SetEase(Ease.OutQuint).OnComplete(() => isSkipHidden = true);
+            skipText.DOFade(0, 1f).SetDelay(2f).SetEase(Ease.OutQuint);
         });
     }
 
@@ -71,7 +71,7 @@ public class StoryTeller : MonoBehaviour
     private IEnumerator ShowDialogues()
     {
         loreText.DOAnchorPosY(0, 1f).SetEase(Ease.OutBack);
-        skipText.DOFade(0, 1f).SetDelay(1f).SetEase(Ease.OutQuint).OnComplete(() => isSkipHidden = true);
+        skipText.DOFade(0, 1f).SetDelay(1f).SetEase(Ease.OutQuint);
         yield return new WaitForSeconds(3f);
 
         source.Play();
@@ -83,7 +83,7 @@ public class StoryTeller : MonoBehaviour
         }
 
         Debug.Log("Story Completed!");
-        SceneManager.Instance.LoadScene("Level1", "CircleWipe");
+        LoadNextScene();
     }
 
     private IEnumerator WriteDialogue(StorySO storySO)
@@ -101,5 +101,14 @@ public class StoryTeller : MonoBehaviour
         }
         yield return new WaitForSeconds(storySO.waitTime); // Can be changed to press any key to continue
 
+    }
+
+    private void LoadNextScene()
+    {
+        bool isTutorialCompleted = SaveManager.ReadData(Constants.SaveSystem.STAT_TUTORIAL_COMPLETED, false);
+
+        var sceneToLoad = isTutorialCompleted ? "Level1" : "Level_Tut";
+
+        SceneManager.Instance.LoadScene(sceneToLoad, "CircleWipe");
     }
 }
