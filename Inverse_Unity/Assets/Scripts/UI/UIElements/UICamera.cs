@@ -15,14 +15,17 @@ namespace Minimalist.UI.UIElements
                 _camera = Camera.main;
             }
 
-            base.Awake();            
+            base.Awake();
         }
 
         public override void OnTransition(Color elementColor)
         {
             D("OnTransition: " + elementColor);
 
-            _camera.backgroundColor = elementColor;
+            if (_camera != null)
+            {
+                _camera.backgroundColor = elementColor;
+            }
         }
 
         private static void D(string message)

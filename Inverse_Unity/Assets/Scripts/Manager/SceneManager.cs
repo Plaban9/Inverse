@@ -1,3 +1,5 @@
+using LighthouseGames.UI.Effects;
+
 using Minimalist.Scene.Transition;
 
 using System.Collections;
@@ -15,8 +17,10 @@ namespace Minimalist.Manager
         [SerializeField] private GameObject _transitionContainer;
         [SerializeField] private SceneTransition[] _transitions;
 
-
+        [SerializeField] private LightBeamColorChanger _lightBeamColorChanger;
         [SerializeField] private Slider _progressBar;
+
+        [SerializeField] private float _minLoadTimeInSeconds = 3f;
 
         private void Awake()
         {
@@ -45,6 +49,8 @@ namespace Minimalist.Manager
         {
             yield return new WaitForSeconds(delay);
 
+            var loadTime = Time.time;
+
             SceneTransition transition = _transitions.First(element => element.name.Equals(transitionName));
 
             AsyncOperation scene = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
@@ -54,20 +60,33 @@ namespace Minimalist.Manager
 
             _progressBar.gameObject.SetActive(true);
 
+            if (_lightBeamColorChanger != null)
+            {
+                _lightBeamColorChanger.TriggerEffect();
+            }
+
             do
             {
                 //_progressBar.value = scene.progress;
                 _progressBar.value = Mathf.SmoothStep(_progressBar.value, scene.progress, .05f);
                 yield return null;
 
-            } while (scene.progress < .9f || _progressBar.value < 0.875f);
+            } while ((scene.progress < .9f || _progressBar.value < 0.875f) || Time.time < (loadTime + _minLoadTimeInSeconds));
             //} while (scene.progress < 0.9f);
             //} while (_progressBar.value < 0.9f);
 
+            if (_lightBeamColorChanger != null)
+            {
+                _lightBeamColorChanger.StopEffect();
+            }
+
             scene.allowSceneActivation = true;
+
+            yield return new WaitForSeconds(1.5f);
+
             _progressBar.gameObject.SetActive(false);
 
-            yield return transition.AnimateTransitionOut( );
+            yield return transition.AnimateTransitionOut();
         }
     }
 }
