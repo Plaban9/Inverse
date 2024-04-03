@@ -1,3 +1,5 @@
+using Minimalist.Audio.Sound;
+using Minimalist.Audio;
 using Minimalist.Manager;
 using Minimilist.Player.PlayerActions;
 using System;
@@ -43,6 +45,8 @@ namespace Minimalist.Player
             {
                 var isDarkRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType() == Level.LevelType.Dark;
                 LevelManager.Instance.SwitchLevel(!isDarkRealm);
+                // Realm Change Sound is in PlayerSound script bcz player is responsible/required to change the realm.
+                AudioManager.PlaySFX(SoundType.Gameplay_RealmChange);
                 Debug.Log("Realm Switched!");
             };
         }

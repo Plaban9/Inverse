@@ -55,8 +55,7 @@ namespace Minimalist.Player
 
         public void OnNotify(LevelType enums)
         {
-            // Realm Change Sound is in PlayerSound script bcz player is responsible/required to change the realm.
-            AudioManager.PlaySFX(SoundType.Gameplay_RealmChange);
+            
         }
     }
 }

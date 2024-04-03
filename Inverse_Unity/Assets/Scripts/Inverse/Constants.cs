@@ -26,6 +26,7 @@ namespace Minimalist.Inverse
         {
             #region GameStats
             public const string STAT_LAUNCH_COUNT = "launch_count";
+            public const string STAT_TUTORIAL_COMPLETED = "tutorial_completed";
             #endregion
 
 
