@@ -378,6 +378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274827fa0be97f745b2f32f954a9d6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &675565793 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 637604585810030768, guid: d1a70cc142a8b5f4f9b473a45a809f19, type: 3}
+  m_PrefabInstance: {fileID: 1547457681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &768698959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 511580289667745421, guid: 0a5acd56ea247c748a153415560567ce, type: 3}
@@ -983,6 +988,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5308300119439636303, guid: d1a70cc142a8b5f4f9b473a45a809f19, type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 675565793}
     - target: {fileID: 5308300119439636303, guid: d1a70cc142a8b5f4f9b473a45a809f19, type: 3}
       propertyPath: dialogObject
       value: 

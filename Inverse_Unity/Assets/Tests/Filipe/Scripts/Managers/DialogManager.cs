@@ -20,7 +20,7 @@ namespace Minimalist.DialogSystem
 
         private bool showing = false;
 
-        private CanvasGroup canvasGroup;
+        [SerializeField] private CanvasGroup canvasGroup;
 
         void Start()
         {

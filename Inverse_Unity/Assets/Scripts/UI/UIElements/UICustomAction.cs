@@ -12,6 +12,8 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
     {
         var customElementName = elementName.ToLower();
 
+        D("OnInteractableClick: " + elementName);
+
         switch (customElementName)
         {
             case "quit":
@@ -71,4 +73,9 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         }
     }
     #endregion
+
+    private static void D(string message)
+    {
+        //Debug.Log("<<UICustomAction>> " + message);
+    }
 }
