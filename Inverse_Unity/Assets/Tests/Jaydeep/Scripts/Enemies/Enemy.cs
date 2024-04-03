@@ -13,8 +13,9 @@ namespace Minimalist.Enemies
     public class Enemy : MonoBehaviour, ILevelListener<LevelType>
     {
         [SerializeField] private Transform player;
-        [SerializeField] private PatrolStates state;
+        [SerializeField] protected PatrolStates state;
         [SerializeField] private float chaseSpeed = 2;
+        [SerializeField] private float attackInterval = 1f;
 
         [Header("Colliders")]
         [SerializeField] private Collider2D idleCollider;
@@ -25,20 +26,22 @@ namespace Minimalist.Enemies
         [SerializeField] private EnemyDetection enemyDetection;
 
         [Header("EnemyRealm")]
-        [SerializeField] private bool isRealmIndependentEnemy;
-        [SerializeField] private bool isLightRealmEnemy;
+        [SerializeField] protected bool isRealmIndependentEnemy;
+        [SerializeField] protected bool isLightRealmEnemy;
+
+        [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
+        [SerializeField] protected bool _canMove = false;
 
         private ObjectMovement patrolling;
-        [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
-        private Rigidbody2D rb;
-        private Animator animator;
-        [SerializeField] private bool _darkState = false;
+        protected EnemyAttack enemyAttack;
+        protected Rigidbody2D rb;
+        protected Animator animator;
 
         public bool IsChasing { get => state == PatrolStates.Chase; }
         public bool IsAlert { get => state == PatrolStates.Alert; }
         public bool IsPatrolling { get => patrolling.IsMoving; }
 
-        private enum PatrolStates
+        protected enum PatrolStates
         {
             Idle,
             Chase,
@@ -49,6 +52,7 @@ namespace Minimalist.Enemies
 
         private void Awake()
         {
+            enemyAttack = GetComponentInChildren<EnemyAttack>();
             player = GameObject.FindGameObjectWithTag("Player").transform;
             patrolling = GetComponent<ObjectMovement>();
             rb = GetComponent<Rigidbody2D>();
@@ -66,17 +70,18 @@ namespace Minimalist.Enemies
         private void Start()
         {
             state = PatrolStates.Idle;
+            enemyAttack.attackInterval = attackInterval;
             LevelManager.Instance.RealmManager.AddListener(this);
             OnNotify(LevelManager.Instance.RealmManager.GetCurrentLevelType());
         }
 
         private void Update()
         {
-            if (!_darkState)
+            if (!_canMove)
                 state = PatrolStates.Statue;
             else if (enemyDetection.HasDetected && state != PatrolStates.Chase)
                 state = PatrolStates.Chase;
-            else if(!enemyDetection.HasDetected && state == PatrolStates.Chase)
+            else if (!enemyDetection.HasDetected && state == PatrolStates.Chase)
                 state = PatrolStates.Alert;
 
             HandleColliders();
@@ -86,67 +91,67 @@ namespace Minimalist.Enemies
         {
             switch (state)
             {
-                case PatrolStates.Idle:     HandleIdleState();      break;
-                case PatrolStates.Chase:    HandleChaseState();     break;
-                case PatrolStates.Alert:    HandleAlertState();     break;
-                case PatrolStates.Patrol:   HandlePatrolState();    break;
-                case PatrolStates.Statue:   HandleStatueState();    break;
+                case PatrolStates.Idle: HandleIdleState(); break;
+                case PatrolStates.Chase: HandleChaseState(); break;
+                case PatrolStates.Alert: HandleAlertState(); break;
+                case PatrolStates.Patrol: HandlePatrolState(); break;
+                case PatrolStates.Statue: HandleStatueState(); break;
                 default: Debug.LogError($"Something went wrong! {state} is not implemented!"); break;
             }
+        }
 
-            void HandleIdleState()
-            {
-                patrolling.StopMoving();
-                StartCoroutine(ChangeState(PatrolStates.Patrol, 10));
-            }
+        protected virtual void HandleIdleState()
+        {
+            patrolling.StopMoving();
+            StartCoroutine(ChangeState(PatrolStates.Patrol, 10));
+        }
 
-            void HandleChaseState()
-            {
-                StopAllCoroutines();
-                patrolling.StopMoving();
-                var dir = player.position - transform.position;
-                dir.Normalize();
+        protected virtual void HandleChaseState()
+        {
+            StopAllCoroutines();
+            patrolling.StopMoving();
+            var dir = player.position - transform.position;
+            dir.Normalize();
 
-                var xScale = Mathf.Abs(transform.localScale.x);
-                transform.localScale = new Vector2(dir.x < 0 ? -xScale : xScale, transform.localScale.y);
+            var xScale = Mathf.Abs(transform.localScale.x);
+            transform.localScale = new Vector2(dir.x < 0 ? -xScale : xScale, transform.localScale.y);
 
-                Vector2 targetPos = new(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
-                rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed);
-                lastPlayerPos = player.position;
-                lastPlayerPos.y = transform.position.y;
-            }
+            Vector2 targetPos = new(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
+            rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed);
+            lastPlayerPos = player.position;
+            lastPlayerPos.y = transform.position.y;
+        }
 
-            void HandleAlertState()
-            {
-                var dir = (Vector3)lastPlayerPos - transform.position;
-                dir.Normalize();
+        protected virtual void HandleAlertState()
+        {
+            var dir = (Vector3)lastPlayerPos - transform.position;
+            dir.Normalize();
 
-                Vector2 targetPos = new (dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
-                if (Mathf.Abs(lastPlayerPos.x - transform.position.x) > 0)
-                    rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed / 2);
-                else
-                    rb.velocity = Vector2.zero;
+            Vector2 targetPos = new(dir.x < 0 ? -chaseSpeed : chaseSpeed, rb.velocity.y);
+            if (Mathf.Abs(lastPlayerPos.x - transform.position.x) > 0)
+                rb.velocity = Vector2.Lerp(rb.velocity, targetPos, Time.fixedDeltaTime * chaseSpeed / 2);
+            else
+                rb.velocity = Vector2.zero;
 
-                StartCoroutine(ChangeState(PatrolStates.Patrol, 5f));
-            }
+            StartCoroutine(ChangeState(PatrolStates.Patrol, 5f));
+        }
 
-            void HandlePatrolState()
-            {
-                patrolling.StartMoving();
-                StartCoroutine(ChangeState(PatrolStates.Idle, 20));
-            }
+        protected virtual void HandlePatrolState()
+        {
+            patrolling.StartMoving();
+            StartCoroutine(ChangeState(PatrolStates.Idle, 20));
+        }
 
-            IEnumerator ChangeState(PatrolStates newState, float changeTime)
-            {
-                yield return new WaitForSeconds(changeTime);
-                StopAllCoroutines();
-                state = newState;
-            }
+        protected IEnumerator ChangeState(PatrolStates newState, float changeTime)
+        {
+            yield return new WaitForSeconds(changeTime);
+            StopAllCoroutines();
+            state = newState;
+        }
 
-            void HandleStatueState()
-            {
-                patrolling.StopMoving();
-            }
+        protected virtual void HandleStatueState()
+        {
+            patrolling.StopMoving();
         }
 
         private void HandleColliders()
@@ -176,7 +181,7 @@ namespace Minimalist.Enemies
 
         public void OnNotify(LevelType type)
         {
-            _darkState = type == LevelType.Dark;
+            _canMove = type == LevelType.Dark;
             Debug.Log($"Enemy state {type}");
             switch (type)
             {
@@ -189,10 +194,9 @@ namespace Minimalist.Enemies
             }
         }
 
-        private void ActivateLightState()
+        protected virtual void ActivateLightState()
         {
-            _darkState = false;
-            //rb.isKinematic = true;
+            _canMove = false;
             rb.velocity = Vector2.zero;
             rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 1 : 0;
             rb.mass = 100 * 100;
@@ -200,10 +204,9 @@ namespace Minimalist.Enemies
             gameObject.layer = 9;
         }
 
-        private void ActivateDarkState()
+        protected virtual void ActivateDarkState()
         {
-            _darkState = true;
-            //rb.isKinematic = false;
+            _canMove = true;
             rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 0 : 1;
             state = PatrolStates.Idle;
             rb.mass = 10;
@@ -211,9 +214,9 @@ namespace Minimalist.Enemies
             gameObject.layer = 0;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        protected virtual void OnCollisionEnter(Collision collision)
         {
-            if(collision.transform.TryGetComponent<PlayerMovements>(out var playerMovements))
+            if (collision.transform.TryGetComponent<PlayerMovements>(out var playerMovements))
             {
                 Debug.Log("GAME OVER");
             }
