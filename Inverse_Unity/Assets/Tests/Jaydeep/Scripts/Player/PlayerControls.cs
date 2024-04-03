@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Minimalist.Player.PlayerActions
+namespace Minimilist.Player.PlayerActions
 {
     public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
@@ -200,6 +200,54 @@ namespace Minimalist.Player.PlayerActions
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Story"",
+            ""id"": ""b04f110d-6f33-42ac-bbfa-55b8a497e268"",
+            ""actions"": [
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""733930f9-27a2-496a-a228-91ca7d69d3c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowSkip"",
+                    ""type"": ""Button"",
+                    ""id"": ""5519a8f0-2bfe-4937-a980-c435e190cc28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f00e146b-d584-48b2-b12d-f963ffaca663"",
+                    ""path"": ""*/{Cancel}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0c2dc7d-4f43-4233-b586-53256f15e2db"",
+                    ""path"": ""*/{Cancel}"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -238,6 +286,10 @@ namespace Minimalist.Player.PlayerActions
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_RealmSwitch = m_Player.FindAction("RealmSwitch", throwIfNotFound: true);
+            // Story
+            m_Story = asset.FindActionMap("Story", throwIfNotFound: true);
+            m_Story_Skip = m_Story.FindAction("Skip", throwIfNotFound: true);
+            m_Story_ShowSkip = m_Story.FindAction("ShowSkip", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -365,6 +417,60 @@ namespace Minimalist.Player.PlayerActions
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // Story
+        private readonly InputActionMap m_Story;
+        private List<IStoryActions> m_StoryActionsCallbackInterfaces = new List<IStoryActions>();
+        private readonly InputAction m_Story_Skip;
+        private readonly InputAction m_Story_ShowSkip;
+        public struct StoryActions
+        {
+            private @PlayerControls m_Wrapper;
+            public StoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Skip => m_Wrapper.m_Story_Skip;
+            public InputAction @ShowSkip => m_Wrapper.m_Story_ShowSkip;
+            public InputActionMap Get() { return m_Wrapper.m_Story; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(StoryActions set) { return set.Get(); }
+            public void AddCallbacks(IStoryActions instance)
+            {
+                if (instance == null || m_Wrapper.m_StoryActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_StoryActionsCallbackInterfaces.Add(instance);
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+                @ShowSkip.started += instance.OnShowSkip;
+                @ShowSkip.performed += instance.OnShowSkip;
+                @ShowSkip.canceled += instance.OnShowSkip;
+            }
+
+            private void UnregisterCallbacks(IStoryActions instance)
+            {
+                @Skip.started -= instance.OnSkip;
+                @Skip.performed -= instance.OnSkip;
+                @Skip.canceled -= instance.OnSkip;
+                @ShowSkip.started -= instance.OnShowSkip;
+                @ShowSkip.performed -= instance.OnShowSkip;
+                @ShowSkip.canceled -= instance.OnShowSkip;
+            }
+
+            public void RemoveCallbacks(IStoryActions instance)
+            {
+                if (m_Wrapper.m_StoryActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IStoryActions instance)
+            {
+                foreach (var item in m_Wrapper.m_StoryActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_StoryActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public StoryActions @Story => new StoryActions(this);
         private int m_KeyboardSchemeIndex = -1;
         public InputControlScheme KeyboardScheme
         {
@@ -389,6 +495,11 @@ namespace Minimalist.Player.PlayerActions
             void OnJump(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnRealmSwitch(InputAction.CallbackContext context);
+        }
+        public interface IStoryActions
+        {
+            void OnSkip(InputAction.CallbackContext context);
+            void OnShowSkip(InputAction.CallbackContext context);
         }
     }
 }

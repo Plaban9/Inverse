@@ -59,7 +59,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         {
             _isLevelBeingLoaded = true;
             AudioManager.PlaySFX(SoundType.UI_Click);
-            SceneManager.Instance.LoadScene("Level1", "CrossFade");
+            SceneManager.Instance.LoadScene("Story", "CrossFade");
         }
     }
     #endregion

@@ -176,6 +176,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Story",
+            "id": "b04f110d-6f33-42ac-bbfa-55b8a497e268",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "733930f9-27a2-496a-a228-91ca7d69d3c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowSkip",
+                    "type": "Button",
+                    "id": "5519a8f0-2bfe-4937-a980-c435e190cc28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f00e146b-d584-48b2-b12d-f963ffaca663",
+                    "path": "*/{Cancel}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0c2dc7d-4f43-4233-b586-53256f15e2db",
+                    "path": "*/{Cancel}",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowSkip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

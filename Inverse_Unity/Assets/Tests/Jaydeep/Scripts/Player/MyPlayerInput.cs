@@ -1,5 +1,5 @@
 using Minimalist.Manager;
-using Minimalist.Player.PlayerActions;
+using Minimilist.Player.PlayerActions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
