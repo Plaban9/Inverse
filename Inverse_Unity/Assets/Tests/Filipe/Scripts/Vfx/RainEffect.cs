@@ -8,7 +8,7 @@ public class RainEffect : MonoBehaviour
 {
     [SerializeField] List<GameObject> rainList;
     public Material material;
-    float position = 9f;
+    [SerializeField] float position = 9f;
     float multiplier = 1f;
 
     private void Start()
