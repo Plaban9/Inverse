@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511981b6c2146894fbd87855374f98a6, type: 3}
+  m_Name: Level_4
+  m_EditorClassIdentifier: 
+  musicLibrary:
+  - name: Background
+    musicType: 0
+    audioClip: {fileID: 8300000, guid: 74a53a1a7bd6a0d44866ed1c347be49e, type: 3}
+    volume: 1
+    shouldLoop: 1
+  - name: Background
+    musicType: 0
+    audioClip: {fileID: 8300000, guid: 0b996b359092d3b4893cfe1c3fd052eb, type: 3}
+    volume: 1
+    shouldLoop: 1
+  - name: Background
+    musicType: 0
+    audioClip: {fileID: 8300000, guid: e345c9d1fdb75224e8bfad5d25ab2b72, type: 3}
+    volume: 1
+    shouldLoop: 1
+  soundLibrary:
+  - name: Spawn
+    soundType: 0
+    clips: []
+    volume: 1
+  - name: Death
+    soundType: 3
+    clips:
+    - {fileID: 8300000, guid: 3a13bea281f441d49b24e2844c75773d, type: 3}
+    - {fileID: 8300000, guid: c573aaf0817ba024aa3e9dbac798b32c, type: 3}
+    volume: 1
+  - name: Jump
+    soundType: 1
+    clips:
+    - {fileID: 8300000, guid: c337e44580ff5c148ba71e68a0007771, type: 3}
+    - {fileID: 8300000, guid: 8b10ff8964f95274b8973813d0ef00a8, type: 3}
+    volume: 1
+  - name: Completed/Win
+    soundType: 15
+    clips:
+    - {fileID: 8300000, guid: 1bf1dcacd5c9be542bed6340ee3a9c33, type: 3}
+    volume: 1
+  - name: Realm_Change
+    soundType: 13
+    clips:
+    - {fileID: 8300000, guid: 5f1a06b3156e54b4ea7f9c000ebc70f1, type: 3}
+    volume: 1
+  - name: Restart
+    soundType: 17
+    clips: []
+    volume: 1
+  - name: LevelOver
+    soundType: 16
+    clips: []
+    volume: 1
+  - name: Enemy_Detect
+    soundType: 9
+    clips: []
+    volume: 1
+  - name: Enemy_Chase
+    soundType: 11
+    clips: []
+    volume: 1
+  - name: Enemy_Howl
+    soundType: 12
+    clips: []
+    volume: 1
