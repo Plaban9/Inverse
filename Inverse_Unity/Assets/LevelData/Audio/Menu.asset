@@ -24,7 +24,6 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 4a26a4b19310fa64fb62f4625db88f78, type: 3}
     - {fileID: 8300000, guid: 511a877b501424448a3a7b30999f0364, type: 3}
-    - {fileID: 8300000, guid: 8b7f56d3cd32e5d4f86d45caf6071eaa, type: 3}
     volume: 1
   - name: Click
     soundType: 18

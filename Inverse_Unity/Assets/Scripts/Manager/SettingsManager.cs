@@ -1,4 +1,5 @@
 using Minimalist.Audio;
+using Minimalist.Audio.Sound;
 using Minimalist.Inverse;
 using Minimalist.SaveSystem;
 
@@ -116,7 +117,7 @@ namespace Minimalist.Manager
         private void OnEnable()
         {
             InitValues();
-            Invoke(nameof(EnableBackground), 0.25f);
+            Invoke(nameof(EnableBackground), 0.15f);
         }
 
         private void OnDisable()
@@ -155,6 +156,11 @@ namespace Minimalist.Manager
             gameObject.SetActive(false);
         }
 
+        public void OnSaveHover()
+        {
+            OnHover();
+        }
+
         public void OnCancelPressed()
         {
             OnMasterValueChanged(GameAttributes.Settings_MasterVolume);
@@ -162,6 +168,32 @@ namespace Minimalist.Manager
             OnSFXValueChanged(GameAttributes.Settings_SFXVolume);
 
             gameObject.SetActive(false);
+        }
+
+        public void OnCancelHover()
+        {
+            OnHover();
+        }
+
+        private void OnHover()
+        {
+            var tempMasterVolume = GameAttributes.Settings_MasterVolume;
+            var tempSFXVolume = GameAttributes.Settings_SFXVolume;
+
+            if (_masterVolumeSlider != null)
+            {
+                GameAttributes.Settings_MasterVolume = _masterVolumeSlider.value;
+            }
+
+            if (_sfxVolumeSlider != null)
+            {
+                GameAttributes.Settings_SFXVolume = _sfxVolumeSlider.value;
+            }
+
+            AudioManager.PlaySFX(SoundType.UI_Hover);
+
+            GameAttributes.Settings_MasterVolume = tempMasterVolume;
+            GameAttributes.Settings_SFXVolume = tempSFXVolume;
         }
 
         private static void D(string message)
