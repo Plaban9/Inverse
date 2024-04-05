@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class RainEffect : MonoBehaviour
 {
-    [SerializeField] List<GameObject> rainList;
     public Material material;
+    [SerializeField] private Transform topPos;
+    [SerializeField] private Transform bottomPos;
     [SerializeField] float position = 9f;
-    float multiplier = 1f;
+    [SerializeField] List<GameObject> rainList;
 
     private void Start()
     {
@@ -18,7 +19,6 @@ public class RainEffect : MonoBehaviour
 
     public void SetLightMode(LevelType lightdark)
     {
-        multiplier *= -1;
         foreach(GameObject g in rainList)
         {
             if(g.TryGetComponent<ParticleSystem>(out ParticleSystem rain))
@@ -28,11 +28,11 @@ public class RainEffect : MonoBehaviour
                 if (lightdark == LevelType.Light)
                 {
                     main.gravityModifier = 5;
-                    g.transform.position = new Vector3(g.transform.position.x, 9f, g.transform.position.z);
+                    g.transform.position = topPos.position;
                 }else if(lightdark == LevelType.Dark)
                 {
                     main.gravityModifier = -5;
-                    g.transform.position = new Vector3(g.transform.position.x, -9f, g.transform.position.z);
+                    g.transform.position = bottomPos.position;
                 }
             }
                 

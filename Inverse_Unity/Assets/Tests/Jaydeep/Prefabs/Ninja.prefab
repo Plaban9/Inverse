@@ -160,6 +160,7 @@ Transform:
   m_Children:
   - {fileID: 1225383383571874393}
   - {fileID: 3849899247556975454}
+  - {fileID: 3202830640634839581}
   m_Father: {fileID: 8714469283260171953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1444489372080354188
@@ -341,6 +342,10 @@ MonoBehaviour:
   state: 0
   chaseSpeed: 12
   attackInterval: 0.5
+  groundCheck: {fileID: 3202830640634839581}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
   idleCollider: {fileID: 4865090675522940062}
   alertCollider: {fileID: 4865090675522940062}
   chaseCollider: {fileID: 4865090675522940062}
@@ -349,6 +354,7 @@ MonoBehaviour:
   isLightRealmEnemy: 1
   lastPlayerPos: {x: 0, y: 0}
   _canMove: 0
+  isGrounded: 0
 --- !u!1 &4948007961055943775
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +388,37 @@ Transform:
   - {fileID: 6541857130983522650}
   - {fileID: 5945545343266365734}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6838136087094792974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3202830640634839581}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3202830640634839581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838136087094792974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.328, y: -1.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 207184493138017489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8369895203994851392
 GameObject:

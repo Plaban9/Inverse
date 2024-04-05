@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '#4'
   m_EditorClassIdentifier: 
   textSize: 45
-  waitTime: 2.5
+  waitTime: 2.25
   writeTimeMultiplier: 1.3
   <dialogue>k__BackingField: Determined to free the Hinko from the Dark Knight's
     grasp, our hero sets out on a perilous journey. Along the way, he must battle

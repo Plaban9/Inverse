@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3227816034392575409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3297949580774513276}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3297949580774513276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227816034392575409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.208, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4751548799488928938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4668638847345565411
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +316,7 @@ Transform:
   m_Children:
   - {fileID: 6594886199648092017}
   - {fileID: 7698585653060904810}
+  - {fileID: 3297949580774513276}
   m_Father: {fileID: 8154094260780937022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3491161130644398842
@@ -565,7 +597,11 @@ MonoBehaviour:
   player: {fileID: 0}
   state: 0
   chaseSpeed: 5
-  attackInterval: 1
+  attackInterval: 0.1
+  groundCheck: {fileID: 3297949580774513276}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
   idleCollider: {fileID: 6390974763763357297}
   alertCollider: {fileID: 8939178882945114089}
   chaseCollider: {fileID: 8491724852202808919}
@@ -574,6 +610,7 @@ MonoBehaviour:
   isLightRealmEnemy: 0
   lastPlayerPos: {x: 0, y: 0}
   _canMove: 0
+  isGrounded: 0
 --- !u!1 &7729842631063578149
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: '#1'
   m_EditorClassIdentifier: 
   textSize: 90
-  waitTime: 1
+  waitTime: 1.5
   writeTimeMultiplier: 0.5
   <dialogue>k__BackingField: Shadow's Quest

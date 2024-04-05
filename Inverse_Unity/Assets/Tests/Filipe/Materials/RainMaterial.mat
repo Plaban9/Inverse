@@ -44,7 +44,7 @@ Material:
     - _Fuzziness: 0
     - _Interpolate: 0
     - _Range: 0
-    - _inverted: 1
+    - _inverted: 0
     m_Colors:
     - _EmphasizedColor: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

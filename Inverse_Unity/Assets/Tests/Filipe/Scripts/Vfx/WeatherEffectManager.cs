@@ -3,13 +3,14 @@ using Minimalist.Effect;
 using Minimalist.Interfaces;
 using Minimalist.Level;
 using Minimalist.Manager;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeatherEffectManager : MonoBehaviour, ILevelListener<LevelType>
 {
+    [Header("Effect Enabler")]
+    [SerializeField] private bool useRain;
+    [SerializeField] private bool useDust;
+    [SerializeField] private bool UseStar;
 
     [Header("Required Objects")]
     [SerializeField] public BWEffectManager _bwManager;
@@ -19,6 +20,13 @@ public class WeatherEffectManager : MonoBehaviour, ILevelListener<LevelType>
     [SerializeField]    private DuststormEffect _dsEffect;
     [SerializeField]    private Transform _starsEffect;
     [SerializeField]    private RainEffect _rainEffect;
+
+    private Camera _camera;
+
+    private void Awake()
+    {
+        _camera = GetComponentInParent<Camera>();
+    }
 
     void Start()
     {
@@ -30,11 +38,15 @@ public class WeatherEffectManager : MonoBehaviour, ILevelListener<LevelType>
         _bwManager.AddFrontMaterial(_starsEffect.GetComponent<Renderer>().material);
         _bwManager.AddFrontMaterial(_rainEffect.material);
 
+        SetRain(useRain);
+        SetDuststorm(useDust);
+        SetStars(UseStar);
     }
 
     public void Update()
     {
-        transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, transform.position.z);
+        if (_camera == null)
+            transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, transform.position.z);
     }
 
     public void SetDuststorm(bool state)

@@ -16,6 +16,8 @@ namespace Minimalist.Enemies
         [SerializeField] protected PatrolStates state;
         [SerializeField] private float chaseSpeed = 2;
         [SerializeField] private float attackInterval = 1f;
+        [SerializeField] private Transform groundCheck;
+        [SerializeField] private LayerMask groundLayer;
 
         [Header("Colliders")]
         [SerializeField] private Collider2D idleCollider;
@@ -32,11 +34,14 @@ namespace Minimalist.Enemies
         [SerializeField] private Vector2 lastPlayerPos = Vector2.zero;
         [SerializeField] protected bool _canMove = false;
 
+        [SerializeField] protected bool isGrounded;
+
         private ObjectMovement patrolling;
         protected EnemyAttack enemyAttack;
         protected Rigidbody2D rb;
         protected Animator animator;
 
+        public bool IsEnemyMoving { get { return rb.velocity.x != 0; } }
         public bool IsChasing { get => state == PatrolStates.Chase; }
         public bool IsAlert { get => state == PatrolStates.Alert; }
         public bool IsPatrolling { get => patrolling.IsMoving; }
@@ -84,6 +89,8 @@ namespace Minimalist.Enemies
             else if (!enemyDetection.HasDetected && state == PatrolStates.Chase)
                 state = PatrolStates.Alert;
 
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, .5f, groundLayer);
+
             HandleColliders();
         }
 
@@ -98,6 +105,9 @@ namespace Minimalist.Enemies
                 case PatrolStates.Statue: HandleStatueState(); break;
                 default: Debug.LogError($"Something went wrong! {state} is not implemented!"); break;
             }
+
+            if(!isGrounded)
+                rb.velocity = Vector3.zero;
         }
 
         protected virtual void HandleIdleState()
@@ -220,6 +230,12 @@ namespace Minimalist.Enemies
             {
                 Debug.Log("GAME OVER");
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
         }
     }
 }

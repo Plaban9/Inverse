@@ -39,8 +39,8 @@ namespace Minimalist.Enemies
 
         private void Update()
         {
-            animator.SetBool(ChaseHash, enemy.IsChasing);
-            animator.SetBool(AlertHash, enemy.IsAlert || enemy.IsPatrolling);
+            animator.SetBool(ChaseHash, enemy.IsChasing && enemy.IsEnemyMoving);
+            animator.SetBool(AlertHash, (enemy.IsAlert && enemy.IsEnemyMoving) || enemy.IsPatrolling);
         }
     }
 }

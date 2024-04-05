@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: '#3'
   m_EditorClassIdentifier: 
   textSize: 45
-  waitTime: 2.5
+  waitTime: 2.25
   writeTimeMultiplier: 1.3
   <dialogue>k__BackingField: Unbeknownst to him, a malevolent figure known as the
     Dark Knight rules over the realm, corrupting the minds of the Hinko and spreading

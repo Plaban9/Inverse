@@ -44,3 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Effects
+    uniqueID: 1907731073
+    locked: 0
+  - name: Env
+    uniqueID: 3060824027
+    locked: 0
+  - name: Player
+    uniqueID: 2816887725
+    locked: 0

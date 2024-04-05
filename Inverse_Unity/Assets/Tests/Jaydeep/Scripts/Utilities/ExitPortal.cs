@@ -14,14 +14,20 @@ namespace Minimalist.Utilities
 
         public event System.Action OnLevelCompleted;
 
+        [ContextMenu("Skip Level")]
+        private void LoadNextLevel()
+        {
+            AudioManager.PlaySFX3D(SoundType.Gameplay_LevelComplete, transform.position);
+            OnLevelCompleted?.Invoke();
+            SceneManager.Instance.LoadScene(nextLevelName, "CrossFade");
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent<MyPlayerInput>(out var playerInput))
             {
                 playerInput.enabled = false;
-                AudioManager.PlaySFX3D(SoundType.Gameplay_LevelComplete, transform.position);
-                OnLevelCompleted?.Invoke();
-                SceneManager.Instance.LoadScene(nextLevelName, "CrossFade");
+                LoadNextLevel();
             }
         }
     }
