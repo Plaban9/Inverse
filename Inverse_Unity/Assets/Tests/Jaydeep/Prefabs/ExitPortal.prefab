@@ -19463,7 +19463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82df216693005ff40a3e49511a6d4451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: 
+  nextLevelName: Menu
 --- !u!70 &4725106714008105800
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -19496,6 +19496,6 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 2}
+  m_Offset: {x: -0.0124053955, y: -0.020371139}
+  m_Size: {x: 0.083221436, y: 0.28633797}
   m_Direction: 0

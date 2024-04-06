@@ -21,6 +21,7 @@ namespace Minimalist.Manager
         [SerializeField] private Slider _progressBar;
 
         [SerializeField] private float _minLoadTimeInSeconds = 3f;
+        private bool _loading = false;
 
         private void Awake()
         {
@@ -42,11 +43,13 @@ namespace Minimalist.Manager
 
         public void LoadScene(string sceneName, string transitionName)
         {
-            StartCoroutine(LoadSceneAsync(sceneName, transitionName));
+            if (!_loading)
+                StartCoroutine(LoadSceneAsync(sceneName, transitionName));
         }
 
         private IEnumerator LoadSceneAsync(string sceneName, string transitionName, float delay = 0.5f)
         {
+            _loading = true;
             yield return new WaitForSeconds(delay);
 
             var loadTime = Time.time;
@@ -87,6 +90,7 @@ namespace Minimalist.Manager
             _progressBar.gameObject.SetActive(false);
 
             yield return transition.AnimateTransitionOut();
+            _loading = false;
         }
     }
 }

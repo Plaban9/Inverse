@@ -10,7 +10,7 @@ using Minimalist.Player;
 
 namespace Minimalist.Enemies
 {
-    public class Enemy : MonoBehaviour, ILevelListener<LevelType>
+    public abstract class Enemy : MonoBehaviour, ILevelListener<LevelType>
     {
         [SerializeField] private Transform player;
         [SerializeField] protected PatrolStates state;
@@ -18,11 +18,6 @@ namespace Minimalist.Enemies
         [SerializeField] private float attackInterval = 1f;
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
-
-        [Header("Colliders")]
-        [SerializeField] private Collider2D idleCollider;
-        [SerializeField] private Collider2D alertCollider;
-        [SerializeField] private Collider2D chaseCollider;
 
         [Header("Detection")]
         [SerializeField] private EnemyDetection enemyDetection;
@@ -36,7 +31,7 @@ namespace Minimalist.Enemies
 
         [SerializeField] protected bool isGrounded;
 
-        private ObjectMovement patrolling;
+        protected ObjectMovement patrolling;
         protected EnemyAttack enemyAttack;
         protected Rigidbody2D rb;
         protected Animator animator;
@@ -77,10 +72,9 @@ namespace Minimalist.Enemies
             state = PatrolStates.Idle;
             enemyAttack.attackInterval = attackInterval;
             LevelManager.Instance.RealmManager.AddListener(this);
-            OnNotify(LevelManager.Instance.RealmManager.GetCurrentLevelType());
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!_canMove)
                 state = PatrolStates.Statue;
@@ -89,9 +83,8 @@ namespace Minimalist.Enemies
             else if (!enemyDetection.HasDetected && state == PatrolStates.Chase)
                 state = PatrolStates.Alert;
 
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, .5f, groundLayer);
-
-            HandleColliders();
+            if (groundCheck)
+                isGrounded = Physics2D.OverlapCircle(groundCheck.position, .5f, groundLayer);
         }
 
         private void FixedUpdate()
@@ -164,34 +157,8 @@ namespace Minimalist.Enemies
             patrolling.StopMoving();
         }
 
-        private void HandleColliders()
+        public virtual void OnNotify(LevelType type)
         {
-            switch (state)
-            {
-                case PatrolStates.Idle:
-                    alertCollider.enabled = false;
-                    chaseCollider.enabled = false;
-                    idleCollider.enabled = true;
-                    break;
-                case PatrolStates.Chase:
-                    idleCollider.enabled = false;
-                    alertCollider.enabled = false;
-                    chaseCollider.enabled = true;
-                    break;
-
-                case PatrolStates.Patrol:
-                case PatrolStates.Alert:
-                    idleCollider.enabled = false;
-                    chaseCollider.enabled = false;
-                    alertCollider.enabled = true;
-                    break;
-            }
-        }
-
-
-        public void OnNotify(LevelType type)
-        {
-            _canMove = type == LevelType.Dark;
             Debug.Log($"Enemy state {type}");
             switch (type)
             {
@@ -204,36 +171,22 @@ namespace Minimalist.Enemies
             }
         }
 
-        protected virtual void ActivateLightState()
-        {
-            _canMove = false;
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 1 : 0;
-            rb.mass = 100 * 100;
-            animator.speed = 0;
-            gameObject.layer = 9;
-        }
+        protected abstract void ActivateLightState();
 
-        protected virtual void ActivateDarkState()
-        {
-            _canMove = true;
-            rb.gravityScale = isRealmIndependentEnemy ? 1 : isLightRealmEnemy ? 0 : 1;
-            state = PatrolStates.Idle;
-            rb.mass = 10;
-            animator.speed = 1;
-            gameObject.layer = 0;
-        }
+        protected abstract void ActivateDarkState();
 
         protected virtual void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.TryGetComponent<PlayerMovements>(out var playerMovements))
+            if (collision.transform.TryGetComponent<MyPlayerInput>(out var player))
             {
+                player.Die();
                 Debug.Log("GAME OVER");
             }
         }
 
         private void OnDrawGizmos()
         {
+            if(!groundCheck) { return; }
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(groundCheck.position, 0.5f);
         }

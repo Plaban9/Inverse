@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc38906155301984f9af05f98659ad63
+guid: 2c5795e9f1ccb2c46a702f5da0f2b03d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Jump_0
+      name: Batman_Attack_0
       rect:
         serializedVersion: 2
-        x: 45
+        x: 0
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9dddcee5c00bd843b2df9a2fea4c989
-      internalID: -1349096405
+      spriteID: cdbb1881de6a626418eb713c89f11f97
+      internalID: 1538790596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Jump_1
+      name: Batman_Attack_1
       rect:
         serializedVersion: 2
-        x: 165
+        x: 150
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7df1aed81a3d51438a86f2124aa8be3
-      internalID: 1773776623
+      spriteID: ad8ee498552d11c4487f44a423a98254
+      internalID: -168298079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Jump_2
+      name: Batman_Attack_2
       rect:
         serializedVersion: 2
-        x: 285
+        x: 300
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99b223ac2233cc6429a9de4542bdb1d8
-      internalID: 947924145
+      spriteID: 4095fc7617507704d86bdadce524cef7
+      internalID: 140527170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5233dd9e322915b41876a3b523744f8c
+      internalID: 1297189293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794ba570eb884b142a45da435be5a8c1
+      internalID: 118971426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb193b9acb1b59e4eb447bdb38c7f66b
+      internalID: -262291878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Attack_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a33c8876d2b3644a27d1d3945acbbd
+      internalID: 1792125999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Attack_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3877e32056886c94796c35b91d4d71de
+      internalID: 546065208
       vertices: []
       indices: 
       edges: []
@@ -209,9 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Jump_0: -1349096405
-      _Jump_1: 1773776623
-      _Jump_2: 947924145
+      Batman_Attack_0: 1538790596
+      Batman_Attack_1: -168298079
+      Batman_Attack_2: 140527170
+      Batman_Attack_3: 1297189293
+      Batman_Attack_4: 118971426
+      Batman_Attack_5: -262291878
+      Batman_Attack_6: 1792125999
+      Batman_Attack_7: 546065208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

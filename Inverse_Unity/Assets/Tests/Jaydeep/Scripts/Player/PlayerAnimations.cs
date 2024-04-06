@@ -14,12 +14,24 @@ namespace Minimalist.Player
         private Animator animator;
         private PlayerMovements movements;
         private SpriteRenderer spriteRenderer;
+        private MyPlayerInput input;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             movements = GetComponent<PlayerMovements>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            input = GetComponent<MyPlayerInput>();
+        }
+
+        private void OnEnable()
+        {
+            input.OnDie += OnDie;
+        }
+
+        private void OnDisable()
+        {
+            input.OnDie -= OnDie;
         }
 
         private void Update()
@@ -30,6 +42,11 @@ namespace Minimalist.Player
 
             if (movements.Velocity.x != 0)
                 spriteRenderer.flipX = movements.Velocity.x < 0;
+        }
+
+        public void OnDie()
+        {
+            animator.SetTrigger(DeathHash);
         }
     }
 }

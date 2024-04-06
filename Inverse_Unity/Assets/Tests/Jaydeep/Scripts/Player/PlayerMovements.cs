@@ -37,13 +37,21 @@ namespace Minimalist.Player
         private MyPlayerInput _playerInput;
         private Rigidbody2D _rb;
 
-        private bool _hasPlayerLoaded = false;
 
         private void Awake()
         {
             _playerInput = GetComponent<MyPlayerInput>();
             _rb = GetComponent<Rigidbody2D>();
-            _hasPlayerLoaded = true;
+        }
+
+        private void OnEnable()
+        {
+            _playerInput.OnDie += OnDie;
+        }
+
+        private void OnDisable()
+        {
+            _playerInput.OnDie -= OnDie;
         }
 
         private void Update()
@@ -85,16 +93,9 @@ namespace Minimalist.Player
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private void OnDie()
         {
-            if (collision.CompareTag("Death") && _hasPlayerLoaded)
-            {
-
-                Debug.Log("Loading Level " + transform.name + "----" + collision.name);
-                _hasPlayerLoaded = false;
-                SceneManager.Instance.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, "CrossFade");
-                //SceneManager.Instance.LoadScene("Level2", "CrossFade");
-            }
+            SceneManager.Instance.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, "CrossFade");
         }
     }
 }

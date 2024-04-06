@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Minimalist.Audio;
 using Minimalist.Audio.Sound;
 using Minimalist.Manager;
@@ -24,11 +25,20 @@ namespace Minimalist.Utilities
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<MyPlayerInput>(out var playerInput))
+            if (collision.TryGetComponent<MyPlayerInput>(out var player))
             {
-                playerInput.enabled = false;
+                AnimatePlayer(player);
                 LoadNextLevel();
             }
+        }
+
+        private static void AnimatePlayer(MyPlayerInput player)
+        {
+            var rb = player.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 0;
+            rb.velocity = Vector3.zero;
+            player.enabled = false;
+            player.transform.DOScale(Vector3.zero, .5f);
         }
     }
 }

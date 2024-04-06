@@ -9,8 +9,8 @@ namespace Minimalist.Player
     public class PlayerInteractions : MonoBehaviour
     {
         private MyPlayerInput _inputs;
-        [SerializeField] private IInteractable currentInteractable;
-        [SerializeField] private Transform currentInteract;
+        private IInteractable currentInteractable;
+        [SerializeField] private Transform currentInteract; // To see which object is currently interactable
 
         private void Awake()
         {
@@ -22,17 +22,21 @@ namespace Minimalist.Player
         private void OnEnable()
         {
             _inputs.OnInteract += OnInteract;
+            _inputs.OnDie += OnDie;
         }
 
         private void OnDisable()
         {
             _inputs.OnInteract -= OnInteract;
+            _inputs.OnDie -= OnDie;
         }
 
         private void OnInteract()
         {
             currentInteractable?.Interact();
         }
+
+        private void OnDie() => gameObject.SetActive(false);
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

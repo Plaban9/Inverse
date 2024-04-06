@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fc38906155301984f9af05f98659ad63
+guid: 793a5bb5fb847274d86b3fd653d0eca1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Jump_0
+      name: Batman_Idle_0
       rect:
         serializedVersion: 2
-        x: 45
+        x: 0
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9dddcee5c00bd843b2df9a2fea4c989
-      internalID: -1349096405
+      spriteID: bf497b59ed0c9794ab363b5aacecacba
+      internalID: -1199923679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Jump_1
+      name: Batman_Idle_1
       rect:
         serializedVersion: 2
-        x: 165
+        x: 150
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7df1aed81a3d51438a86f2124aa8be3
-      internalID: 1773776623
+      spriteID: be378363c9d1d0d48bb1f9951bc4cb65
+      internalID: -1192967790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Jump_2
+      name: Batman_Idle_2
       rect:
         serializedVersion: 2
-        x: 285
+        x: 300
         y: 0
-        width: 23
-        height: 37
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99b223ac2233cc6429a9de4542bdb1d8
-      internalID: 947924145
+      spriteID: dea79423086882b498461ad839449005
+      internalID: 1688860895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5692fa842af54974daccea0df663b799
+      internalID: -941663251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18fbea563e1639d4a92093c72516a7d3
+      internalID: 1080018766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69732262487b55d4bb63926b8c69f13b
+      internalID: -1658856035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80e5b7f4b7294344891a584949bab140
+      internalID: 1439274295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batman_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 1050
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c13775a319d411498d1e3d7a942f577
+      internalID: 1629623577
       vertices: []
       indices: 
       edges: []
@@ -209,9 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Jump_0: -1349096405
-      _Jump_1: 1773776623
-      _Jump_2: 947924145
+      Batman_Idle_0: -1199923679
+      Batman_Idle_1: -1192967790
+      Batman_Idle_2: 1688860895
+      Batman_Idle_3: -941663251
+      Batman_Idle_4: 1080018766
+      Batman_Idle_5: -1658856035
+      Batman_Idle_6: 1439274295
+      Batman_Idle_7: 1629623577
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -19,6 +19,7 @@ namespace Minimalist.Player
         public bool IsJumped { get; private set; }
 
         public event Action OnInteract;
+        public event Action OnDie;
 
         // Private Fields
         private PlayerControls _inputs;
@@ -57,21 +58,24 @@ namespace Minimalist.Player
         }
         #endregion
 
-        private void Start()
-        {
-            //Invoke(nameof(SwitchTemp), .01f);
-            //Invoke(nameof(SwitchTemp), 1f);
-        }
-
-        private void SwitchTemp()
-        {
-            var isDarkRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType() == Level.LevelType.Dark;
-            LevelManager.Instance.SwitchLevel(!isDarkRealm);
-        }
-
         private void Update()
         {
             IsJumped = _inputs.Player.Jump.WasPerformedThisFrame();
+        }
+
+        public void Die()
+        {
+            _inputs.Player.Disable();
+            OnDie?.Invoke();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(other.CompareTag("Death"))
+            {
+                Debug.Log("Die");
+                Die();
+            }
         }
     }
 }
