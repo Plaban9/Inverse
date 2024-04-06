@@ -10,6 +10,9 @@ using Minimalist.Player;
 
 namespace Minimalist.Enemies
 {
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(ObjectMovement))]
     public abstract class Enemy : MonoBehaviour, ILevelListener<LevelType>
     {
         [SerializeField] private Transform player;

@@ -1,3 +1,5 @@
+using Minimalist.Level;
+using Minimalist.Manager;
 using Minimalist.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +11,8 @@ public class EnemyAttack : MonoBehaviour
     [HideInInspector] public float attackInterval;
     public event System.Action OnAttack;
 
+    [SerializeField] private bool canDamageOnLightRealm;
+    [SerializeField] private bool canDamageOnDarkRealm;
     [SerializeField] private float currentAttackTime;
 
     private void Awake()
@@ -18,6 +22,9 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!canDamageOnDarkRealm && !canDamageOnLightRealm)
+            return;
+
         if (collision.TryGetComponent(out PlayerMovements movements))
         {
             currentAttackTime += Time.deltaTime;
@@ -25,7 +32,12 @@ public class EnemyAttack : MonoBehaviour
             if (currentAttackTime > attackInterval)
             {
                 currentAttackTime = 0;
-                OnAttack?.Invoke();
+                var currentRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType();
+                if (currentRealm == LevelType.Dark && canDamageOnDarkRealm ||
+                    currentRealm == LevelType.Light && canDamageOnLightRealm)
+                {
+                    OnAttack?.Invoke();
+                }
             }
         }
     }
