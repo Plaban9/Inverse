@@ -72,6 +72,7 @@ namespace Minimalist.Enemies
             state = PatrolStates.Idle;
             enemyAttack.attackInterval = attackInterval;
             LevelManager.Instance.RealmManager.AddListener(this);
+            //OnNotify(LevelManager.Instance.RealmManager.GetCurrentLevelType());
         }
 
         protected virtual void Update()

@@ -38,15 +38,13 @@ namespace Minimalist.Manager
 
             effectManager = GetComponent<BWEffectManager>();
 
-            InitializeLevel();
-
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
         public void InitializeLevel()
         {
             // Read from Scriptable Object
-
             RealmManager.InitializeRealmManager(LevelType.Light);
         }
 
@@ -56,6 +54,11 @@ namespace Minimalist.Manager
             {
                 RealmManager.OnLevelSwitch(lightDark ? LevelType.Dark : LevelType.Light);
             });
+        }
+
+        private void Start()
+        {
+            Invoke(nameof(InitializeLevel), .25f);
         }
     }
 }

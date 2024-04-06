@@ -32,6 +32,7 @@ namespace Minimalist.Manager
 
             _currentLevelType = defaultLevelType;
             _levelDataDictionary[defaultLevelType].OnLevelSwitch(defaultLevelType);
+            NotifyListeners(defaultLevelType);
         }
 
         public void OnLevelSwitch(LevelType levelType)
