@@ -45,10 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Interpolate: 0
-    - _alpha: 0.0018865466
+    - _Interpolate: 1
+    - _alpha: 0.10698141
     - _speed: 1.5
-    - _stretch: 0.50422734
+    - _stretch: 0.20357613
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &7743459150299462947
