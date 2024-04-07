@@ -10,6 +10,7 @@ public class EnemyAttack : MonoBehaviour
 {
     [HideInInspector] public float attackInterval;
     public event System.Action OnAttack;
+    public static event System.Action OnAnyAttack;
 
     [SerializeField] private bool canDamageOnLightRealm;
     [SerializeField] private bool canDamageOnDarkRealm;
@@ -37,6 +38,7 @@ public class EnemyAttack : MonoBehaviour
                     currentRealm == LevelType.Light && canDamageOnLightRealm)
                 {
                     OnAttack?.Invoke();
+                    OnAnyAttack?.Invoke();
                 }
             }
         }
