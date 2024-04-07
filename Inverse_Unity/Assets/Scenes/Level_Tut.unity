@@ -959,7 +959,7 @@ PrefabInstance:
     - target: {fileID: 7097128351440901728, guid: f9118e195b873254c880436b228a8979, type: 3}
       propertyPath: _audioLibrary
       value: 
-      objectReference: {fileID: 11400000, guid: e7c8e1925c69d1d4cb3ac5ecb8e0ea14, type: 2}
+      objectReference: {fileID: 11400000, guid: 37cdd1985b0af824c817732a5a79c843, type: 2}
     - target: {fileID: 7097128351440901728, guid: f9118e195b873254c880436b228a8979, type: 3}
       propertyPath: _stopMusicOnSceneExit
       value: 1
