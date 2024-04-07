@@ -306,8 +306,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  dashSpeed: 5
+  dashTime: 0.5
+  dashCooldown: 3
   isGrounded: 0
-  jumpHeight: 7
+  jumpHeight: 10
   groundCheck: {fileID: 331718829780037440}
   groundLayer:
     serializedVersion: 2
