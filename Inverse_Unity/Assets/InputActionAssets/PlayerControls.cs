@@ -88,7 +88,7 @@ namespace Minimilist.Player.PlayerActions
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""AD"",
+                    ""name"": ""Horizontal"",
                     ""id"": ""885c2f37-4ac9-4e2d-9bca-5e3d016b540b"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",

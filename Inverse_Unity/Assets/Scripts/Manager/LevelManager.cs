@@ -38,8 +38,8 @@ namespace Minimalist.Manager
 
             effectManager = GetComponent<BWEffectManager>();
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
         }
 
         public void InitializeLevel()
