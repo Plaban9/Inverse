@@ -1,10 +1,4 @@
 using Cinemachine;
-using Cinemachine.Editor;
-
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-
 using UnityEngine;
 
 namespace Minimalist.Effect.CameraShake

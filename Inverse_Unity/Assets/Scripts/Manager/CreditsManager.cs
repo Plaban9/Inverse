@@ -80,7 +80,7 @@ namespace Minimalist.Manager
         public void BackToMenu()
         {
             AudioManager.PlaySFX(Audio.Sound.SoundType.UI_Click);
-            SceneManager.Instance.LoadScene("Credits", "CrossFade");
+            SceneManager.Instance.LoadScene("Menu", "CrossFade");
         }
 
         public void HandleAnimatorSpeed()
@@ -94,11 +94,11 @@ namespace Minimalist.Manager
                     return;
                 }
 
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.DownArrow))
                 {
                     _creditsAnimator.speed = _fasterScrollSpeed;
                 }
-                else if (Input.GetMouseButton(1))
+                else if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.UpArrow))
                 {
                     _creditsAnimator.speed = _slowerScrollSpeed;
                 }
