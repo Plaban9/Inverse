@@ -1,4 +1,5 @@
 using Cinemachine;
+using Cinemachine.Editor;
 
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace Minimalist.Effect.CameraShake
 
         private float _timer;
 
-        private CinemachineBasicMultiChannelPerlin _cinemachineNoise;
+        [SerializeField] private CinemachineBasicMultiChannelPerlin _cinemachineNoise;
+
+        public static CameraShake Instance { get; private set; }
 
         private void Awake()
         {
@@ -26,6 +29,11 @@ namespace Minimalist.Effect.CameraShake
 
         private void Start()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+
             StopShake();
         }
 
@@ -40,13 +48,23 @@ namespace Minimalist.Effect.CameraShake
             _timer = _shakeTime;
         }
 
-        public void StopShake()
+        public void ShakeCamera(float intensity, float duration)
         {
             if (_cinemachineVirtualCamera == null)
                 return;
 
             var noise = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
+            noise.m_AmplitudeGain = intensity;
+            _timer = duration;
+        }
+
+        public void StopShake()
+        {
+            if (_cinemachineVirtualCamera == null)
+                return;
+
+            var noise = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             noise.m_AmplitudeGain = _resetIntensity;
             _timer = 0f;
         }
