@@ -176,6 +176,7 @@ MonoBehaviour:
   _frontMaterials:
   - {fileID: 2100000, guid: ccbc668c4a1d5d24b90ffb2d2c8d1fc7, type: 2}
   _backMaterial: {fileID: 2100000, guid: 992f6713041285e4a84373f7b52e2342, type: 2}
+  _cameraInvertMaterial: {fileID: 2100000, guid: 11e3d9b60baad9e42b595ebabe47a6a8, type: 2}
   _swapDurationInMs: 500
   _transition:
     serializedVersion: 2

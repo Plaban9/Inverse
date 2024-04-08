@@ -7,12 +7,15 @@ namespace Managers.BWEffectManager
     using Minimalist.Manager;
     using System;
     using System.Collections.Generic;
+    using UnityEngine.Rendering.Universal;
+    using System.Linq;
 
     public class BWEffectManager : MonoBehaviour
     {
         [Header("Data")]
         [SerializeField] private List<Material> _frontMaterials;
         [SerializeField] private Material _backMaterial;
+        [SerializeField] private Material _cameraInvertMaterial;
 
         [Header("Specifications")]
         [SerializeField] private float _swapDurationInMs;
@@ -48,13 +51,18 @@ namespace Managers.BWEffectManager
 
         public void SetPercent(float percent)
         {
+
             _percent = Mathf.Clamp(percent, 0.0f, 1.0f);
-            foreach (Material mat in _frontMaterials)
-            {
-                mat?.SetFloat("_Interpolate", _percent);
-            }
-            _backMaterial.SetFloat("_Interpolate", _percent);
+            //foreach (Material mat in _frontMaterials)
+            //{
+            //    mat?.SetFloat("_Interpolate", _percent);
+            //}
+            //_backMaterial.SetFloat("_Interpolate", _percent);
+            
+                _cameraInvertMaterial.SetFloat("_Interpolate", _percent);
         }
+
+
 
         public void SwapMode(Action action)
         {
