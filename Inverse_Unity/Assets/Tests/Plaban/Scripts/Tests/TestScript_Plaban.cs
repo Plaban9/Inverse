@@ -18,7 +18,7 @@ namespace Minimalist.Tests
     {
         [SerializeField] string sceneName;
         [SerializeField] string transitionName;
-        [SerializeField] HealthBar healthBar;
+        [SerializeField] GenericWorldUIProgressBar healthBar;
 
         bool isDark;
 
@@ -73,7 +73,7 @@ namespace Minimalist.Tests
 
             if (healthBar != null)
             {
-                healthBar.SetHealth(10f, 10f * _currentHealth);
+                healthBar.SetProgress(10f, 10f * _currentHealth);
             }
         }
     }
