@@ -33,6 +33,17 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
                 Settings();
                 break;
 
+            case "gameover_restart":
+            case "pausepanel_restart":
+                AudioManager.PlaySFX(SoundType.UI_Click);
+                RestartLevel();
+                break;
+
+            case "gameover_menu":
+            case "pausepanel_menu":
+                AudioManager.PlaySFX(SoundType.UI_Click);
+                break;
+
             default:
                 AudioManager.PlaySFX(SoundType.UI_Click);
                 break;
@@ -82,6 +93,24 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         if (MenuUIManager.Instance != null)
         {
             MenuUIManager.Instance.EnableSettings();
+        }
+    }
+
+    private void RestartLevel()
+    {
+        if(!_isSceneBeingLoaded)
+        {
+            _isSceneBeingLoaded = true;
+            SceneManager.Instance.LoadScene(SceneManager.Instance.ActiveScene, "CrossFade");
+        }
+    }
+
+    private void LoadMenuScene()
+    {
+        if (!_isSceneBeingLoaded)
+        {
+            _isSceneBeingLoaded = true;
+            SceneManager.Instance.LoadScene("Menu", "CrossFade");
         }
     }
     #endregion
