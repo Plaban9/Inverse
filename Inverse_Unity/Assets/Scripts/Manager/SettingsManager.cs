@@ -140,6 +140,19 @@ namespace Minimalist.Manager
             {
                 MenuUIManager.Instance.OnButtonHoverExit("settings");
             }
+
+        }
+
+        private void Start()
+        {
+            _masterVolumeSlider.onValueChanged.RemoveAllListeners();
+            _musicVolumeSlider.onValueChanged.RemoveAllListeners();
+            _sfxVolumeSlider.onValueChanged.RemoveAllListeners();
+
+
+            _masterVolumeSlider.onValueChanged.AddListener((val) => OnMasterValueChanged(val));
+            _musicVolumeSlider.onValueChanged.AddListener((val) => OnMusicValueChanged(val));
+            _sfxVolumeSlider.onValueChanged.AddListener((val) => OnSFXValueChanged(val));
         }
 
         public void OnSavePressed()

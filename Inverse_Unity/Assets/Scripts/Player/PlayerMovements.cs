@@ -52,16 +52,6 @@ namespace Minimalist.Player
             currentDashCooldownTime = dashCooldown;
         }
 
-        private void OnEnable()
-        {
-            _playerInput.OnDie += OnDie;
-        }
-
-        private void OnDisable()
-        {
-            _playerInput.OnDie -= OnDie;
-        }
-
         private void Update()
         {
             HandleMovement();
@@ -132,11 +122,6 @@ namespace Minimalist.Player
             {
                 _rb.velocity += (lowJumpMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
             }
-        }
-
-        private void OnDie()
-        {
-            SceneManager.Instance.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, "CrossFade");
         }
     }
 }

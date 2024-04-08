@@ -100,6 +100,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
     {
         if(!_isSceneBeingLoaded)
         {
+            Debug.Log("Restarting level");
             _isSceneBeingLoaded = true;
             SceneManager.Instance.LoadScene(SceneManager.Instance.ActiveScene, "CrossFade");
         }
