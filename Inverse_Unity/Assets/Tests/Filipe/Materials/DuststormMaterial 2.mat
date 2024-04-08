@@ -46,9 +46,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Interpolate: 0
-    - _alpha: 0.03032226
+    - _alpha: 0.015033728
     - _speed: 0.5
-    - _stretch: 0.61715555
+    - _stretch: 0.26250347
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &7743459150299462947
