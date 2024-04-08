@@ -341,14 +341,11 @@ MonoBehaviour:
   player: {fileID: 0}
   state: 0
   chaseSpeed: 12
-  attackInterval: 0.5
+  attackInterval: 1
   groundCheck: {fileID: 3202830640634839581}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  idleCollider: {fileID: 4865090675522940062}
-  alertCollider: {fileID: 4865090675522940062}
-  chaseCollider: {fileID: 4865090675522940062}
   enemyDetection: {fileID: 7350644770558107626}
   isRealmIndependentEnemy: 0
   isLightRealmEnemy: 1
@@ -542,4 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 0
+  canDamageOnLightRealm: 1
+  canDamageOnDarkRealm: 0
   currentAttackTime: 0

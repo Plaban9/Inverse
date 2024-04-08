@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 0
+  canDamageOnLightRealm: 0
+  canDamageOnDarkRealm: 1
   currentAttackTime: 0
 --- !u!1 &5065038253657739825
 GameObject:
@@ -597,7 +599,7 @@ MonoBehaviour:
   player: {fileID: 0}
   state: 3
   chaseSpeed: 6
-  attackInterval: 0
+  attackInterval: 1
   groundCheck: {fileID: 3297949580774513276}
   groundLayer:
     serializedVersion: 2

@@ -23,6 +23,8 @@ namespace Minimalist.Manager
         [SerializeField] private float _minLoadTimeInSeconds = 3f;
         private bool _loading = false;
 
+        public string ActiveScene { get => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; }
+
         private void Awake()
         {
             if (Instance == null) // Singleto
@@ -84,7 +86,6 @@ namespace Minimalist.Manager
             }
 
             scene.allowSceneActivation = true;
-
             yield return new WaitForSeconds(1.5f);
 
             _progressBar.gameObject.SetActive(false);

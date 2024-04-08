@@ -17,6 +17,7 @@ namespace Minimalist.Player
         // Public Fields
         public float MoveVector { get; private set; }
         public bool IsJumped { get; private set; }
+        public bool IsDashed {  get; private set; }
 
         public event Action OnInteract;
         public event Action OnDie;
@@ -61,6 +62,7 @@ namespace Minimalist.Player
         private void Update()
         {
             IsJumped = _inputs.Player.Jump.WasPerformedThisFrame();
+            IsDashed = _inputs.Player.Dash.WasPerformedThisFrame();
         }
 
         public void Die()

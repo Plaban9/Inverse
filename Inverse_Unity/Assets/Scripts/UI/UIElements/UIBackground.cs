@@ -1,18 +1,19 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Minimalist.UI.UIElements
 {
-    public class UICamera : UIElement
+    public class UIBackground : UIElement
     {
-        [SerializeField] private Camera _camera;
+        [SerializeField] private Image _bgImage;
 
         internal override void Awake()
         {
-            if (_camera == null)
+            if (_bgImage == null)
             {
-                _camera = Camera.main;
+                _bgImage = GetComponent<Image>();
             }
 
             base.Awake();
@@ -22,15 +23,15 @@ namespace Minimalist.UI.UIElements
         {
             D("OnTransition: " + elementColor);
 
-            if (_camera != null)
+            if (_bgImage != null)
             {
-                _camera.backgroundColor = elementColor;
+                _bgImage.color = elementColor;
             }
         }
 
         private static void D(string message)
         {
-            //Debug.Log("<<UICamera>> " + message);
+            //Debug.Log("<<UIBackground>> " + message);
         }
     }
 }

@@ -15,17 +15,7 @@ MonoBehaviour:
   musicLibrary:
   - name: Background
     musicType: 0
-    audioClip: {fileID: 8300000, guid: 74a53a1a7bd6a0d44866ed1c347be49e, type: 3}
-    volume: 1
-    shouldLoop: 1
-  - name: Background
-    musicType: 0
-    audioClip: {fileID: 8300000, guid: 0b996b359092d3b4893cfe1c3fd052eb, type: 3}
-    volume: 1
-    shouldLoop: 1
-  - name: Background
-    musicType: 0
-    audioClip: {fileID: 8300000, guid: e345c9d1fdb75224e8bfad5d25ab2b72, type: 3}
+    audioClip: {fileID: 8300000, guid: 2b8b22616fd0e30408790789c005f6b8, type: 3}
     volume: 1
     shouldLoop: 1
   soundLibrary:

@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fuzziness: 0
-    - _Interpolate: 1
+    - _Interpolate: 0
     - _Range: 0
     - _inverted: 0
     m_Colors:

@@ -162,6 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.Minimalist.INVERSE
     Standalone: com.Minimalist.INVERSE
   buildNumber:
     Standalone: 0
