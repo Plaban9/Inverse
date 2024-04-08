@@ -1,6 +1,7 @@
 using Minimalist.Audio;
 using Minimalist.Audio.Music;
 using Minimalist.Audio.Sound;
+using Minimalist.Entity.Attributes;
 using Minimalist.Inverse;
 using Minimalist.Manager;
 using Minimalist.SaveSystem;
@@ -17,6 +18,7 @@ namespace Minimalist.Tests
     {
         [SerializeField] string sceneName;
         [SerializeField] string transitionName;
+        [SerializeField] HealthBar healthBar;
 
         bool isDark;
 
@@ -48,7 +50,7 @@ namespace Minimalist.Tests
             {
                 AudioManager.PlayMusic(MusicType.Gameplay);
             }
-            
+
             if (Input.GetKeyDown(KeyCode.J))
             {
                 AudioManager.PlaySFX(SoundType.Player_Jump);
@@ -57,6 +59,21 @@ namespace Minimalist.Tests
             if (Input.GetKeyDown(KeyCode.T))
             {
                 SaveManager.SaveData(Constants.SaveSystem.GAMEPLAY_LAST_LEVEL_PLAYED, ++GameAttributes.Stat_LastLevelPlayed);
+            }
+
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                OnHealthBarTest();
+            }
+        }
+
+        private void OnHealthBarTest()
+        {
+            var _currentHealth = Random.Range(0f, 1f);
+
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(10f, 10f * _currentHealth);
             }
         }
     }
