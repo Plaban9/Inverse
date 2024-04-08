@@ -31,7 +31,7 @@ namespace Minimalist.UI.UIElements
 
         private static void D(string message)
         {
-            Debug.Log("<<UIBackground>> " + message);
+            //Debug.Log("<<UIBackground>> " + message);
         }
     }
 }

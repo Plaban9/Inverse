@@ -33,12 +33,13 @@ public class GameUIManager : MonoBehaviour
 
     private void OnDie()
     {
+        inputActions.UI.Disable();
         gameOverUI.SetActive(true);
     }
 
     private void OnPausePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        pauseUI.SetActive(true);
+        HandlePause();
     }
 
     private void OnDisable()
@@ -82,7 +83,6 @@ public class GameUIManager : MonoBehaviour
 
             elem.OnTransition(complementColor);
         }
-
     }
 
     public void OnButtonHoverExit(string elementName)
@@ -117,10 +117,19 @@ public class GameUIManager : MonoBehaviour
 
         uiElement.OnClick(uiElement.UiProperty.ClickColor);
     }
+
+    public void HandlePause()
+    {
+        _uiElements.ForEach(x => x.OnHoverExit(x.UiProperty.DefaultColor));
+
+        var newPauseState = !pauseUI.activeInHierarchy;
+        pauseUI.SetActive(newPauseState);
+        Time.timeScale = newPauseState ? 0 : 1;
+    }
     #endregion
 
     private static void D(string message)
     {
-        Debug.Log("<<GameUIManager>> " + message);
+        //Debug.Log("<<GameUIManager>> " + message);
     }
 }

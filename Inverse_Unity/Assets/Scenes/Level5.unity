@@ -2559,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6697465231523016107, guid: a5acb500f0c11784da60450935c608c8, type: 3}
       propertyPath: nextLevelName
-      value: Menu
+      value: Credits
       objectReference: {fileID: 0}
     - target: {fileID: 7520871405826015758, guid: a5acb500f0c11784da60450935c608c8, type: 3}
       propertyPath: m_LocalPosition.x
