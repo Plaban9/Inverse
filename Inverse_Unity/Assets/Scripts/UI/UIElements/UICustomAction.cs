@@ -6,7 +6,7 @@ using Minimalist.Manager;
 
 public class UICustomAction : MonoBehaviour, IUICustomAction
 {
-    private bool _isLevelBeingLoaded = false;
+    private bool _isSceneBeingLoaded = false;
 
     public void OnInteractableClick(string elementName)
     {
@@ -17,17 +17,19 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         switch (customElementName)
         {
             case "quit":
-                AudioManager.PlaySFX(SoundType.UI_Quit);
+                AudioManager.PlaySFX(SoundType.UI_Click);
                 Invoke(nameof(QuitGame), 1.5f);
                 break;
 
             case "play":
-                AudioManager.PlaySFX(SoundType.UI_Click);
                 Play();
                 break;
 
+            case "credits":
+                Credits();
+                break;
+
             case "settings":
-                AudioManager.PlaySFX(SoundType.UI_Click);
                 Settings();
                 break;
 
@@ -57,14 +59,24 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
     private void Play()
     {
-        if (!_isLevelBeingLoaded)
+        if (!_isSceneBeingLoaded)
         {
-            _isLevelBeingLoaded = true;
+            _isSceneBeingLoaded = true;
             AudioManager.PlaySFX(SoundType.UI_Click);
             SceneManager.Instance.LoadScene("Story", "CrossFade");
         }
     }
 
+    private void Credits()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            _isSceneBeingLoaded = true;
+            AudioManager.PlaySFX(SoundType.UI_Click);
+            SceneManager.Instance.LoadScene("Credits", "CrossFade");
+        }
+    }
+    
     private void Settings()
     {
         if (MenuUIManager.Instance != null)
