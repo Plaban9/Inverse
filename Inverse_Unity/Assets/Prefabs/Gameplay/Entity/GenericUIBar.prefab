@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04c6932e9b16004f89a598d0091b406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _progressBarObject: {fileID: 1536856680132999513}
   _progressGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0.103256226, a: 1}
@@ -224,6 +225,7 @@ MonoBehaviour:
   _progressBarForegroundSprite: {fileID: 7126309852133743338}
   _lerpSpeed: 1
   _target: 1
+  _hideProgressBarAtMax: 0
 --- !u!1 &8232689368899985906
 GameObject:
   m_ObjectHideFlags: 0

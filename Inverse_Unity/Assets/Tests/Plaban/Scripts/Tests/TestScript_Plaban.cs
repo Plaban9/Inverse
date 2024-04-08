@@ -63,17 +63,30 @@ namespace Minimalist.Tests
 
             if (Input.GetKeyDown(KeyCode.H))
             {
-                OnHealthBarTest();
+                OnHealthBarTest(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                OnHealthBarTest(true);
             }
         }
 
-        private void OnHealthBarTest()
+        private void OnHealthBarTest(bool Max)
         {
             var _currentHealth = Random.Range(0f, 1f);
 
             if (healthBar != null)
             {
-                healthBar.SetProgress(10f, 10f * _currentHealth);
+                if (Max)
+                {
+                    healthBar.SetProgress(10f, 10f);
+                }
+
+                else
+                {
+                    healthBar.SetProgress(10f, 10f * _currentHealth);
+                }
             }
         }
     }
