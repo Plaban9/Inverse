@@ -1,9 +1,5 @@
 using Minimalist.Audio;
-
-using Unity.VisualScripting;
-
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Minimalist.Manager
 {
