@@ -102,6 +102,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         {
             Debug.Log("Restarting level");
             _isSceneBeingLoaded = true;
+            Time.timeScale = 1;
             SceneManager.Instance.LoadScene(SceneManager.Instance.ActiveScene, "CrossFade");
         }
     }
@@ -111,6 +112,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         if (!_isSceneBeingLoaded)
         {
             _isSceneBeingLoaded = true;
+            Time.timeScale = 1;
             SceneManager.Instance.LoadScene("Menu", "CrossFade");
         }
     }

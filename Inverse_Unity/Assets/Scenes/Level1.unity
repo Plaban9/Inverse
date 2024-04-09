@@ -2917,6 +2917,10 @@ PrefabInstance:
       propertyPath: jumpHeight
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2262783774917992488, guid: 8d4f9e25797f1f746b830526b9f7f396, type: 3}
+      propertyPath: dashTrailPrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2596584470025810238, guid: 8d4f9e25797f1f746b830526b9f7f396, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1
@@ -2960,6 +2964,10 @@ PrefabInstance:
     - target: {fileID: 4944940239748370078, guid: 8d4f9e25797f1f746b830526b9f7f396, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602081197875891140, guid: 8d4f9e25797f1f746b830526b9f7f396, type: 3}
+      propertyPath: spawnInterval
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3102,6 +3110,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1110917942111389272, guid: 7dbfbd2c4bff29247a8e3e2ddd805f96, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4239827292064969623, guid: 7dbfbd2c4bff29247a8e3e2ddd805f96, type: 3}
       propertyPath: m_Pivot.x
       value: 0

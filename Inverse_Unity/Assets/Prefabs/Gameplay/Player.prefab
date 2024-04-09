@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 8934773905520915169}
   - component: {fileID: 4371308243147974796}
   - component: {fileID: 2262783774917992488}
+  - component: {fileID: 6602081197875891140}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -321,13 +322,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  isDashing: 0
   dashSpeed: 5
   dashTime: 0.5
   dashCooldown: 3
-  canDash: 0
-  isDashing: 0
-  currentDashTime: 0
-  currentDashCooldownTime: 0
   isGrounded: 0
   jumpHeight: 10
   groundCheck: {fileID: 331718829780037440}
@@ -337,6 +335,21 @@ MonoBehaviour:
   groundCheckRadius: 0.5
   airJumpCap: 1
   airControl: 0.7
+--- !u!114 &6602081197875891140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944940239748370078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737b71c55ef826f4096219561de2cdcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailPrefab: {fileID: 2809645570291488660, guid: 43a72636f57f4c248bf792aa6edbc355, type: 3}
+  trailTime: 1
+  spawnInterval: 0.1
 --- !u!1 &6331592676532812240
 GameObject:
   m_ObjectHideFlags: 0

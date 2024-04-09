@@ -13,13 +13,15 @@ namespace Minimalist.Player
     {
         [Header("Movement")]
         [SerializeField] private float speed = 5f;
+
+        [Header("Dash")]
+        [SerializeField] private bool isDashing;
         [SerializeField] private float dashSpeed = 5f;
         [SerializeField] private float dashTime = 1f;
         [SerializeField] private float dashCooldown = 3f;
-        [SerializeField] private bool canDash;
-        [SerializeField] private bool isDashing;
-        [SerializeField] private float currentDashTime;
-        [SerializeField] private float currentDashCooldownTime;
+        private float currentDashCooldownTime;
+        private float currentDashTime;
+        private bool canDash;
 
         [Header("Jump")]
         [SerializeField] private bool isGrounded;
@@ -36,19 +38,19 @@ namespace Minimalist.Player
 
         public bool IsPlayerJumped { get; private set; }
 
-
         public Vector2 Velocity { get => _rb.velocity; }
         public bool IsGrounded { get => isGrounded; }
 
         // Private Fields
         private MyPlayerInput _playerInput;
+        private SpriteTrailEffect _dashTrailEffect;
         private Rigidbody2D _rb;
-
 
         private void Awake()
         {
             _playerInput = GetComponent<MyPlayerInput>();
             _rb = GetComponent<Rigidbody2D>();
+            _dashTrailEffect = GetComponent<SpriteTrailEffect>();
             currentDashCooldownTime = dashCooldown;
         }
 
@@ -79,7 +81,8 @@ namespace Minimalist.Player
             else
             {
                 currentDashTime += Time.deltaTime;
-                if(currentDashTime >= dashTime)
+
+                if (currentDashTime >= dashTime)
                 {
                     currentDashTime = 0;
                     currentDashCooldownTime = 0;
@@ -87,12 +90,19 @@ namespace Minimalist.Player
                 }
             }
 
-            if(_playerInput.IsDashed && canDash && move != 0)
+            // Dash
+            if (_playerInput.IsDashed && canDash && move != 0)
             {
                 isDashing = true;
                 var dashDir = myVelocity.x * dashSpeed;
                 _rb.velocity = new Vector2(dashDir, _rb.velocity.y);
             }
+
+            // Dash effect
+            if (isDashing)
+                _dashTrailEffect.StartEmitting();
+            else
+                _dashTrailEffect.StopEmitting();
         }
 
         private void HandleJump()

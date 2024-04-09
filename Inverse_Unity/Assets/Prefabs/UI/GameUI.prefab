@@ -1943,6 +1943,18 @@ MonoBehaviour:
           m_StringArgument: gameover_restart
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9193475611981290039}
+        m_TargetAssemblyTypeName: UICustomAction, Assembly-CSharp
+        m_MethodName: OnInteractableClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: gameover_restart
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6722162142767144555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,6 +3238,18 @@ MonoBehaviour:
           m_StringArgument: gameover_menu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6508508673356876402}
+        m_TargetAssemblyTypeName: UICustomAction, Assembly-CSharp
+        m_MethodName: OnInteractableClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: gameover_menu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6532451439907323557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4299,6 +4323,18 @@ MonoBehaviour:
           m_StringArgument: pausepanel_menu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2721436476376999078}
+        m_TargetAssemblyTypeName: UICustomAction, Assembly-CSharp
+        m_MethodName: OnInteractableClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: pausepanel_menu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7264990563057440329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,6 +5059,18 @@ MonoBehaviour:
       - m_Target: {fileID: 749815314598680407}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
         m_MethodName: OnButtonPressed
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: pausepanel_restart
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4779414975816331382}
+        m_TargetAssemblyTypeName: UICustomAction, Assembly-CSharp
+        m_MethodName: OnInteractableClick
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
