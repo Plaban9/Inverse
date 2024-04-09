@@ -1,3 +1,4 @@
+using Minimalist.Effect.Animations;
 using Minimalist.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,6 +37,10 @@ public class PlayerHealth : MonoBehaviour
         Health = Mathf.Clamp(Health, 0, maxHealth);
 
         Debug.Log($"Health: {Health}");
+
+        VfxManager vfxManager = VfxManager.Instance;
+        if (vfxManager != null) vfxManager.CreateEffect(VfxEnum.PLAYER_DAMAGEDBLOOD, gameObject.transform.position);
+        else { Debug.LogError("Missing VfxMaanger, add one to the scene from Filipe/Prefabs/EffectsPrefab!"); }
 
         if (Health <= 0)
         {

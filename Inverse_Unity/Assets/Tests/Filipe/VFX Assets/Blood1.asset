@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: blood1
   effect: {fileID: 6722746358328913713, guid: 3060f3dcba70c8f4b9a1471a47dfa142, type: 3}
-  isLooping: 0
+  category: 1

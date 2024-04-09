@@ -1,3 +1,4 @@
+using Minimalist.Effect.Animations;
 using Minimalist.Manager;
 
 using System.Collections;
@@ -118,6 +119,9 @@ namespace Minimalist.Player
             // Jumps
             if ((isGrounded || airJumpCap > _airJumpCount) && _playerInput.IsJumped)
             {
+                VfxManager vfxManager = VfxManager.Instance;
+                if (vfxManager != null) vfxManager.CreateEffect(VfxEnum.PLAYER_JUMPDUST, gameObject.transform.position);
+                else { Debug.LogError("Missing VfxMaanger, add one to the scene from Filipe/Prefabs/EffectsPrefab!"); }
                 IsPlayerJumped = true;
                 if (!isGrounded) { _airJumpCount++; }
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);

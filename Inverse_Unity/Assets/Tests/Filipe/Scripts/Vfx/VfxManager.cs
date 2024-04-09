@@ -10,6 +10,7 @@ namespace Minimalist.Effect.Animations
     {
         public static VfxManager Instance { get; private set; }
 
+        [SerializeField] private VfxLibrary vfxLibrary;
 
         private List<GameObject> _inactiveEffects;
 
@@ -37,16 +38,17 @@ namespace Minimalist.Effect.Animations
         /// dropdown to VfxController/AlertObserver and add String parameter of
         /// "animationEnded".
         /// </summary>
-        /// <param name="vfxAsset">Vfx Asset used, please make a prefab for ease of use!</param>
+        /// <param name="vfxAssetCategory">Consult VfxEnum</param>
         /// <param name="position">Position the object must be in</param>
-        public void CreateEffect(VfxAsset vfxAsset, Vector3 position)
+        public void CreateEffect(VfxEnum vfxAssetCategory, Vector3 position)
         {
 
             GameObject reusable = _inactiveEffects.Find(o =>
             o.GetComponent<VfxController>().GetAsset()
-            .effectName.Equals(vfxAsset.effectName,System.StringComparison.OrdinalIgnoreCase));
-            
-            if (reusable != null){
+            .category == vfxAssetCategory);
+
+            if (reusable != null)
+            {
                 _inactiveEffects.Remove(reusable);
                 reusable.transform.position = position;
                 reusable.SetActive(true);
@@ -56,30 +58,31 @@ namespace Minimalist.Effect.Animations
                     effAnim.Play();
                 }
             }
-            else if (_inactiveEffects.Count > 0)
-            {
-                GameObject oldEffect = _inactiveEffects[0];
-                _inactiveEffects.RemoveAt(0);
-                oldEffect.transform.position = position;
-                oldEffect.SetActive(true);
-                if (oldEffect.TryGetComponent(out VfxController contr))
-                {
-                    contr.SetAsset(vfxAsset);
-                }
-                if(oldEffect.TryGetComponent<Animation>(out Animation effAnim)){
-                    effAnim = vfxAsset.GetComponent<Animation>();
-                    effAnim.Rewind();
-                    effAnim.Play();
-                }
-            }
+            //else if (_inactiveEffects.Count > 0)
+            //{
+            //    GameObject oldEffect = _inactiveEffects[0];
+            //    _inactiveEffects.RemoveAt(0);
+            //    oldEffect.transform.position = position;
+            //    oldEffect.SetActive(true);
+            //    if (oldEffect.TryGetComponent(out VfxController contr))
+            //    {
+            //        contr.SetAsset(vfxAssetCategory);
+            //    }
+            //    if (oldEffect.TryGetComponent<Animation>(out Animation effAnim))
+            //    {
+            //        effAnim = vfxAsset.GetComponent<Animation>();
+            //        effAnim.Rewind();
+            //        effAnim.Play();
+            //    }
+            //}
             else
             {
-                Debug.Log($"Cannot find another {vfxAsset.effectName}");
-                GameObject obj = Instantiate(vfxAsset.effect, 
+                VfxAsset asset = GetVfxAsset(vfxAssetCategory);
+                GameObject obj = Instantiate(asset.effect,
                     position, Quaternion.identity, null);
                 if (obj.TryGetComponent(out VfxController vfxController))
                 {
-                    vfxController.SetAsset(vfxAsset);
+                    vfxController.SetAsset(asset);
                 }
             }
         }
@@ -95,6 +98,24 @@ namespace Minimalist.Effect.Animations
         {
             disabledEffect.SetActive(false);
             _inactiveEffects.Add(disabledEffect);
+        }
+
+        private VfxAsset GetVfxAsset(VfxEnum vfxEnum)
+        {
+            List<VfxAsset> assets = vfxLibrary.vfxAssets;
+            switch (vfxEnum)
+            {
+                case VfxEnum.PLAYER_DAMAGEDBLOOD:
+                    List<VfxAsset> assetList = assets.FindAll(q => q.name.Contains("Blood"));
+                    return assetList[Mathf.RoundToInt(Random.Range(0, assetList.Count))];
+                    break;
+                case VfxEnum.PLAYER_JUMPDUST:
+                    VfxAsset asset = assets.Find(q => q.name.Contains("Jump"));;
+                    return asset;
+                default:
+                    break;
+            }
+            return null;
         }
 
     }

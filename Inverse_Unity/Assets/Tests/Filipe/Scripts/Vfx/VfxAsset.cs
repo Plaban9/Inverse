@@ -10,5 +10,6 @@ namespace Minimalist.Effect
     {
         public string effectName;
         public GameObject effect;
+        public VfxEnum category;
     }
 }

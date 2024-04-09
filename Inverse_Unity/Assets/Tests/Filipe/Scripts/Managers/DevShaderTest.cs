@@ -54,7 +54,7 @@ public class DevShaderTest : MonoBehaviour
             {
                 effTimeout += effDelay;
                 VfxAsset effect = _effects[Random.Range(0, _effects.Count)];
-                VfxManager.Instance.CreateEffect(effect, _player.transform.position);
+                VfxManager.Instance.CreateEffect(VfxEnum.PLAYER_DAMAGEDBLOOD, _player.transform.position);
             }
         }
     }

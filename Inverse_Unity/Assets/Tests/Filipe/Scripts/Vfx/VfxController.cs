@@ -27,7 +27,7 @@ namespace Minimalist.Effect.Animations
             VfxManager.Instance.AddToInactiveEffect(this.gameObject);
         }
 
-        public void AlertObserver(string message)
+        public virtual void AlertObserver(string message)
         {
             if (message.Equals("animationEnded"))
             {
