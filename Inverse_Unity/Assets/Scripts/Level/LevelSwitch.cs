@@ -100,7 +100,7 @@ namespace Minimalist.Level
             //    _switchObjects = new List<GameObject>();
             //}
 
-            Debug.Log("Child Count: " + transform.childCount);
+            //Debug.Log("Child Count: " + transform.childCount);
 
             for (int i = 0; i < transform.childCount; i++)
             {

@@ -24,9 +24,9 @@ public class GenericWorldUIProgressBar : MonoBehaviour
         if (_progressBarForegroundSprite == null)
         {
             _progressBarForegroundSprite = GetComponent<Image>();
-
-            SetProgress(1f, 1f);
         }
+
+        SetProgress(10f, 10f);
     }
 
     private void Update()
@@ -66,7 +66,7 @@ public class GenericWorldUIProgressBar : MonoBehaviour
             _progressBarForegroundSprite.color = progressBarColor;
             _progressBarForegroundSprite.fillAmount = lerpedNormalizedValue;
 
-            if (_progressBarForegroundSprite.fillAmount == 1f && _hideProgressBarAtMax)
+            if (_progressBarForegroundSprite.fillAmount >= 1f && _hideProgressBarAtMax)
             {
                 SwitchUpdateProcess(false);
                 Invoke(nameof(CloseProgressBar), _stayDuration);
@@ -97,6 +97,6 @@ public class GenericWorldUIProgressBar : MonoBehaviour
 
     private static void D(string message)
     {
-        //Debug.Log("<<GenericWorldUIProgressBar>>" + message);
+        Debug.Log("<<GenericWorldUIProgressBar>>" + message);
     }
 }
