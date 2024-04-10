@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tutorial#4
   m_EditorClassIdentifier: 
   speaker: Controls
-  text: Now to complete the level you need to go through portal.
+  text: Now to complete the level you need to go through the portal.
   timeToNext: 2
   timeTillNextCharacter: 0.1
