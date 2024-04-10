@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Minimalist.Effect.Animations;
 using Minimalist.Manager;
 
@@ -20,6 +21,7 @@ namespace Minimalist.Player
         [SerializeField] private float dashSpeed = 5f;
         [SerializeField] private float dashTime = 1f;
         [SerializeField] private float dashCooldown = 3f;
+        [SerializeField] private GenericWorldUIProgressBar dashBar;
         private float currentDashCooldownTime;
         private float currentDashTime;
         private bool canDash;
@@ -78,10 +80,14 @@ namespace Minimalist.Player
                 currentDashCooldownTime += Time.deltaTime;
                 canDash = currentDashCooldownTime > dashCooldown;
                 _rb.velocity = myVelocity;
+
+                if (currentDashCooldownTime < dashCooldown)
+                    dashBar.SetProgress(dashCooldown, Mathf.Clamp(currentDashCooldownTime, 0, dashCooldown));
             }
             else
             {
                 currentDashTime += Time.deltaTime;
+                dashBar.SetProgress(dashTime, Mathf.Clamp(currentDashTime, 0, dashTime));
 
                 if (currentDashTime >= dashTime)
                 {
