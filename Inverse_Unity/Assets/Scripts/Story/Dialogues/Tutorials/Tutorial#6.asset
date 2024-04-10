@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6a59e9b2758cf0459375a8a758860e5, type: 3}
-  m_Name: Tutorial#4
+  m_Name: Tutorial#6
   m_EditorClassIdentifier: 
-  speaker: Controls
-  text: Switch realm using Q key.
+  speaker: Wishes
+  text: Good luck on your journey!
   timeToNext: 2
   timeTillNextCharacter: 0.1

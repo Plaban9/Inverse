@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a59e9b2758cf0459375a8a758860e5, type: 3}
   m_Name: Tutorial#5
   m_EditorClassIdentifier: 
-  speaker: Wishes
-  text: Good luck on your journey!
+  speaker: Controls
+  text: Now to complete the level you need to go through the portal.
   timeToNext: 2
   timeTillNextCharacter: 0.1

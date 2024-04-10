@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tutorial#3
   m_EditorClassIdentifier: 
   speaker: Controls
-  text: Switch realm using Q key.
+  text: You can DASH with L.Shift on Keyboard.
   timeToNext: 2
   timeTillNextCharacter: 0.1
