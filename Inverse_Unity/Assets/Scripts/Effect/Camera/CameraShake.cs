@@ -1,4 +1,5 @@
 using Cinemachine;
+using Minimalist.Player;
 using UnityEngine;
 
 namespace Minimalist.Effect.CameraShake
@@ -16,9 +17,16 @@ namespace Minimalist.Effect.CameraShake
 
         public static CameraShake Instance { get; private set; }
 
+        private MyPlayerInput input;
+
         private void Awake()
         {
             _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+            input = _cinemachineVirtualCamera.Follow.GetComponent<MyPlayerInput>();
+            if(input == null)
+            {
+                input = FindObjectOfType<MyPlayerInput>();
+            }
         }
 
         private void Start()
@@ -29,6 +37,22 @@ namespace Minimalist.Effect.CameraShake
             }
 
             StopShake();
+        }
+
+        private void OnEnable()
+        {
+            input.OnDie += OnDie;
+        }
+
+        private void OnDisable()
+        {
+            input.OnDie -= OnDie;
+        }
+
+        private void OnDie()
+        {
+            _cinemachineVirtualCamera.Follow = null;
+            _cinemachineVirtualCamera.LookAt = null;
         }
 
         public void ShakeCamera()
