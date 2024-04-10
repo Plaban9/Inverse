@@ -41,5 +41,9 @@ namespace Minimalist.Audio.Sound
         UI_Quit,
         UI_Hover,
         #endregion
+
+        #region Transition
+        Transition_Clap
+        #endregion
     }
 }

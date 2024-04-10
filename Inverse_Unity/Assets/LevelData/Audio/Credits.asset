@@ -31,3 +31,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 4a26a4b19310fa64fb62f4625db88f78, type: 3}
     - {fileID: 8300000, guid: 511a877b501424448a3a7b30999f0364, type: 3}
     volume: 1
+  - name: Clap
+    soundType: 21
+    clips:
+    - {fileID: 8300000, guid: 77706c7af3748a3418c27d43dcaed557, type: 3}
+    volume: 0.5

@@ -20,8 +20,11 @@ namespace Minimalist.Manager
             {
                 _creditsAnimator = GetComponent<Animator>();
             }
+        }
 
-            Invoke(nameof(StartCredits), 2f);
+        private void OnEnable()
+        {
+            Invoke(nameof(StartCredits), 9f);
         }
 
         private void Update()
