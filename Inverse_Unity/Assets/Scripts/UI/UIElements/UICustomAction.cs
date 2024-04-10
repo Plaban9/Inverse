@@ -42,6 +42,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
             case "gameover_menu":
             case "pausepanel_menu":
                 AudioManager.PlaySFX(SoundType.UI_Click);
+                LoadMenuScene();
                 break;
 
             default:
