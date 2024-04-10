@@ -85,7 +85,7 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         {
             _isSceneBeingLoaded = true;
             AudioManager.PlaySFX(SoundType.UI_Click);
-            SceneManager.Instance.LoadScene("Credits", "Clapper");
+            SceneManager.Instance.LoadScene("Credits", "Clapper", false);
         }
     }
     

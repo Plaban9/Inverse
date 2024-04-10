@@ -29,19 +29,19 @@ namespace Minimalist.Scene.Transition.Effect
 
         public override IEnumerator AnimateTransitionOut()
         {
-            _transitionAnimator.SetTrigger("fade_in");
-
-            while (!_transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Clap"))
-            {
-                yield return null;
-            }
-
-            while (!_transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle_In_Screen"))
-            {
-                yield return null;
-            }
-
             _transitionAnimator.SetTrigger("end");
+
+            //while (!_transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Clap"))
+            //{
+            //    yield return null;
+            //}
+
+            //while (!_transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle_In_Screen"))
+            //{
+            //    yield return null;
+            //}
+
+            //_transitionAnimator.SetTrigger("end");
 
             yield return new WaitUntil(() => _transitionAnimator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
         }

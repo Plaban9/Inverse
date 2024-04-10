@@ -24,7 +24,7 @@ namespace Minimalist.Manager
 
         private void OnEnable()
         {
-            Invoke(nameof(StartCredits), 9f);
+            Invoke(nameof(StartCredits), 5f);
         }
 
         private void Update()

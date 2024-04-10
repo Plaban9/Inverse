@@ -43,13 +43,13 @@ namespace Minimalist.Manager
             _transitions = _transitionContainer.GetComponentsInChildren<SceneTransition>();
         }
 
-        public void LoadScene(string sceneName, string transitionName)
+        public void LoadScene(string sceneName, string transitionName, bool showInverseAnimation = true)
         {
             if (!_loading)
-                StartCoroutine(LoadSceneAsync(sceneName, transitionName));
+                StartCoroutine(LoadSceneAsync(sceneName, transitionName, showInverseAnimation: showInverseAnimation));
         }
 
-        private IEnumerator LoadSceneAsync(string sceneName, string transitionName, float delay = 0.5f)
+        private IEnumerator LoadSceneAsync(string sceneName, string transitionName, float delay = 0.5f, bool showInverseAnimation = true)
         {
             _loading = true;
             yield return new WaitForSeconds(delay);
@@ -65,7 +65,7 @@ namespace Minimalist.Manager
 
             _progressBar.gameObject.SetActive(true);
 
-            if (_lightBeamColorChanger != null)
+            if (_lightBeamColorChanger != null && showInverseAnimation)
             {
                 _lightBeamColorChanger.TriggerEffect();
             }
@@ -80,7 +80,7 @@ namespace Minimalist.Manager
             //} while (scene.progress < 0.9f);
             //} while (_progressBar.value < 0.9f);
 
-            if (_lightBeamColorChanger != null)
+            if (_lightBeamColorChanger != null && showInverseAnimation)
             {
                 _lightBeamColorChanger.StopEffect();
             }
