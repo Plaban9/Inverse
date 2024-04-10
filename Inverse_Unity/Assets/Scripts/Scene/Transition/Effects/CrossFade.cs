@@ -13,12 +13,14 @@ namespace Minimalist.Scene.Transition.Effect
 
         public override IEnumerator AnimateTransitionIn()
         {
+            _crossFade.blocksRaycasts = true;
             var tweener = _crossFade.DOFade(1f, 1f);
             yield return tweener.WaitForCompletion();
         }
 
         public override IEnumerator AnimateTransitionOut()
         {
+            _crossFade.blocksRaycasts = false;
             var tweener = _crossFade.DOFade(0f, 1f);
             yield return tweener.WaitForCompletion();
         }

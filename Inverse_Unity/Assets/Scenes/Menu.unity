@@ -267,10 +267,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 139688494296351916, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
-      propertyPath: _minLoadTimeInSeconds
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 139688494296351916, guid: 75b5d2afa326cf3459bcca6fc22a0607, type: 3}
       propertyPath: _lightBeamColorChanger
       value: 
       objectReference: {fileID: 1708413148}

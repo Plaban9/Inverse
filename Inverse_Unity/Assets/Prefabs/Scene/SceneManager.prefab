@@ -495,7 +495,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7309919308892148635}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -521,7 +521,9 @@ MonoBehaviour:
   _transitions:
   - {fileID: 512128018481632846}
   - {fileID: 7555507632812254280}
+  _lightBeamColorChanger: {fileID: 0}
   _progressBar: {fileID: 5686580473095416145}
+  _minLoadTimeInSeconds: 7.5
 --- !u!1 &8201255173399825887
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +611,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &512128018481632846
 MonoBehaviour:
