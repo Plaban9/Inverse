@@ -8,12 +8,15 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 3f;
     [field: SerializeField] public float Health {  get; private set; }
-
+    [SerializeField] private GenericWorldUIProgressBar healthBar;
+ 
     private MyPlayerInput player;
 
     private void Awake()
     {
         player = GetComponent<MyPlayerInput>();
+        if(healthBar == null)
+            healthBar = GetComponentInChildren<GenericWorldUIProgressBar>();
     }
 
     private void OnEnable()
@@ -37,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         Health = Mathf.Clamp(Health, 0, maxHealth);
 
         Debug.Log($"Health: {Health}");
+        healthBar.SetProgress(maxHealth, Health);
 
         VfxManager vfxManager = VfxManager.Instance;
         if (vfxManager != null) vfxManager.CreateEffect(VfxEnum.PLAYER_DAMAGEDBLOOD, gameObject.transform.position);
