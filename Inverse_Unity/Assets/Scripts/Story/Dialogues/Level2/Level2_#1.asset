@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level2_#1
   m_EditorClassIdentifier: 
   speaker: Information
-  text: When you swith the realm to DARK realm, the enemy will become alive in this
-    level.
+  text: When you switch to DARK realm, the enemy will become alive in this level.
   timeToNext: 2
   timeTillNextCharacter: 0.1

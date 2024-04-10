@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Level2_#2
   m_EditorClassIdentifier: 
   speaker: Information
-  text: Yet, when you switch back to LIGHT realm the enemy will pause in thier state!
+  text: Yet, when you switch back to LIGHT realm the enemy will pause in their state!
   timeToNext: 2
   timeTillNextCharacter: 0.1

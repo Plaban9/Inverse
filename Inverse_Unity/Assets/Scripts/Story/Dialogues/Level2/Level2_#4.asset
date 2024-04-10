@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speaker: Hint
   text: Use DARK realm to lure enemy to right spot & switch to LIGHT realm to use
-    them as platforms! to climp platforms.
+    them as platforms! to climb platforms.
   timeToNext: 2
   timeTillNextCharacter: 0.1
