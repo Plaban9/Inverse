@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Minimalist.DialogSystem
 {
     public class DialogManager : MonoBehaviour
     {
-
-
         [Header("Assets Used")]
         [SerializeField]  private TextMeshProUGUI dialogTMP;
         [SerializeField]  private TextMeshProUGUI speakerTMP;
@@ -21,6 +20,7 @@ namespace Minimalist.DialogSystem
         private bool showing = false;
 
         [SerializeField] private CanvasGroup canvasGroup;
+        public UnityEvent OnDialogueCompleted;
 
         void Start()
         {
@@ -43,7 +43,7 @@ namespace Minimalist.DialogSystem
                         () =>
                         {
                             StartCoroutine(
-                                Fade(1, () => { })
+                                Fade(1, () => { OnDialogueCompleted?.Invoke(); })
                             );
                         });
                 })

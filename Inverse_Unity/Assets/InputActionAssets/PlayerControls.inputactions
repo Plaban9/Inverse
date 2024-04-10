@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "4529b669-1429-40a6-8480-08d5f48cb8ef",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0a9dd719-5600-45e7-be6f-122b179fe748",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",

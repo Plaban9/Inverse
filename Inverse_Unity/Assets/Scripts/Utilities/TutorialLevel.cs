@@ -1,4 +1,5 @@
 using Minimalist.DialogSystem;
+using Minimalist.Player;
 using Minimalist.SaveSystem;
 using Minimalist.Utilities;
 using System.Collections;
@@ -30,6 +31,9 @@ public class TutorialLevel : MonoBehaviour
 
     private void Start()
     {
+        FindObjectOfType<MyPlayerInput>().enabled = false;
+        dialogManager.OnDialogueCompleted.AddListener(() => { FindObjectOfType<MyPlayerInput>().enabled = true; });
         dialogManager.StartDialog(tutorialDialogues);
+        FindObjectOfType<MyPlayerInput>().enabled = false;
     }
 }

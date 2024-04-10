@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Minimalist.DialogSystem
 {
@@ -9,9 +10,9 @@ namespace Minimalist.DialogSystem
     [CreateAssetMenu(menuName = "Minimalist/Dialog/DialogMessage")]
     public class DialogMessage : ScriptableObject
     {
-        [SerializeField] public String speaker = "No Name Specified";
-        [SerializeField] public String text = "Message missing!";
-        [SerializeField] public float timeToNext = 1000f;
-        [SerializeField] public float timeTillNextCharacter = 0.1f;
+        public string speaker = "No Name Specified";
+        public string text = "Message missing!";
+        public float timeToNext = 1000f;
+        public float timeTillNextCharacter = 0.1f;
     }
 }
