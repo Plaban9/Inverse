@@ -11,7 +11,7 @@ namespace Minimalist.DialogSystem
     public class DialogMessage : ScriptableObject
     {
         public string speaker = "No Name Specified";
-        public string text = "Message missing!";
+        [TextArea()] public string text = "Message missing!";
         public float timeToNext = 1000f;
         public float timeTillNextCharacter = 0.1f;
     }

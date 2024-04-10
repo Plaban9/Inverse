@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a4670d336041345b8f266c53255381, type: 3}
+  m_Name: '#2'
+  m_EditorClassIdentifier: 
+  textSize: 45
+  waitTime: 2
+  writeTimeMultiplier: 2
+  <dialogue>k__BackingField: "In the realm of shadows, our hero awakens a mysterious
+    power \u2013 the ability to see and enter the dark realm. Upon his arrival, the
+    creatures known as Hinko sense an unfamiliar presence and begin to pursue him.\r"
