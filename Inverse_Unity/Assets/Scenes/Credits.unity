@@ -11809,7 +11809,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Filipe Mendes Mariz
+  m_text: 'Filipe Mendes Mariz
+
+    Plaban Biswas'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed9019cb45391df45af60830d8f3f58f, type: 2}
   m_sharedMaterial: {fileID: 6215212318837970675, guid: ed9019cb45391df45af60830d8f3f58f, type: 2}

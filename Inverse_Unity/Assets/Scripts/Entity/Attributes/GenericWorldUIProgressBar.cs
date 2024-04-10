@@ -12,21 +12,29 @@ public class GenericWorldUIProgressBar : MonoBehaviour
     [SerializeField] private Image _progressBarForegroundSprite;
     [SerializeField] private float _lerpSpeed = 2f;
     [SerializeField] private float _target = 1f;
+    [SerializeField] private float _stayDuration = 1f;
     [SerializeField] private bool _hideProgressBarAtMax = false;
+
+    private bool _shouldUpdateProgress = false;
 
     private void Awake()
     {
+        _shouldUpdateProgress = false;
+
         if (_progressBarForegroundSprite == null)
         {
             _progressBarForegroundSprite = GetComponent<Image>();
 
-            HandleProgressBarVisibility();
+            SetProgress(1f, 1f);
         }
     }
 
     private void Update()
     {
-        UpdateProgress();
+        if (_shouldUpdateProgress)
+        {
+            UpdateProgress();
+        }
     }
 
     public void SetProgress(float maxProgress, float currentProgress)
@@ -36,6 +44,15 @@ public class GenericWorldUIProgressBar : MonoBehaviour
         if (_progressBarForegroundSprite != null)
         {
             _target = percentage;
+        }
+
+        if (_hideProgressBarAtMax)
+        {
+            ScaleProgressBarAndUpdate(Vector3.one, 1f);
+        }
+        else
+        {
+            SwitchUpdateProcess(true);
         }
     }
 
@@ -48,37 +65,38 @@ public class GenericWorldUIProgressBar : MonoBehaviour
 
             _progressBarForegroundSprite.color = progressBarColor;
             _progressBarForegroundSprite.fillAmount = lerpedNormalizedValue;
-            HandleProgressBarVisibility();
+
+            if (_progressBarForegroundSprite.fillAmount == 1f && _hideProgressBarAtMax)
+            {
+                SwitchUpdateProcess(false);
+                Invoke(nameof(CloseProgressBar), _stayDuration);
+            }
         }
     }
 
-    private void HandleProgressBarVisibility()
+    private void CloseProgressBar()
     {
-        if (_hideProgressBarAtMax && _progressBarForegroundSprite.fillAmount == 1f)
-        {
-            _progressBarObject.transform.DOScale(Vector3.zero, 1f);
-            Invoke(nameof(DisableProgressBar), 1.5f);
-        }
-        else
-        {
-            EnableProgressBar();
-        }
+        D("Close Called");
+        ScaleProgressBar(Vector3.zero, 1f);
     }
 
-    private void DisableProgressBar()
+    private void ScaleProgressBarAndUpdate(Vector3 endScale, float transitionTimeInSecs)
     {
-        if (_progressBarObject != null && (_hideProgressBarAtMax && _progressBarForegroundSprite.fillAmount == 1f))
-        {
-            _progressBarObject.SetActive(false);
-        }
+        _progressBarObject.transform.DOScale(endScale, transitionTimeInSecs).OnComplete(() => SwitchUpdateProcess(true));
     }
 
-    private void EnableProgressBar()
+    private void ScaleProgressBar(Vector3 endScale, float transitionTimeInSecs)
     {
-        if (_progressBarObject != null && !(_hideProgressBarAtMax && _progressBarForegroundSprite.fillAmount == 1f))
-        {
-            _progressBarObject.transform.DOScale(Vector3.one, 0.5f);
-            _progressBarObject.SetActive(true);
-        }
+        _progressBarObject.transform.DOScale(endScale, transitionTimeInSecs);
+    }
+
+    private void SwitchUpdateProcess(bool shouldUpdate)
+    {
+        _shouldUpdateProgress = shouldUpdate;
+    }
+
+    private static void D(string message)
+    {
+        //Debug.Log("<<GenericWorldUIProgressBar>>" + message);
     }
 }

@@ -3796,8 +3796,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748905388946658822, guid: f5326bd3b35c5014dbdda29bbe7680ce, type: 3}
+      propertyPath: _stayDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748905388946658822, guid: f5326bd3b35c5014dbdda29bbe7680ce, type: 3}
       propertyPath: _hideProgressBarAtMax
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7467764235467047567, guid: f5326bd3b35c5014dbdda29bbe7680ce, type: 3}
       propertyPath: m_Name
