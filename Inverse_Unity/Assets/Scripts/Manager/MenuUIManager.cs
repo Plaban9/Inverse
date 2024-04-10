@@ -15,7 +15,11 @@ namespace Minimalist.Manager
 
         [SerializeField] private SettingsManager _settingsManager;
 
-        public static MenuUIManager Instance{ get; private set; }
+        [SerializeField] private Animator _playHoverAnimaton;
+        [SerializeField] private Animator _creditsHoverAnimaton;
+        [SerializeField] private Animator _settingsHoverAnimaton;
+        [SerializeField] private Animator _quitHoverAnimaton;
+        public static MenuUIManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -40,8 +44,8 @@ namespace Minimalist.Manager
         {
             AudioManager.PlayMusic(MusicType.Menu, 1f, true);
 
-            if (_settingsManager == null) 
-            { 
+            if (_settingsManager == null)
+            {
                 _settingsManager = GetComponentInChildren<SettingsManager>(true);
             }
         }
@@ -123,6 +127,72 @@ namespace Minimalist.Manager
             if (_settingsManager != null)
             {
                 _settingsManager.gameObject.SetActive(true);
+            }
+        }
+        #endregion
+
+        #region Hover Animation
+        public void OnPlayHoverEnter()
+        {
+            if (_playHoverAnimaton != null)
+            {
+                _playHoverAnimaton.SetBool("ease_in", true);
+            }
+        }
+
+        public void OnPlayHoverExit()
+        {
+            if (_playHoverAnimaton != null)
+            {
+                _playHoverAnimaton.SetBool("ease_in", false);
+            }
+        }
+
+        public void OnCreditsHoverEnter()
+        {
+            if (_creditsHoverAnimaton != null)
+            {
+                _creditsHoverAnimaton.SetBool("ease_in", true);
+            }
+        }
+
+        public void OnCreditsHoverExit()
+        {
+            if (_creditsHoverAnimaton != null)
+            {
+                _creditsHoverAnimaton.SetBool("ease_in", false);
+            }
+        }
+
+        public void OnSettingsHoverEnter()
+        {
+            if (_settingsHoverAnimaton != null)
+            {
+                _settingsHoverAnimaton.SetBool("ease_in", true);
+            }
+        }
+
+        public void OnSettingsHoverExit()
+        {
+            if (_settingsHoverAnimaton != null)
+            {
+                _settingsHoverAnimaton.SetBool("ease_in", false);
+            }
+        }
+
+        public void OnQuitHoverEnter()
+        {
+            if (_quitHoverAnimaton != null)
+            {
+                _quitHoverAnimaton.SetBool("ease_in", true);
+            }
+        }
+
+        public void OnQuitHoverExit()
+        {
+            if (_quitHoverAnimaton != null)
+            {
+                _quitHoverAnimaton.SetBool("ease_in", false);
             }
         }
         #endregion

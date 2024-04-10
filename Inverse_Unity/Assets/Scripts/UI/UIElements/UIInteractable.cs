@@ -36,13 +36,15 @@ namespace Minimalist.UI.UIElements
         {
             D("OnHoverEnter: " + elementColor);
 
-            _customAction.OnInteractableHover(name);
+            _customAction.OnInteractableHoverEnter(name);
 
             OnTransition(elementColor);
         }
 
         public override void OnHoverExit(Color elementColor)
         {
+            _customAction.OnInteractableHoverExit(name);
+
             OnTransition(elementColor);
         }
 

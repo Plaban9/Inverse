@@ -51,22 +51,85 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         }
     }
 
-    public void OnInteractableHover(string elementName)
+    public void OnInteractableHoverEnter(string elementName)
     {
         var customElementName = elementName.ToLower();
 
         switch (customElementName)
         {
+            case "play":
+                PlayHoverEnter();
+                break;
+
+            case "credits":
+                CreditsHoverEnter();
+                break;
+
+            case "settings":
+                SettingsHoverEnter();
+                break;
+
+            case "quit":
+                QuitHoverEnter();
+                break;
+
             default:
                 AudioManager.PlaySFX(SoundType.UI_Hover);
                 break;
         }
     }
 
+    public void OnInteractableHoverExit(string elementName)
+    {
+        var customElementName = elementName.ToLower();
+
+        switch (customElementName)
+        {
+            case "play":
+                PlayHoverExit();
+                break;
+
+            case "credits":
+                CreditsHoverExit();
+                break;
+
+            case "settings":
+                SettingsHoverExit();
+                break;
+
+            case "quit":
+                QuitHoverExit();
+                break;
+
+            default:
+                AudioManager.PlaySFX(SoundType.UI_Hover);
+                break;
+        }
+    }
+
+
     #region Actions
     private void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void QuitHoverEnter()
+    {
+        AudioManager.PlaySFX(SoundType.UI_Hover);
+
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnQuitHoverEnter();
+        }
+    }
+
+    private void QuitHoverExit()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnQuitHoverExit();
+        }
     }
 
     private void Play()
@@ -79,6 +142,24 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
         }
     }
 
+    private void PlayHoverEnter()
+    {
+        AudioManager.PlaySFX(SoundType.UI_Hover);
+
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnPlayHoverEnter();
+        }
+    }
+
+    private void PlayHoverExit()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnPlayHoverExit();
+        }
+    }
+
     private void Credits()
     {
         if (MenuUIManager.Instance != null)
@@ -88,12 +169,48 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
             SceneManager.Instance.LoadScene("Credits", "Clapper", false);
         }
     }
-    
+
+    private void CreditsHoverEnter()
+    {
+        AudioManager.PlaySFX(SoundType.UI_Hover);
+
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnCreditsHoverEnter();
+        }
+    }
+
+    private void CreditsHoverExit()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnCreditsHoverExit();
+        }
+    }
+
     private void Settings()
     {
         if (MenuUIManager.Instance != null)
         {
             MenuUIManager.Instance.EnableSettings();
+        }
+    }
+
+    private void SettingsHoverEnter()
+    {
+        AudioManager.PlaySFX(SoundType.UI_Hover);
+
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnSettingsHoverEnter();
+        }
+    }
+
+    private void SettingsHoverExit()
+    {
+        if (MenuUIManager.Instance != null)
+        {
+            MenuUIManager.Instance.OnSettingsHoverExit();
         }
     }
 

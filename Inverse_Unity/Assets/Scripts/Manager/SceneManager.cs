@@ -76,7 +76,7 @@ namespace Minimalist.Manager
                 _progressBar.value = Mathf.SmoothStep(_progressBar.value, scene.progress, .05f);
                 yield return null;
 
-            } while ((scene.progress < .9f || _progressBar.value < 0.875f) || Time.time < (loadTime + _minLoadTimeInSeconds));
+            } while ((scene.progress < .9f || _progressBar.value < 0.875f) || (Time.time < (loadTime + _minLoadTimeInSeconds) && showInverseAnimation));
             //} while (scene.progress < 0.9f);
             //} while (_progressBar.value < 0.9f);
 
