@@ -742,13 +742,14 @@ MonoBehaviour:
   skipText: {fileID: 683825488}
   dialogueWriteTime: 0.03
   story:
-  - {fileID: 11400000, guid: 0b80c0c68b2f2954a96971a8b974ec21, type: 2}
-  - {fileID: 11400000, guid: 4f284ca0237e6784393524d49de6b759, type: 2}
-  - {fileID: 11400000, guid: a66d5d746d5b40e44ae1700ef2df6812, type: 2}
-  - {fileID: 11400000, guid: 69951c1338585504c8184ab7782a1901, type: 2}
-  - {fileID: 11400000, guid: e79a94af0907ee44089f000f0da1fa59, type: 2}
-  - {fileID: 11400000, guid: a300eb68eb452674db8ae42f967b7e6c, type: 2}
-  - {fileID: 11400000, guid: 5708a1b412d9d7a499f1a99d47331b11, type: 2}
+  - {fileID: 11400000, guid: 5984ef423fada754eae67f7468476bf5, type: 2}
+  - {fileID: 11400000, guid: d569e25d8a16b03418452544b3bc26c9, type: 2}
+  - {fileID: 11400000, guid: 8c58ac5841358a44abd95339efb415d1, type: 2}
+  - {fileID: 11400000, guid: 5d2e8c154f1c49f479ae19632b456908, type: 2}
+  - {fileID: 11400000, guid: 10d82e9b3cc1d174b8f85100352763e5, type: 2}
+  - {fileID: 11400000, guid: f50a87b191debe346941b5f46e960842, type: 2}
+  - {fileID: 11400000, guid: 5301f6b5c68be754bb34283088aaa1e2, type: 2}
+  - {fileID: 11400000, guid: 4524679df0f5ea241be3537c6de7e8ae, type: 2}
   source: {fileID: 1061546072}
 --- !u!4 &1061546071
 Transform:
