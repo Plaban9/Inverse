@@ -13,7 +13,7 @@ namespace Minimalist.Scene.Transition.Effect
 
         public override IEnumerator AnimateTransitionIn()
         {
-            _circle.rectTransform.anchoredPosition = new Vector2(-2250f, 0f);
+            _circle.rectTransform.anchoredPosition = new Vector2(-_circle.rectTransform.sizeDelta.x, 0f);
             var tweener = _circle.rectTransform.DOAnchorPosX(0f, 1f);
 
             yield return tweener.WaitForCompletion();
@@ -21,7 +21,7 @@ namespace Minimalist.Scene.Transition.Effect
 
         public override IEnumerator AnimateTransitionOut()
         {
-            var tweener = _circle.rectTransform.DOAnchorPosX(2250f, 1f);
+            var tweener = _circle.rectTransform.DOAnchorPosX(_circle.rectTransform.sizeDelta.x, 1f);
 
             yield return tweener.WaitForCompletion();
         }

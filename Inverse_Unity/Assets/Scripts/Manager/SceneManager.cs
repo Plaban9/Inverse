@@ -34,7 +34,7 @@ namespace Minimalist.Manager
             }
             else
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
 
