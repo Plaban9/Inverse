@@ -742,7 +742,6 @@ MonoBehaviour:
   skipText: {fileID: 683825488}
   dialogueWriteTime: 0.03
   story:
-  - {fileID: 11400000, guid: 5984ef423fada754eae67f7468476bf5, type: 2}
   - {fileID: 11400000, guid: d569e25d8a16b03418452544b3bc26c9, type: 2}
   - {fileID: 11400000, guid: 8c58ac5841358a44abd95339efb415d1, type: 2}
   - {fileID: 11400000, guid: 5d2e8c154f1c49f479ae19632b456908, type: 2}
