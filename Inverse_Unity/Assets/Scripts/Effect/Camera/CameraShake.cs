@@ -1,5 +1,7 @@
 using Cinemachine;
+
 using Minimalist.Player;
+
 using UnityEngine;
 
 namespace Minimalist.Effect.CameraShake
@@ -23,7 +25,7 @@ namespace Minimalist.Effect.CameraShake
         {
             _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
             input = _cinemachineVirtualCamera.Follow.GetComponent<MyPlayerInput>();
-            if(input == null)
+            if (input == null)
             {
                 input = FindObjectOfType<MyPlayerInput>();
             }
@@ -62,7 +64,11 @@ namespace Minimalist.Effect.CameraShake
 
             var noise = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-            noise.m_AmplitudeGain = _shakeIntensity;
+            if (noise != null)
+            {
+                noise.m_AmplitudeGain = _shakeIntensity;
+            }
+
             _timer = _shakeTime;
         }
 
@@ -73,7 +79,10 @@ namespace Minimalist.Effect.CameraShake
 
             var noise = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-            noise.m_AmplitudeGain = intensity;
+            if (noise != null)
+            {
+                noise.m_AmplitudeGain = intensity;
+            }
             _timer = duration;
         }
 
@@ -83,7 +92,11 @@ namespace Minimalist.Effect.CameraShake
                 return;
 
             var noise = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            noise.m_AmplitudeGain = _resetIntensity;
+
+            if (noise != null)
+            {
+                noise.m_AmplitudeGain = _resetIntensity;
+            }
             _timer = 0f;
         }
 
