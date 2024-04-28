@@ -34,6 +34,5 @@ public class TutorialLevel : MonoBehaviour
         FindObjectOfType<MyPlayerInput>().enabled = false;
         dialogManager.OnDialogueCompleted.AddListener(() => { FindObjectOfType<MyPlayerInput>().enabled = true; });
         dialogManager.StartDialog(tutorialDialogues);
-        FindObjectOfType<MyPlayerInput>().enabled = false;
     }
 }

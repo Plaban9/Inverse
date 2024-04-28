@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6597904464489790301}
   - component: {fileID: 6317991484333162419}
   - component: {fileID: 4426903640508984267}
+  - component: {fileID: 747383013404866538}
   m_Layer: 0
   m_Name: DustPrefabRight
   m_TagString: Untagged
@@ -106,6 +107,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &747383013404866538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184020842632563813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969e9e5eea80a7f4680bf06bbb1275d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpEffectHack: {fileID: 6634902312310730919}
 --- !u!1 &1339641702500789095
 GameObject:
   m_ObjectHideFlags: 0
