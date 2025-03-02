@@ -1,12 +1,8 @@
 using Minimalist.Interfaces;
 using Minimalist.Level;
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
-using Unity.VisualScripting;
 
 using UnityEngine;
 
@@ -39,7 +35,7 @@ namespace Minimalist.Manager
         {
             _currentLevelType = levelType;
 
-            _levelDataDictionary.ToList<KeyValuePair<LevelType, ILevelSwitch>>().ForEach(x =>
+            _levelDataDictionary.ToList().ForEach(x =>
             {
                 x.Value.OnLevelSwitch(levelType);
             });

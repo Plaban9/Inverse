@@ -3,7 +3,7 @@ using Minimalist.Audio.Sound;
 using Minimalist.Inverse;
 using Minimalist.SaveSystem;
 
-using System.Collections;
+using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -24,6 +24,10 @@ namespace Minimalist.Manager
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private Image _sfxVolumeImage;
         [SerializeField] private List<Sprite> _sfxVolumeSprite = new List<Sprite>();
+
+        // Virtual Joystick Toggle
+        [SerializeField] private Toggle virtualJoystickToggle;
+        public event Action<bool> OnVirtualJoyStickToggleChanged;
 
         #region Slider
         public void OnMasterValueChanged(float newValue)
@@ -111,8 +115,35 @@ namespace Minimalist.Manager
             {
                 _sfxVolumeSlider.value = GameAttributes.Settings_SFXVolume;
             }
+
+            if (virtualJoystickToggle != null)
+            {
+                virtualJoystickToggle.isOn = GameAttributes.Settings_IsVirtualJoystickEnabled;
+            }
         }
         #endregion
+
+        #region Joystick Toggle
+
+        public void OnVirtualJoystickToggleChanged(bool isOn)
+        {
+            OnVirtualJoyStickToggleChanged?.Invoke(isOn);
+        }
+
+        #endregion
+
+        private void Awake()
+        {
+            _masterVolumeSlider.onValueChanged.RemoveAllListeners();
+            _musicVolumeSlider.onValueChanged.RemoveAllListeners();
+            _sfxVolumeSlider.onValueChanged.RemoveAllListeners();
+            virtualJoystickToggle.onValueChanged.RemoveAllListeners();
+
+            _masterVolumeSlider.onValueChanged.AddListener((val) => OnMasterValueChanged(val));
+            _musicVolumeSlider.onValueChanged.AddListener((val) => OnMusicValueChanged(val));
+            _sfxVolumeSlider.onValueChanged.AddListener((val) => OnSFXValueChanged(val));
+            virtualJoystickToggle.onValueChanged.AddListener((val) => OnVirtualJoystickToggleChanged(val));
+        }
 
         private void OnEnable()
         {
@@ -140,19 +171,6 @@ namespace Minimalist.Manager
             {
                 MenuUIManager.Instance.OnButtonHoverExit("settings");
             }
-
-        }
-
-        private void Start()
-        {
-            _masterVolumeSlider.onValueChanged.RemoveAllListeners();
-            _musicVolumeSlider.onValueChanged.RemoveAllListeners();
-            _sfxVolumeSlider.onValueChanged.RemoveAllListeners();
-
-
-            _masterVolumeSlider.onValueChanged.AddListener((val) => OnMasterValueChanged(val));
-            _musicVolumeSlider.onValueChanged.AddListener((val) => OnMusicValueChanged(val));
-            _sfxVolumeSlider.onValueChanged.AddListener((val) => OnSFXValueChanged(val));
         }
 
         public void OnSavePressed()
@@ -165,6 +183,9 @@ namespace Minimalist.Manager
 
             GameAttributes.Settings_SFXVolume = _sfxVolumeSlider.value;
             SaveManager.SaveData(Constants.SaveSystem.SETTINGS_SOUND_VOLUME, GameAttributes.Settings_SFXVolume);
+
+            GameAttributes.Settings_IsVirtualJoystickEnabled = virtualJoystickToggle.isOn;
+            SaveManager.SaveData(Constants.SaveSystem.SETTINGS_VIRTUAL_JOYSTICK, GameAttributes.Settings_IsVirtualJoystickEnabled);
 
             gameObject.SetActive(false);
         }
@@ -179,6 +200,7 @@ namespace Minimalist.Manager
             OnMasterValueChanged(GameAttributes.Settings_MasterVolume);
             OnMusicValueChanged(GameAttributes.Settings_MusicVolume);
             OnSFXValueChanged(GameAttributes.Settings_SFXVolume);
+            OnVirtualJoystickToggleChanged(GameAttributes.Settings_IsVirtualJoystickEnabled);
 
             gameObject.SetActive(false);
         }

@@ -15,6 +15,8 @@ public class GameAttributes
         Settings_SFXVolume = SaveManager.ReadData(Constants.SaveSystem.SETTINGS_SOUND_VOLUME, Constants.General.Audio.MAX_SOUND_VOLUME);
         Settings_MusicVolume = SaveManager.ReadData(Constants.SaveSystem.SETTINGS_MUSIC_VOLUME, Constants.General.Audio.MAX_MUSIC_VOLUME);
 
+        Settings_IsVirtualJoystickEnabled = SaveManager.ReadData(Constants.SaveSystem.SETTINGS_VIRTUAL_JOYSTICK, false);
+
         D($"---- Attributes ----");
         D($"Launch Count: {Stat_LaunchCount}, Last Level Unlocked: {Stat_LastLevelUnlocked}, Last Level Played: {Stat_LastLevelPlayed}, Master Volume: {Settings_MasterVolume}, Music Volume: {Settings_MusicVolume}, SFX Volume: {Settings_SFXVolume}");
     }
@@ -25,6 +27,7 @@ public class GameAttributes
     public static float Settings_SFXVolume { get; set; }
     public static float Settings_MusicVolume { get; set; }
     public static float Settings_MasterVolume { get; set; }
+    public static bool Settings_IsVirtualJoystickEnabled { get; set; }
 
     private static void D(string message)
     {

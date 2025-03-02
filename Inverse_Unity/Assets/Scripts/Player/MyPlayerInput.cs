@@ -21,9 +21,11 @@ namespace Minimalist.Player
 
         public event Action OnInteract;
         public event Action OnDie;
+        public event Action OnRealmSwitch;
 
         // Private Fields
         private PlayerControls _inputs;
+        private PlayerInput playerInput;
 
         private void Awake()
         {
@@ -33,6 +35,7 @@ namespace Minimalist.Player
                 DestroyImmediate(Instance.gameObject);
 
             _inputs = new PlayerControls();
+            playerInput = GetComponent<PlayerInput>();
         }
 
         #region Input Events
@@ -47,8 +50,7 @@ namespace Minimalist.Player
             {
                 var isDarkRealm = LevelManager.Instance.RealmManager.GetCurrentLevelType() == Level.LevelType.Dark;
                 LevelManager.Instance.SwitchLevel(!isDarkRealm);
-                // Realm Change Sound is in PlayerSound script bcz player is responsible/required to change the realm.
-                AudioManager.PlaySFX(SoundType.Gameplay_RealmChange);
+                OnRealmSwitch?.Invoke();
                 Debug.Log("Realm Switched!");
             };
         }
@@ -56,6 +58,7 @@ namespace Minimalist.Player
         private void OnDisable()
         {
             _inputs.Disable();
+            _inputs.Dispose();
         }
         #endregion
 
@@ -75,9 +78,14 @@ namespace Minimalist.Player
         {
             if(other.CompareTag("Death"))
             {
-                Debug.Log("Die");
+                Debug.Log("Die: " + transform.name);
                 Die();
             }
+        }
+
+        public string GetCurrentControlScheme()
+        {
+            return playerInput.currentControlScheme;
         }
     }
 }

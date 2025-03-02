@@ -4,25 +4,23 @@ using Minimalist.Audio.Sound;
 using Minimalist.Interfaces;
 using Minimalist.Level;
 using Minimalist.Manager;
-using Minimalist.Player;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Minimalist.Player
 {
     public class PlayerSounds : MonoBehaviour, ILevelListener<LevelType>
     {
-        private PlayerMovements movements;
+        private MyPlayerInput inputs;
 
         private void Awake()
         {
-            movements = GetComponent<PlayerMovements>();
+            inputs = GetComponent<MyPlayerInput>();
         }
 
         private void OnEnable()
         {
-            
+            inputs.OnDie += () => AudioManager.PlaySFX3D(SoundType.Player_Death, transform.position);
         }
 
         private void OnDisable()
@@ -39,7 +37,7 @@ namespace Minimalist.Player
 
         private void Update()
         {
-            if (movements.IsPlayerJumped)
+            if (inputs.IsJumped)
             {
                 AudioManager.PlaySFX3D(SoundType.Player_Jump, transform.position);
             }
@@ -55,7 +53,7 @@ namespace Minimalist.Player
 
         public void OnNotify(LevelType enums)
         {
-            
+            AudioManager.PlaySFX3D(SoundType.Gameplay_RealmChange, transform.position);
         }
     }
 }

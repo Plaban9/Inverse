@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject settingsUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private List<UIElement> _uiElements;
     private PlayerControls inputActions;
@@ -124,6 +125,7 @@ public class GameUIManager : MonoBehaviour
 
         var newPauseState = !pauseUI.activeInHierarchy;
         pauseUI.SetActive(newPauseState);
+        settingsUI.SetActive(false);
         Time.timeScale = newPauseState ? 0 : 1;
     }
     #endregion

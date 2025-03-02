@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8618625068409832074
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4371308243147974796}
   - component: {fileID: 2262783774917992488}
   - component: {fileID: 6602081197875891140}
+  - component: {fileID: 5778693963744347246}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -354,6 +355,36 @@ MonoBehaviour:
   trailPrefab: {fileID: 2809645570291488660, guid: 43a72636f57f4c248bf792aa6edbc355, type: 3}
   trailTime: 1
   spawnInterval: 0.1
+--- !u!114 &5778693963744347246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944940239748370078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: cfe9f69c1a691254989482aca8f02a46, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6331592676532812240
 GameObject:
   m_ObjectHideFlags: 0

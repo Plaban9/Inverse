@@ -189,7 +189,7 @@ namespace Minimilist.Player.PlayerActions
                 {
                     ""name"": """",
                     ""id"": ""b2c3f7fd-981f-4bd3-8fed-ddf5d2f850a4"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -211,7 +211,7 @@ namespace Minimilist.Player.PlayerActions
                 {
                     ""name"": """",
                     ""id"": ""820a2b5f-4466-4348-a9b6-7ebd298dc198"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -233,7 +233,7 @@ namespace Minimilist.Player.PlayerActions
                 {
                     ""name"": """",
                     ""id"": ""edeaeb4d-e06d-40b5-866f-ef45fe5b9d28"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -281,6 +281,17 @@ namespace Minimilist.Player.PlayerActions
                 {
                     ""name"": """",
                     ""id"": ""a0c2dc7d-4f43-4233-b586-53256f15e2db"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ShowSkip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68d561f7-69c2-4a97-8882-1491b2304599"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
@@ -323,8 +334,47 @@ namespace Minimilist.Player.PlayerActions
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Dialogue"",
+            ""id"": ""1ebe137a-dc5b-4427-9171-d7db635c039f"",
+            ""actions"": [
+                {
+                    ""name"": ""SkipInstructions"",
+                    ""type"": ""Button"",
+                    ""id"": ""29fcd6fa-de93-4a5a-87b5-704c8a20b3e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""38a7b79d-f140-4a4b-b1a1-5f6235c206f1"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipInstructions"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60114c72-c219-4dda-8423-1af3d9bbb917"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipInstructions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -375,6 +425,9 @@ namespace Minimilist.Player.PlayerActions
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+            // Dialogue
+            m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
+            m_Dialogue_SkipInstructions = m_Dialogue.FindAction("SkipInstructions", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -610,6 +663,52 @@ namespace Minimilist.Player.PlayerActions
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // Dialogue
+        private readonly InputActionMap m_Dialogue;
+        private List<IDialogueActions> m_DialogueActionsCallbackInterfaces = new List<IDialogueActions>();
+        private readonly InputAction m_Dialogue_SkipInstructions;
+        public struct DialogueActions
+        {
+            private @PlayerControls m_Wrapper;
+            public DialogueActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @SkipInstructions => m_Wrapper.m_Dialogue_SkipInstructions;
+            public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
+            public void AddCallbacks(IDialogueActions instance)
+            {
+                if (instance == null || m_Wrapper.m_DialogueActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_DialogueActionsCallbackInterfaces.Add(instance);
+                @SkipInstructions.started += instance.OnSkipInstructions;
+                @SkipInstructions.performed += instance.OnSkipInstructions;
+                @SkipInstructions.canceled += instance.OnSkipInstructions;
+            }
+
+            private void UnregisterCallbacks(IDialogueActions instance)
+            {
+                @SkipInstructions.started -= instance.OnSkipInstructions;
+                @SkipInstructions.performed -= instance.OnSkipInstructions;
+                @SkipInstructions.canceled -= instance.OnSkipInstructions;
+            }
+
+            public void RemoveCallbacks(IDialogueActions instance)
+            {
+                if (m_Wrapper.m_DialogueActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IDialogueActions instance)
+            {
+                foreach (var item in m_Wrapper.m_DialogueActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_DialogueActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public DialogueActions @Dialogue => new DialogueActions(this);
         private int m_KeyboardSchemeIndex = -1;
         public InputControlScheme KeyboardScheme
         {
@@ -644,6 +743,10 @@ namespace Minimilist.Player.PlayerActions
         public interface IUIActions
         {
             void OnPause(InputAction.CallbackContext context);
+        }
+        public interface IDialogueActions
+        {
+            void OnSkipInstructions(InputAction.CallbackContext context);
         }
     }
 }

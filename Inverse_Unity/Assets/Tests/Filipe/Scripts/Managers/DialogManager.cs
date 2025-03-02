@@ -1,18 +1,21 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using Minimalist.Player;
+using Minimilist.Player.PlayerActions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace Minimalist.DialogSystem
 {
     public class DialogManager : MonoBehaviour
     {
         [Header("Assets Used")]
-        [SerializeField]  private TextMeshProUGUI dialogTMP;
-        [SerializeField]  private TextMeshProUGUI speakerTMP;
+        [SerializeField] private TextMeshProUGUI dialogTMP;
+        [SerializeField] private TextMeshProUGUI speakerTMP;
+        [SerializeField] private TextMeshProUGUI skipInstructionsTMP;
 
         [Header("Debugging")]
         [SerializeField] public DialogObject dialogObject;
@@ -22,6 +25,46 @@ namespace Minimalist.DialogSystem
         [SerializeField] private CanvasGroup canvasGroup;
         public UnityEvent OnDialogueCompleted;
 
+        private PlayerControls inputActions;
+        private Coroutine dialoguesRoutine;
+
+        private void Awake()
+        {
+            inputActions = new PlayerControls();
+        }
+
+        private void OnEnable()
+        {
+            inputActions.Dialogue.Enable();
+
+            inputActions.Dialogue.SkipInstructions.performed += ctx =>
+            {
+                showing = true;
+                Fade(() => 
+                {
+                    if (dialoguesRoutine != null)
+                        StopCoroutine(dialoguesRoutine);
+                    
+                    OnDialogueCompleted?.Invoke();
+                });
+            };
+        }
+
+        public void SetSkipInstructionText(bool isGamepad)
+        {
+            const string currentInstructions = "Hold {X} to skip instructions";
+            const string ButtonNamePlaceHolder = "{X}";
+            int bindingIndex = isGamepad ? 1 : 0;
+            skipInstructionsTMP.text = currentInstructions.Replace(ButtonNamePlaceHolder, inputActions.Dialogue.SkipInstructions.bindings[bindingIndex].ToDisplayString());
+            Debug.Log(skipInstructionsTMP.text);
+        }
+
+        private void OnDisable()
+        {
+            inputActions.Dialogue.Disable();
+            inputActions.Dispose();
+        }
+
         void Start()
         {
             canvasGroup = GetComponent<CanvasGroup>();
@@ -30,52 +73,20 @@ namespace Minimalist.DialogSystem
         public void StartDialog(DialogObject dialogObject)
         {
             DialogMessage dialogMessage = dialogObject.messages[0];
-            dialogTMP.text = " ";
+            dialogTMP.text = "";
             speakerTMP.text = dialogMessage.speaker;
-            StartCoroutine(
-                Fade(1,
-                () =>
-                {
 
-                    RunDialogObject(
-                        dialogObject, 
-                        0,
-                        () =>
-                        {
-                            StartCoroutine(
-                                Fade(1, () => { OnDialogueCompleted?.Invoke(); })
-                            );
-                        });
-                })
-                );
+            Fade(() => RunDialogObject(dialogObject, 0, () => Fade(() => { OnDialogueCompleted?.Invoke(); })));
         }
 
-        private IEnumerator Fade(float amountOfFrames, Action callback)
+        private void Fade(Action callback, float duration = 1)
         {
-            if (showing)
-            {
-                for (float i = amountOfFrames; i >= 0; i -= Time.deltaTime)
-                {
-                    canvasGroup.alpha = i/amountOfFrames;
-                    yield return null;
-                }
-            }
-            else
-            {
-                for (float i = 0; i <= amountOfFrames; i += Time.deltaTime)
-                {
-                    canvasGroup.alpha = i/amountOfFrames;
-                    yield return null;
-                }
-            }
-            if (canvasGroup.alpha >= 0.5) { showing = true; } else { showing = false; }
-            callback.Invoke();
+            canvasGroup.DOFade(showing ? 0 : 1, duration).OnComplete(() => { showing = canvasGroup.alpha >= 0.5f; callback?.Invoke(); });
         }
-
 
         private void RunDialogObject(DialogObject dialogObject, int index, Action endCallback)
         {
-            if(index >= dialogObject.messages.Count)
+            if (index >= dialogObject.messages.Count)
             {
 
                 endCallback.Invoke();
@@ -86,8 +97,13 @@ namespace Minimalist.DialogSystem
 
             DialogMessage dm = dialogObject.messages[index];
             speakerTMP.text = dm.speaker;
-            
-            StartCoroutine(
+
+            if (dialoguesRoutine != null)
+            {
+                StopCoroutine(dialoguesRoutine);
+            }
+
+            dialoguesRoutine = StartCoroutine(
                 ShowDialog(dm,
                 () =>
                 {
@@ -106,9 +122,9 @@ namespace Minimalist.DialogSystem
             {
                 currentText += a;
                 dialogTMP.text = currentText;
-                yield return new WaitForSecondsRealtime(currentMessage.timeTillNextCharacter);
+                yield return new WaitForSeconds(currentMessage.timeTillNextCharacter);
             }
-            yield return new WaitForSecondsRealtime(currentMessage.timeToNext);
+            yield return new WaitForSeconds(currentMessage.timeToNext);
             nextMessageCallback.Invoke();
         }
     }

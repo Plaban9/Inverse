@@ -40,6 +40,7 @@ namespace Minimalist.Inverse
             public const string SETTINGS_MASTER_VOLUME = "volume_master";
             public const string SETTINGS_SOUND_VOLUME = "volume_sound";
             public const string SETTINGS_MUSIC_VOLUME = "volume_music";
+            public const string SETTINGS_VIRTUAL_JOYSTICK = "virtual_joystick";
             #endregion
         }
     }

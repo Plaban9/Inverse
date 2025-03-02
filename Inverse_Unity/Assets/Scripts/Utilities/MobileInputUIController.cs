@@ -25,16 +25,27 @@ public class MobileInputUIController : MonoBehaviour, ILevelListener<LevelType>
     [SerializeField] private Image dashImg;
     [SerializeField] private Image realmChangeImg;
 
+    private SettingsManager settingsManager;
+
     private void Awake()
     {
-#if !UNITY_ANDROID
-    GetComponentInParent<Canvas>().gameObject.SetActive(false);
-#endif
+        settingsManager = FindObjectOfType<SettingsManager>(true);
+        settingsManager.OnVirtualJoyStickToggleChanged += SettingsManager_OnVirtualJoyStickToggleChanged;
+    }
+
+    private void SettingsManager_OnVirtualJoyStickToggleChanged(bool isEnabled)
+    {
+        GetComponentInParent<Canvas>(true).gameObject.SetActive(isEnabled);
     }
 
     private void Start()
     {
         LevelManager.Instance.RealmManager.AddListener(this);
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.Instance.RealmManager.RemoveListener(this);
     }
 
     private void Update()

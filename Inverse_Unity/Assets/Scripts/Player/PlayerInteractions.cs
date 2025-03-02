@@ -16,7 +16,7 @@ namespace Minimalist.Player
         {
             _inputs = GetComponentInParent<MyPlayerInput>();
             var col = GetComponent<Collider2D>();
-            col.isTrigger = true;
+            col.isTrigger = true; // just to be safe
         }
 
         private void OnEnable()

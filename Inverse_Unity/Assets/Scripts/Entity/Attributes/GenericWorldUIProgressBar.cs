@@ -82,11 +82,13 @@ public class GenericWorldUIProgressBar : MonoBehaviour
 
     private void ScaleProgressBarAndUpdate(Vector3 endScale, float transitionTimeInSecs)
     {
+        D("ScaleProgressBarAndUpdate Called");
         _progressBarObject.transform.DOScale(endScale, transitionTimeInSecs).OnComplete(() => SwitchUpdateProcess(true));
     }
 
     private void ScaleProgressBar(Vector3 endScale, float transitionTimeInSecs)
     {
+        D("ScaleProgressBar Called");
         _progressBarObject.transform.DOScale(endScale, transitionTimeInSecs);
     }
 

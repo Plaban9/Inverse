@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 671960539f8d28b45b4c25c010f404ec, type: 3}
-  m_Name: TutorialObject
+  m_Name: KeyboardTutorialObject
   m_EditorClassIdentifier: 
   messages:
   - {fileID: 11400000, guid: 90e98c218e343f1479e4c7ad0ef89fe0, type: 2}

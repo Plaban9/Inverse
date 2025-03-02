@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671960539f8d28b45b4c25c010f404ec, type: 3}
+  m_Name: GamepadTutorialObject
+  m_EditorClassIdentifier: 
+  messages:
+  - {fileID: 11400000, guid: d69c2df1f09a6df449c55f20a8ee3279, type: 2}
+  - {fileID: 11400000, guid: e2b6af5bcd841ad41b457afb9521d539, type: 2}
+  - {fileID: 11400000, guid: 4c578f3bd715f2c48bbac3d542385004, type: 2}
+  - {fileID: 11400000, guid: d611477bd2e8e2346b39b679974fca1e, type: 2}
+  - {fileID: 11400000, guid: 4fca61640941dd742b9a7c57b8cd812b, type: 2}
+  - {fileID: 11400000, guid: 6db198870fa5543428211fe222764605, type: 2}
+  - {fileID: 11400000, guid: 1f4623a20f6e54f4486506412fbcd3ec, type: 2}
