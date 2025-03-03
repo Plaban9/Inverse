@@ -1734,6 +1734,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1717950235083604212, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d510b664472a38141b3250ed4478bbce, type: 3}
     - target: {fileID: 2007664951984600189, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
       propertyPath: m_Value
       value: 0
@@ -1950,6 +1954,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5770880198482351871, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ed9019cb45391df45af60830d8f3f58f, type: 2}
+    - target: {fileID: 5770880198482351871, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6215212318837970675, guid: ed9019cb45391df45af60830d8f3f58f, type: 2}
+    - target: {fileID: 5770880198482351871, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770880198482351871, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770880198482351871, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5948501231738965708, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2040,6 +2064,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6397292735242209950, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914688811028331859, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7078650417530638753, guid: 34974ff4cf49f854a9178bafe135d3fa, type: 3}
