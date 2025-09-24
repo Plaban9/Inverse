@@ -32,7 +32,7 @@ INVERSE challenges players to navigate a world where movement and gravity are fl
 
 ## 📚 Credits
 
-Developed by **Plaban**  
+Developed by **Plaban, Filipe and Jaydeep**  
 Created as part of a game programming course project.  
 Special thanks to classmates and instructors for feedback and support.
 
