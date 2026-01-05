@@ -39,7 +39,7 @@ namespace Minimalist.Player
         {
             if (inputs.IsJumped)
             {
-                AudioManager.PlaySFX3D(SoundType.Player_Jump, transform.position);
+                //AudioManager.PlaySFX3D(SoundType.Player_Jump, transform.position);
             }
         }
 

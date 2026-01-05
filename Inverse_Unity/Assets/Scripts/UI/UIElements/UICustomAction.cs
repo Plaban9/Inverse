@@ -1,13 +1,19 @@
-using Minimalist.Audio.Sound;
 using Minimalist.Audio;
+using Minimalist.Audio.Sound;
+using Minimalist.Inverse;
+using Minimalist.Manager;
+using Minimalist.SaveSystem;
 
 using UnityEngine;
-using Minimalist.Manager;
 
 public class UICustomAction : MonoBehaviour, IUICustomAction
 {
-    private bool _isSceneBeingLoaded = false;
+    private static bool _isSceneBeingLoaded = false;
 
+    public void Awake()
+    {
+        _isSceneBeingLoaded = false;
+    }
     public void OnInteractableClick(string elementName)
     {
         var customElementName = elementName.ToLower();
@@ -134,11 +140,16 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
     private void Play()
     {
-        if (!_isSceneBeingLoaded)
+        //if (!_isSceneBeingLoaded)
         {
             _isSceneBeingLoaded = true;
             AudioManager.PlaySFX(SoundType.UI_Click);
-            SceneManager.Instance.LoadScene("Story", "CrossFade");
+            //SceneManager.Instance.LoadScene("Story", "CrossFade"); // Temporarily disabled story scene for demo purposes
+
+            bool isTutorialCompleted = SaveManager.ReadData(Constants.SaveSystem.STAT_TUTORIAL_COMPLETED, false);
+            var sceneToLoad = isTutorialCompleted ? "Level1" : "Level_Tut";
+
+            SceneManager.Instance.LoadScene(sceneToLoad, "CrossFade");
         }
     }
 
@@ -216,18 +227,18 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
     private void RestartLevel()
     {
-        if(!_isSceneBeingLoaded)
+        //if(!_isSceneBeingLoaded)
         {
             Debug.Log("Restarting level");
             _isSceneBeingLoaded = true;
             Time.timeScale = 1;
-            SceneManager.Instance.LoadScene(SceneManager.Instance.ActiveScene, "CrossFade");
+            SceneManager.Instance.LoadScene(SceneManager.Instance.ActiveScene, "CrossFade", false);
         }
     }
 
     private void LoadMenuScene()
     {
-        if (!_isSceneBeingLoaded)
+        //if (!_isSceneBeingLoaded)
         {
             _isSceneBeingLoaded = true;
             Time.timeScale = 1;
@@ -238,6 +249,6 @@ public class UICustomAction : MonoBehaviour, IUICustomAction
 
     private static void D(string message)
     {
-        //Debug.Log("<<UICustomAction>> " + message);
+       //Debug.Log("<<UICustomAction>> " + message);
     }
 }

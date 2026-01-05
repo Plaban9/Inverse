@@ -27,7 +27,7 @@ namespace Minimalist.Manager
 
         private void Awake()
         {
-            if (Instance == null) // Singleto
+            if (Instance == null) // Singleton
             {
                 Instance = this;
                 DontDestroyOnLoad(Instance);

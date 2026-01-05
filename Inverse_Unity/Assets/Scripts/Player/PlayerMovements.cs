@@ -1,4 +1,8 @@
 using DG.Tweening;
+
+using Minimalist.Audio;
+
+using Minimalist.Audio.Sound;
 using Minimalist.Effect.Animations;
 using Minimalist.Manager;
 
@@ -14,12 +18,12 @@ namespace Minimalist.Player
     public class PlayerMovements : MonoBehaviour
     {
         [Header("Movement")]
-        [SerializeField] private float speed = 5f;
+        [SerializeField] private float speed = 5.5f;
 
         [Header("Dash")]
         [SerializeField] private bool isDashing;
-        [SerializeField] private float dashSpeed = 5f;
-        [SerializeField] private float dashTime = 1f;
+        [SerializeField] private float dashSpeed = 4.5f;
+        [SerializeField] private float dashTime = 0.5f;
         [SerializeField] private float dashCooldown = 3f;
         [SerializeField] private GenericWorldUIProgressBar dashBar;
         private float currentDashCooldownTime;
@@ -28,7 +32,7 @@ namespace Minimalist.Player
 
         [Header("Jump")]
         [SerializeField] private bool isGrounded;
-        [SerializeField] private float jumpHeight = 2f;
+        [SerializeField] private float jumpHeight = 2.5f;
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float groundCheckRadius = .5f;
@@ -125,9 +129,10 @@ namespace Minimalist.Player
             // Jumps
             if ((isGrounded || airJumpCap > _airJumpCount) && _playerInput.IsJumped)
             {
+                AudioManager.PlaySFX3D(SoundType.Player_Jump, transform.position);
                 VfxManager vfxManager = VfxManager.Instance;
                 if (vfxManager != null) vfxManager.CreateEffect(VfxEnum.PLAYER_JUMPDUST, gameObject.transform.position);
-                else { Debug.LogError("Missing VfxMaanger, add one to the scene from Filipe/Prefabs/EffectsPrefab!"); }
+                else { Debug.LogError("Missing VfxManager, add one to the scene from Filipe/Prefabs/EffectsPrefab!"); }
                 IsPlayerJumped = true;
                 if (!isGrounded) { _airJumpCount++; }
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpHeight);

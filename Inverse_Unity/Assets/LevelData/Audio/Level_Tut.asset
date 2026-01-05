@@ -15,8 +15,8 @@ MonoBehaviour:
   musicLibrary:
   - name: Background
     musicType: 0
-    audioClip: {fileID: 8300000, guid: e345c9d1fdb75224e8bfad5d25ab2b72, type: 3}
-    volume: 1
+    audioClip: {fileID: 8300000, guid: 2b8b22616fd0e30408790789c005f6b8, type: 3}
+    volume: 0.75
     shouldLoop: 1
   soundLibrary:
   - name: Spawn
