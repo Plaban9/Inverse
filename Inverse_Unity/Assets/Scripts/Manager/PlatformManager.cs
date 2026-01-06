@@ -13,7 +13,8 @@ namespace Minimalist.Manager
     public enum PlatformType
     {
         Mobile,
-        Desktop
+        Desktop,
+        WebGL
     }
 
     [System.Serializable]
@@ -67,14 +68,29 @@ namespace Minimalist.Manager
             return currentPlatformType;
         }
 
-        private void SetCurrentPlatformType(PlatformType value)
+        private void SetCurrentPlatformType()
         {
-            currentPlatformType = value;
+            if (IsWebMobilePlatform())
+            {
+                currentPlatformType = PlatformType.Mobile;
+            }
+            else if (IsMobilePlatform())
+            {
+                currentPlatformType = PlatformType.Mobile;
+            }
+            else if (IsDesktopPlatform())
+            {
+                currentPlatformType = PlatformType.Desktop;
+            }
+            else if (IsWebPlatform())
+            {
+                currentPlatformType = PlatformType.WebGL;
+            }
         }
 
         void Awake()
         {
-            SetCurrentPlatformType((IsWebMobilePlatform() || IsMobilePlatform()) ? PlatformType.Mobile : PlatformType.Desktop);           
+            SetCurrentPlatformType();
         }
 
         void Start()

@@ -2177,6 +2177,10 @@ PrefabInstance:
       value: Mobile
       objectReference: {fileID: 0}
     - target: {fileID: 6410261553118440736, guid: f6dbd300129715343ab12bc06bca9c5c, type: 3}
+      propertyPath: _platformSpecificObjects.Array.data[0]._platformType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410261553118440736, guid: f6dbd300129715343ab12bc06bca9c5c, type: 3}
       propertyPath: _platformSpecificObjects.Array.data[0]._platformAction
       value: 1
       objectReference: {fileID: 0}
